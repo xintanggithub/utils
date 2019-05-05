@@ -9,6 +9,9 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/utilslib" />
+            <option value="$PROJECT_DIR$/utilslibhttp" />
+            <option value="$PROJECT_DIR$/utilslibimage" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
