@@ -123,11 +123,11 @@ object FileUtils {
      * @param uri     the uri
      * @return the real file path from uri
      */
-    fun getRealFilePathFromUri(context: Context, uri: Uri?): String? {
+    fun getRealFilePathFromUri(context: Context, uri: Uri?): String {
         if (null == uri)
-            return null
+            return ""
         val scheme = uri.scheme
-        var data: String? = null
+        var data: String = ""
         if (scheme == null) {
             data = uri.path
         } else if (ContentResolver.SCHEME_FILE.equals(scheme, ignoreCase = true)) {

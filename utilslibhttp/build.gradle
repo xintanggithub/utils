@@ -1,5 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
+apply plugin: 'maven'
 
 android {
     compileSdkVersion project.COMPILE_SDK_VERSION as int
@@ -7,8 +8,8 @@ android {
     defaultConfig {
         minSdkVersion project.MIN_SDK_VERSION_NAME as int
         targetSdkVersion project.TARGET_SDK_VERSION as int
-        versionCode project.VERSION_CODE as int
-        versionName project.VERSION_NAME
+        versionCode project.VERSION_CODE_HTTP as int
+        versionName project.VERSION_NAME_HTTP
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
@@ -18,6 +19,23 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    uploadArchives {
+        repositories {
+            mavenDeployer {
+                repository(url: 'file:///Users/tangxin/work/maven') {
+                    authentication(userName: 'tsontang', password: 'mmm123')
+                }
+
+                pom.project {
+                    groupId 'com.tson.utils.lib.http'
+                    artifactId 'lib'
+                    version '1.0.0'
+                    packaging 'aar'
+                }
+            }
         }
     }
 
@@ -41,12 +59,6 @@ dependencies {
     api 'com.squareup.retrofit2:adapter-rxjava2:2.4.0'
     api 'com.squareup.okhttp3:logging-interceptor:3.11.0'
     api 'com.squareup.okhttp3:okhttp:3.11.0'
-    //glide
-    api 'com.github.bumptech.glide:glide:4.8.0'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.8.0'
-    api 'jp.wasabeef:glide-transformations:4.0.1'
-    api "com.github.bumptech.glide:okhttp3-integration:4.8.0"
-
 }
 repositories {
     mavenCentral()

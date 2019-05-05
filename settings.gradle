@@ -1,1 +1,1 @@
-include ':app', ':utilslib', ':utilslibhttp', ':utilslibimage'
+include ':app', ':utilslib', ':utilslibhttp', ':utilslibimage', ':utilsview'

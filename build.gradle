@@ -17,6 +17,11 @@ allprojects {
     repositories {
         google()
         jcenter()
+        maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
+        maven{
+            //这是maven仓库地址
+            url 'https://raw.githubusercontent.com/xintanggithub/maven/master'
+        }
     }
 }
 
