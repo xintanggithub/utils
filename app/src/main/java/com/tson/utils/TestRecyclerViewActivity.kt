@@ -13,16 +13,19 @@ import com.tson.utils.view.list.BaseAdapter.*
 import com.tson.utils.view.list.CallBack
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity() {
+class TestRecyclerViewActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
 
-        val data = mutableListOf<String>("a", "b", "c", "a", "b", "c", "a", "b", "c", "a", "b",
+        val data1 = mutableListOf("a", "b", "c", "a", "b", "c", "a", "b", "c", "a", "b",
                 "c", "a", "b", "c", "a", "b", "c", "a", "b", "c", "a", "b", "c", "a", "b", "c",
                 "a", "b", "c")
+
+        val data = mutableListOf<String>()
+        data.addAll(data1)
 
         val adapter = MyAdapter(data, R.layout.item_layout, object : CallBack<String, ItemFawFooterBinding> {
             override fun footerHolder(holder: BaseAdapter.FooterViewHolder<*>, mData: List<String>, loadState: Int) {
@@ -56,14 +59,14 @@ class MainActivity : AppCompatActivity() {
                                 R.layout.item_faw_footer, parent, false)
             }
         })
-        rv_list.layoutManager = LinearLayoutManager(this@MainActivity)
+        rv_list.layoutManager = LinearLayoutManager(this@TestRecyclerViewActivity)
         rv_list.adapter = adapter
 
         adapter.loadMore()
 
         show_load.setOnClickListener {
             adapter.loadMore()
-            adapter.addAll(data.toList())
+            adapter.addAll(data1.toList())
         }
 
         hide_load.setOnClickListener {
