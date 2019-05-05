@@ -20,6 +20,13 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    dataBinding {
+        enabled = true
+    }
+    compileOptions {
+        sourceCompatibility = '1.8'
+        targetCompatibility = '1.8'
+    }
 }
 
 dependencies {
@@ -33,6 +40,7 @@ dependencies {
 //    implementation project(':utilslib')
 //    implementation project(':utilslibhttp')
 //    implementation project(':utilslibimage')
+    implementation project(':utilsview')
 
 
     implementation "com.tson.utils.lib.http:lib:1.0.0"

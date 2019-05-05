@@ -1,16 +1,15 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
+apply plugin: 'maven'
 
 android {
-    compileSdkVersion 28
-
-
+    compileSdkVersion project.COMPILE_SDK_VERSION as int
 
     defaultConfig {
-        minSdkVersion 15
-        targetSdkVersion 28
-        versionCode 1
-        versionName "1.0"
+        minSdkVersion project.MIN_SDK_VERSION_NAME as int
+        targetSdkVersion project.TARGET_SDK_VERSION as int
+        versionCode project.VERSION_CODE_VIEW as int
+        versionName project.VERSION_NAME_VIEW
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
@@ -23,16 +22,41 @@ android {
         }
     }
 
+    dataBinding {
+        enabled = true
+    }
+    compileOptions {
+        sourceCompatibility = '1.8'
+        targetCompatibility = '1.8'
+    }
+
+    uploadArchives {
+        repositories {
+            mavenDeployer {
+                repository(url: 'file:///Users/tangxin/work/maven') {
+                    authentication(userName: 'tsontang', password: 'mmm123')
+                }
+
+                pom.project {
+                    groupId 'com.tson.utils.view'
+                    artifactId 'lib'
+                    version '1.0.0'
+                    packaging 'aar'
+                }
+            }
+        }
+    }
+
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'com.android.support:appcompat-v7:28.0.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    api 'com.android.support:recyclerview-v7:28.0.0'
 }
 repositories {
     mavenCentral()
