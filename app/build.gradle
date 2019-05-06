@@ -40,7 +40,7 @@ dependencies {
 
     implementation "com.tson.utils.lib.http:lib:1.0.0"
     implementation "com.tson.utils.lib.util:lib:1.0.0"
-    implementation "com.tson.utils.lib.iv:lib:1.0.0"
+    implementation "com.tson.utils.lib.iv:lib:1.0.1"
     implementation "com.tson.utils.view:lib:1.0.0"
 
 }
