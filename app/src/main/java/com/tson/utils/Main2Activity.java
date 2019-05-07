@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
 
 import com.bumptech.glide.request.RequestOptions;
+import com.tson.utils.httpdemo.DemoHttpActivity;
 import com.tson.utils.lib.iv.GlideUtil;
 
 public class Main2Activity extends AppCompatActivity {
@@ -31,5 +32,9 @@ public class Main2Activity extends AppCompatActivity {
         GlideUtil.Companion.setCornerIcon(this, appStoreIconUrl, iv2, 200,
                 new RequestOptions().placeholder(R.drawable.ic_launcher_background)
                         .error(R.drawable.ic_launcher_background));
+
+        findViewById(R.id.button2).setOnClickListener(v -> {
+            startActivity(new Intent(this, DemoHttpActivity.class));
+        });
     }
 }

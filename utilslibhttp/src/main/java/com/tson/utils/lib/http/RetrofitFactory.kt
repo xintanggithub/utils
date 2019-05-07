@@ -62,7 +62,7 @@ class RetrofitFactory {
             }
         }
 
-        private fun buildOkHttpClient(interceptor: Interceptor): OkHttpClient {
+        fun buildOkHttpClient(interceptor: Interceptor): OkHttpClient {
             val builder = OkHttpClient.Builder()
                 .connectTimeout(10, TimeUnit.SECONDS)//设置连接超时
                 .readTimeout(10, TimeUnit.SECONDS)//读取超时
