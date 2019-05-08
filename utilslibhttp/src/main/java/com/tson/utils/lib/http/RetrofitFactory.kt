@@ -1,12 +1,5 @@
 package com.tson.utils.lib.http
 
-import com.tson.utils.lib.http.base.ApiStatus
-import com.tson.utils.lib.http.base.BaseData
-import io.reactivex.Observable
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.Disposable
-import io.reactivex.functions.Function
-import io.reactivex.schedulers.Schedulers
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -37,30 +30,30 @@ class RetrofitFactory {
             return retrofit.create(service)
         }
 
-        fun <T> createData(
-            observable: Observable<BaseData<T>>,
-            apiStatus: ApiStatus<T>
-        ): Disposable {
-            return createData(observable, apiStatus, GetResultFilter())
-        }
-
-        fun <T> createData(
-            observable: Observable<BaseData<T>>,
-            apiStatus: ApiStatus<T>,
-            function: Function<BaseData<T>, Observable<T>>
-        ): Disposable {
-            apiStatus.before()
-            return observable.subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .flatMap<T>(function)
-                .subscribe(apiStatus::success, apiStatus::error)
-        }
-
-        class GetResultFilter<T> : Function<BaseData<T>, Observable<T>> {
-            override fun apply(t: BaseData<T>): Observable<T> {
-                return Observable.just(t.base)
-            }
-        }
+//        fun <T> createData(
+//            observable: Observable<BaseData<T>>,
+//            apiStatus: BaseApiStatus<T>
+//        ): Disposable {
+//            return createData(observable, apiStatus, GetResultFilter())
+//        }
+//
+//        fun <T> createData(
+//            observable: Observable<BaseData<T>>,
+//            apiStatus: BaseApiStatus<T>,
+//            function: Function<BaseData<T>, Observable<T>>
+//        ): Disposable {
+//            apiStatus.before()
+//            return observable.subscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .flatMap<T>(function)
+//                .subscribe(apiStatus::success, apiStatus::error)
+//        }
+//
+//        class GetResultFilter<T> : Function<BaseData<T>, Observable<T>> {
+//            override fun apply(t: BaseData<T>): Observable<T> {
+//                return Observable.just(t.base)
+//            }
+//        }
 
         fun buildOkHttpClient(interceptor: Interceptor): OkHttpClient {
             val builder = OkHttpClient.Builder()

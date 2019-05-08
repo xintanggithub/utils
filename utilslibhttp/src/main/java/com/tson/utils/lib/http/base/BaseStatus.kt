@@ -16,6 +16,4 @@ interface BaseStatus<T> {
 
     fun error(throwable: Throwable)
 
-    fun tokenInvalid(throwable: Throwable)
-
 }
