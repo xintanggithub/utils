@@ -17,19 +17,31 @@ class CleanDataUtils {
     companion object {
 
         /**
-         * 需要查下缓存大小
+         * 查询所有的缓存大小 format
          *
          * @param context the context
          * @return the total cache size
          * @throws Exception the exception
          */
         @Throws(Exception::class)
-        fun getTotalCacheSize(context: Context): String {
+        fun getTotalCacheFormatSize(context: Context): String {
+            return getFormatSize(getTotalCacheSize(context).toDouble())
+        }
+
+        /**
+         * 查询所有的缓存大小
+         *
+         * @param context the context
+         * @return the total cache size
+         * @throws Exception the exception
+         */
+        @Throws(Exception::class)
+        fun getTotalCacheSize(context: Context): Long {
             var cacheSize = getFolderSize(context.cacheDir)
             if (Environment.getExternalStorageState() == Environment.MEDIA_MOUNTED) {
                 cacheSize += getFolderSize(context.externalCacheDir)
             }
-            return getFormatSize(cacheSize.toDouble())
+            return cacheSize
         }
 
         /**

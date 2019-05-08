@@ -27,7 +27,7 @@ object FileUtils {
     /**
      * The constant SDCard.
      */
-    var SDCard = Environment.getExternalStorageDirectory().absolutePath
+    private var SDCard = Environment.getExternalStorageDirectory().absolutePath
     private val pachageName = packageName
 
     /**
@@ -48,8 +48,8 @@ object FileUtils {
      *
      * @return the package name
      */
-    val packageName: String
-        get() = UtilsConfig.sContext?.packageName ?: "com.tson.utils.lib.util"
+    private val packageName: String
+        get() = UtilsConfig.sContext.packageName ?: "com.tson.utils.lib.util"
 
     /**
      * Convert byte[] to hex string.将byte转换成int，
@@ -123,15 +123,13 @@ object FileUtils {
      * @param uri     the uri
      * @return the real file path from uri
      */
-    fun getRealFilePathFromUri(context: Context, uri: Uri?): String {
-        if (null == uri)
-            return ""
+    fun getRealFilePathFromUri(context: Context, uri: Uri): String {
         val scheme = uri.scheme
         var data: String = ""
         if (scheme == null) {
-            data = uri.path
+            data = uri.path ?: ""
         } else if (ContentResolver.SCHEME_FILE.equals(scheme, ignoreCase = true)) {
-            data = uri.path
+            data = uri.path ?: ""
         } else if (ContentResolver.SCHEME_CONTENT.equals(scheme, ignoreCase = true)) {
             val cursor = context.contentResolver.query(
                 uri, arrayOf(
@@ -273,13 +271,13 @@ object FileUtils {
         saveResultCallback: SaveResultCallback
     ) {
         Thread(Runnable {
-            val appDir = File(Environment.getExternalStorageDirectory(), "qiming")
+            val appDir = File(Environment.getExternalStorageDirectory(), "utils")
             if (!appDir.exists()) {
                 appDir.mkdir()
             }
             //                SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmss");
             // 设置以当前时间格式为图片名称
-            var saveFileName = StringUtils.md5Upper("qiming_pic$fileName") + ".png"
+            var saveFileName = StringUtils.md5Upper("utils_pic$fileName") + ".png"
             saveFileName = saveFileName.substring(20)//取前20位作为SaveName
             val file = File(appDir, saveFileName)
             try {
@@ -323,11 +321,7 @@ object FileUtils {
      * @return boolean
      */
     fun checkSDCard(): Boolean {
-        return if (Environment.getExternalStorageState() == Environment.MEDIA_MOUNTED) {
-            true
-        } else {
-            false
-        }
+        return Environment.getExternalStorageState() == Environment.MEDIA_MOUNTED
     }
 
     /**
@@ -355,7 +349,7 @@ object FileUtils {
         var flag = false
         // 如果sPath不以文件分隔符结尾，自动添加文件分隔符
         if (!sPath.endsWith(File.separator)) {
-            sPath = sPath + File.separator
+            sPath += File.separator
         }
         val dirFile = File(sPath)
         // 如果dir对应的文件不存在，或者不是一个目录，则退出
@@ -381,11 +375,7 @@ object FileUtils {
         if (!flag)
             return false
         // 删除当前目录
-        return if (dirFile.delete()) {
-            true
-        } else {
-            false
-        }
+        return dirFile.delete()
     }
 
     /**
@@ -745,9 +735,9 @@ object FileUtils {
             for (i in fileList.indices) {
                 // 如果下面还有文件
                 if (fileList[i].isDirectory) {
-                    size = size + getFolderSize(fileList[i])
+                    size += getFolderSize(fileList[i])
                 } else {
-                    size = size + fileList[i].length()
+                    size += fileList[i].length()
                 }
             }
         } catch (e: Exception) {

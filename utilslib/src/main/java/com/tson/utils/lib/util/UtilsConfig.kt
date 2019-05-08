@@ -12,7 +12,7 @@ class UtilsConfig {
     companion object {
 
         @SuppressLint("StaticFieldLeak")
-        var sContext: Context? = null
+        lateinit var sContext: Context
 
     }
 

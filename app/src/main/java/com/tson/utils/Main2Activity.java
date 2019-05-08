@@ -22,7 +22,7 @@ public class Main2Activity extends AppCompatActivity {
         ImageView iv = findViewById(R.id.imageView);
         ImageView iv2 = findViewById(R.id.imageView2);
 
-        String appStoreIconUrl = "http://a.hiphotos.baidu.com/image/h%3D300/sign=81bb1142c85c10383b7ec8c28210931c/2cf5e0fe9925bc31348b10c050df8db1ca137097.jpg";
+        String appStoreIconUrl = "https://avatars2.githubusercontent.com/u/27901367?s=460&v=4";
         //圆角
         GlideUtil.Companion.setCornerIcon(this, appStoreIconUrl, iv, 20,
                 new RequestOptions().placeholder(R.drawable.ic_launcher_background)
