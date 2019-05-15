@@ -27,7 +27,9 @@ public abstract class BaseAdapter<T, E extends ViewDataBinding> extends Recycler
     private final int TYPE_ITEM = 1;
     // 脚布局
     private final int TYPE_FOOTER = 2;
-    // 当前加载状态，默认为加载完成
+    /**
+     * 当前加载状态，默认为加载完成
+     */
     private int loadState = 2;
     private CallBack mCallBack;
     // 正在加载
@@ -83,7 +85,8 @@ public abstract class BaseAdapter<T, E extends ViewDataBinding> extends Recycler
     public void addAll(List<T> mData) {
         boolean isEmpty = mData.isEmpty();
         this.mData.addAll(mData);
-        if (!isEmpty) {//防止从0到有，并且为第一页加载数据时，自动滚动到最底部
+        //防止从0到有，并且为第一页加载数据时，自动滚动到最底部
+        if (!isEmpty) {
             notifyItemRangeInserted(this.mData.size() - mData.size(), this.mData.size());
         } else {
             notifyDataSetChanged();
@@ -170,32 +173,36 @@ public abstract class BaseAdapter<T, E extends ViewDataBinding> extends Recycler
         }
     }
 
-
     public void loadMore() {
-        loadState = LOADING;
-        setShowFooter();
-//        notifyDataSetChanged();
-        notifyItemRangeChanged(mData.size(), mData.size() + 1);
+        if (loadState != LOADING) {
+            loadState = LOADING;
+            setShowFooter();
+            notifyItemRangeChanged(mData.size(), mData.size() + 1);
+        }
     }
 
     public void loadComplete() {
         loadState = LOADING_COMPLETE;
-        setHideFooter();
-        if (!mData.isEmpty()) {
-            notifyItemRemoved(mData.size());
-        } else {
-            notifyDataSetChanged();
+        if (showFooter) {
+            if (!mData.isEmpty()) {
+                notifyItemRemoved(mData.size());
+            } else {
+                notifyDataSetChanged();
+            }
         }
+        setHideFooter();
     }
 
     public void noneMore() {
-        setHideFooter();
         loadState = LOADING_END;
-        if (!mData.isEmpty()) {
-            notifyItemRemoved(mData.size());
-        } else {
-            notifyDataSetChanged();
+        if (showFooter) {
+            if (!mData.isEmpty()) {
+                notifyItemRemoved(mData.size());
+            } else {
+                notifyDataSetChanged();
+            }
         }
+        setHideFooter();
     }
 
     public void setShowFooter() {
@@ -215,6 +222,11 @@ public abstract class BaseAdapter<T, E extends ViewDataBinding> extends Recycler
     }
 
     public interface OnclickListener {
+        /**
+         * 点击事件 回调方法
+         *
+         * @param view 点击的控件对象
+         */
         void onclick(View view);
     }
 

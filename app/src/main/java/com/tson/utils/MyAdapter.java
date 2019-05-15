@@ -21,7 +21,7 @@ public class MyAdapter extends BaseAdapter<String, ItemLayoutBinding> {
     @Override
     public void onBindViewHolders(int position, @NonNull BaseViewHolder holder) {
         ItemLayoutBinding itemLayoutBinding = (ItemLayoutBinding) holder.itemDataBinding;
-        itemLayoutBinding.setVm(getData(position));
+        itemLayoutBinding.setVm(getData(position) +"  ------  "+ position);
     }
 
 }
