@@ -73,6 +73,11 @@ public abstract class BaseAdapter<T, E extends ViewDataBinding> extends Recycler
         notifyDataSetChanged();
     }
 
+    public void replace(int index, T data) {
+        this.mData.set(index, data);
+        notifyItemChanged(index);
+    }
+
     public T getData(int position) {
         if (mData != null) {
             return mData.get(position);
