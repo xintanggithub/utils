@@ -133,7 +133,13 @@ public class MyAdapter extends BaseAdapter<String, ItemLayoutBinding> {
 val data1 = mutableListOf("a", "b", "c", "a", "b", "c", "a", "b", "c", "a", "b","c", "a", "b", "c", "a", "b", "c", "a", "b", "c", "a", "b", "c", "a", "b", "c","a", "b", "c")
 
 //依次传入 数据、item布局、设置footer的回调
+ val layoutManager = GridLayoutManager(this@TestRecyclerViewActivity, 3)
+
 val adapter = MyAdapter(data, R.layout.item_layout, object : CallBack<String, ItemFawFooterBinding> {
+    override fun layoutManager(): RecyclerView.LayoutManager {
+                return layoutManager
+            }
+            
     override fun footerHolder(holder: BaseAdapter.FooterViewHolder<*>, mData: List<String>, loadState: Int) {
     //footerView显示逻辑的处理回调
         val item = holder.itemDataBinding as ItemFawFooterBinding

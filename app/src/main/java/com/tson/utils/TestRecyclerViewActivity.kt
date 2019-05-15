@@ -22,15 +22,15 @@ class TestRecyclerViewActivity : AppCompatActivity() {
 
 
         val data1 = mutableListOf(
-            "a", "b", "c", "a", "b", "c", "a", "b", "c", "a", "b",
-            "c", "a", "b", "c", "a", "b", "c", "a", "b", "c", "a", "b", "c", "a", "b", "c",
-            "a", "b", "c", "d"
+                "a", "b", "c", "a", "b", "c", "a", "b", "c", "a", "b",
+                "c", "a", "b", "c", "a", "b", "c", "a", "b", "c", "a", "b", "c", "a", "b", "c",
+                "a", "b", "c", "d"
         )
 
         val data = mutableListOf<String>()
         data.addAll(data1)
 
-        val layoutManager = GridLayoutManager(this@TestRecyclerViewActivity, 2)
+        val layoutManager = GridLayoutManager(this@TestRecyclerViewActivity, 3)
 
         val adapter = MyAdapter(data, R.layout.item_layout, object : CallBack<String, ItemFawFooterBinding> {
             override fun layoutManager(): RecyclerView.LayoutManager {
@@ -64,10 +64,10 @@ class TestRecyclerViewActivity : AppCompatActivity() {
 
             override fun dataBinding(parent: ViewGroup): ItemFawFooterBinding {
                 return DataBindingUtil
-                    .inflate(
-                        LayoutInflater.from(parent.context),
-                        R.layout.item_faw_footer, parent, false
-                    )
+                        .inflate(
+                                LayoutInflater.from(parent.context),
+                                R.layout.item_faw_footer, parent, false
+                        )
             }
         })
         rv_list.layoutManager = layoutManager
@@ -86,6 +86,8 @@ class TestRecyclerViewActivity : AppCompatActivity() {
         not_more.setOnClickListener {
             adapter.noneMore()
         }
+
+        button4.setOnClickListener { adapter.loadMore() }
 
     }
 }
