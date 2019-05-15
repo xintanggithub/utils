@@ -13,8 +13,8 @@ import android.view.ViewGroup;
 import java.util.List;
 
 /**
- * Created tangxin
  * Time 2019/3/26 2:52 PM
+ * @author tangxin
  */
 public abstract class BaseAdapter<T, E extends ViewDataBinding> extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
@@ -205,11 +205,11 @@ public abstract class BaseAdapter<T, E extends ViewDataBinding> extends Recycler
         setHideFooter();
     }
 
-    public void setShowFooter() {
+    private void setShowFooter() {
         this.showFooter = true;
     }
 
-    public void setHideFooter() {
+    private void setHideFooter() {
         this.showFooter = false;
     }
 
