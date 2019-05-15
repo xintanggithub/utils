@@ -3,7 +3,8 @@ package com.tson.utils
 import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.GridLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,14 +21,22 @@ class TestRecyclerViewActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
 
-        val data1 = mutableListOf("a", "b", "c", "a", "b", "c", "a", "b", "c", "a", "b",
-                "c", "a", "b", "c", "a", "b", "c", "a", "b", "c", "a", "b", "c", "a", "b", "c",
-                "a", "b", "c")
+        val data1 = mutableListOf(
+            "a", "b", "c", "a", "b", "c", "a", "b", "c", "a", "b",
+            "c", "a", "b", "c", "a", "b", "c", "a", "b", "c", "a", "b", "c", "a", "b", "c",
+            "a", "b", "c", "d"
+        )
 
         val data = mutableListOf<String>()
         data.addAll(data1)
 
+        val layoutManager = GridLayoutManager(this@TestRecyclerViewActivity, 2)
+
         val adapter = MyAdapter(data, R.layout.item_layout, object : CallBack<String, ItemFawFooterBinding> {
+            override fun layoutManager(): RecyclerView.LayoutManager {
+                return layoutManager
+            }
+
             override fun footerHolder(holder: BaseAdapter.FooterViewHolder<*>, mData: List<String>, loadState: Int) {
                 val item = holder.itemDataBinding as ItemFawFooterBinding
                 if (mData.isEmpty()) {
@@ -55,11 +64,13 @@ class TestRecyclerViewActivity : AppCompatActivity() {
 
             override fun dataBinding(parent: ViewGroup): ItemFawFooterBinding {
                 return DataBindingUtil
-                        .inflate(LayoutInflater.from(parent.context),
-                                R.layout.item_faw_footer, parent, false)
+                    .inflate(
+                        LayoutInflater.from(parent.context),
+                        R.layout.item_faw_footer, parent, false
+                    )
             }
         })
-        rv_list.layoutManager = LinearLayoutManager(this@TestRecyclerViewActivity)
+        rv_list.layoutManager = layoutManager
         rv_list.adapter = adapter
 
         adapter.loadMore()

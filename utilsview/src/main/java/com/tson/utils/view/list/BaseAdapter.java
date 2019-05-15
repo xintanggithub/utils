@@ -4,6 +4,7 @@ import android.content.Context;
 import android.databinding.DataBindingUtil;
 import android.databinding.ViewDataBinding;
 import android.support.annotation.NonNull;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,6 +15,7 @@ import java.util.List;
 
 /**
  * Time 2019/3/26 2:52 PM
+ *
  * @author tangxin
  */
 public abstract class BaseAdapter<T, E extends ViewDataBinding> extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
@@ -63,6 +65,7 @@ public abstract class BaseAdapter<T, E extends ViewDataBinding> extends Recycler
         this.itemLayoutId = itemLayoutId;
         setShowFooter();
         mCallBack = callBack;
+        setGridLayoutManager();
     }
 
     public void setData(List<T> mData) {
@@ -87,6 +90,7 @@ public abstract class BaseAdapter<T, E extends ViewDataBinding> extends Recycler
         this.mData.addAll(mData);
         //防止从0到有，并且为第一页加载数据时，自动滚动到最底部
         if (!isEmpty) {
+            loadComplete();
             notifyItemRangeInserted(this.mData.size() - mData.size(), this.mData.size());
         } else {
             notifyDataSetChanged();
@@ -97,6 +101,7 @@ public abstract class BaseAdapter<T, E extends ViewDataBinding> extends Recycler
         boolean isEmpty = mData.isEmpty();
         this.mData.add(data);
         if (!isEmpty) {
+            loadComplete();
             notifyItemInserted(this.mData.size() - 1);
         } else {
             this.mData.add(data);
@@ -228,6 +233,31 @@ public abstract class BaseAdapter<T, E extends ViewDataBinding> extends Recycler
          * @param view 点击的控件对象
          */
         void onclick(View view);
+    }
+
+    /**
+     * 将RecyclerView的网格布局中的某个item设置为独占一行、只占一列，只占两列、等等
+     */
+    private void setGridLayoutManager() {
+        if (null != mCallBack) {
+            RecyclerView.LayoutManager layout = mCallBack.layoutManager();
+            if (layout instanceof GridLayoutManager) {
+                GridLayoutManager gridLayoutManager = (GridLayoutManager) layout;
+                gridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
+                    @Override
+                    public int getSpanSize(int position) {
+                        int type = getItemViewType(position);
+                        if (type == TYPE_ITEM) {
+                            //只占一行中的一列
+                            return 1;
+                        } else {
+                            //独占一行
+                            return gridLayoutManager.getSpanCount();
+                        }
+                    }
+                });
+            }
+        }
     }
 
 }
