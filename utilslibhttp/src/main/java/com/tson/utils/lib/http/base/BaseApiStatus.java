@@ -14,7 +14,7 @@ public abstract class BaseApiStatus<T> implements BaseStatus<T> {
 
     @Override
     public void request(@NonNull String params) {
-        Log.d(TAG, "JDOPushApi params【" + params + "】");
+        Log.d(TAG, "params【" + params + "】");
     }
 
     @Override
