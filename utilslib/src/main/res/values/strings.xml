@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">utilsLib</string>
+    <string name="permission_setting">去设置</string>
+    <string name="qf_cancel">取消</string>
 </resources>
