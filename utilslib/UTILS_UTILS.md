@@ -29,6 +29,10 @@ allprojects {
 
 ### 1. 工具类使用
 
+```
+UtilsHelper.instance(this);
+```
+
 #### 1.1 清单 
 
 - CleanDataUtils 应用缓存相关工具类

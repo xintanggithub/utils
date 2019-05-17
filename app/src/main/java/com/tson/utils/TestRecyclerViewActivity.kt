@@ -22,9 +22,9 @@ class TestRecyclerViewActivity : AppCompatActivity() {
 
 
         val data1 = mutableListOf(
-                "a", "b", "c", "a", "b", "c", "a", "b", "c", "a", "b",
-                "c", "a", "b", "c", "a", "b", "c", "a", "b", "c", "a", "b", "c", "a", "b", "c",
-                "a", "b", "c", "d"
+            "a", "b", "c", "a", "b", "c", "a", "b", "c", "a", "b",
+            "c", "a", "b", "c", "a", "b", "c", "a", "b", "c", "a", "b", "c", "a", "b", "c",
+            "a", "b", "c", "d"
         )
 
         val data = mutableListOf<String>()
@@ -64,10 +64,10 @@ class TestRecyclerViewActivity : AppCompatActivity() {
 
             override fun dataBinding(parent: ViewGroup): ItemFawFooterBinding {
                 return DataBindingUtil
-                        .inflate(
-                                LayoutInflater.from(parent.context),
-                                R.layout.item_faw_footer, parent, false
-                        )
+                    .inflate(
+                        LayoutInflater.from(parent.context),
+                        R.layout.item_faw_footer, parent, false
+                    )
             }
         })
         rv_list.layoutManager = layoutManager

@@ -10,7 +10,7 @@ class UtilsHelper {
 
     companion object {
 
-        var utilsHelper: UtilsHelper? = null
+        private var utilsHelper: UtilsHelper? = null
 
         fun instance(context: Context): UtilsHelper {
             if (null == utilsHelper) {
