@@ -30,7 +30,13 @@ allprojects {
 ### 1. 工具类使用
 
 ```
-UtilsHelper.instance(this);
+
+UtilsHelper.also {
+            it.instance(this@Activity) //实例化
+            it.isDebug(true) //是否打开debug,打开则会输出日志
+            var path = it.isSaveLog(true) //是否存储日志文件,true返回存储路径,false返回空字符串
+        }
+        
 ```
 
 #### 1.1 清单 

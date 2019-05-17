@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.tson.utils.databinding.ItemFawFooterBinding
+import com.tson.utils.lib.util.UtilsHelper
 import com.tson.utils.view.list.BaseAdapter
 import com.tson.utils.view.list.BaseAdapter.*
 import com.tson.utils.view.list.CallBack
@@ -88,6 +89,5 @@ class TestRecyclerViewActivity : AppCompatActivity() {
         }
 
         button4.setOnClickListener { adapter.loadMore() }
-
     }
 }

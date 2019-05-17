@@ -1,6 +1,7 @@
 package com.tson.utils.lib.util
 
 import android.content.Context
+import com.tson.utils.lib.util.log.LogFileUtils
 
 /**
  *  Created tangxin
@@ -18,6 +19,16 @@ class UtilsHelper {
                 UtilsConfig.sContext = context
             }
             return utilsHelper as UtilsHelper
+        }
+
+        fun isDebug(isDebug: Boolean): UtilsHelper {
+            UtilsConfig.debug = isDebug
+            return utilsHelper as UtilsHelper
+        }
+
+        fun isSaveLog(isSave: Boolean): String {
+            UtilsConfig.isSaveLog = isSave
+            return if (isSave) LogFileUtils.dataPath else ""
         }
     }
 
