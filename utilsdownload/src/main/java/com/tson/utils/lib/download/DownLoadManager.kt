@@ -11,7 +11,7 @@ import com.tson.utils.lib.download.utils.log.LogUtils
 class DownLoadManager {
     companion object {
 
-        private val TAG = "DownLoadManager"
+        private const val TAG = "DownLoadManager"
 
         private var sDownloader: Downloader? = null
 

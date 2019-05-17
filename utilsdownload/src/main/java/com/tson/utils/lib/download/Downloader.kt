@@ -111,7 +111,7 @@ class Downloader {
      * @return the this@Downloader
      */
     fun setPath(path: String): Downloader {
-        mViewModel!!.setPath(path)
+        mViewModel.setPath(path)
         LogUtils.d(TAG, "setting download Path success , Path =$path")
         return this
     }
@@ -123,7 +123,7 @@ class Downloader {
      * @return this @Downloader
      */
     fun setRetryCount(retryCount: Int): Downloader {
-        mViewModel!!.setRetryCount(retryCount)
+        mViewModel.setRetryCount(retryCount)
         LogUtils.d(TAG, "setting retry count success , count =$retryCount")
         return this
     }
@@ -140,7 +140,7 @@ class Downloader {
             Throwable("MaxThreadCount：Between 1 and 12")
             return this
         }
-        mViewModel!!.setMaxThreadCount(maxThreadCount)
+        mViewModel.setMaxThreadCount(maxThreadCount)
         LogUtils.d(TAG, "setting max thread count success , count =$maxThreadCount")
         return this
     }
@@ -152,7 +152,7 @@ class Downloader {
      * @return the this@Downloader
      */
     fun setDebugLog(isOpen: Boolean): Downloader {
-        mViewModel!!.setDebugLog(isOpen)
+        mViewModel.setDebugLog(isOpen)
         LogUtils.d(TAG, "debug log -> open status :$isOpen")
         return this
     }
@@ -163,7 +163,7 @@ class Downloader {
      * @param url 文件的下载链接
      */
     fun start(url: String) {
-        mViewModel!!.start(url, object : DownloadListener() {
+        mViewModel.start(url, object : DownloadListener() {
             override fun pending(task: BaseDownloadTask, soFarBytes: Int, totalBytes: Int) {
                 for (l in mListener.values) {
                     l.pending(task, soFarBytes, totalBytes)
@@ -215,7 +215,7 @@ class Downloader {
      * @param listener 下载状态监听
      */
     fun start(url: String, listener: DownloadListener) {
-        mViewModel!!.start(url, listener)
+        mViewModel.start(url, listener)
     }
 
     /**
@@ -224,14 +224,14 @@ class Downloader {
      * @param id 下载任务的ID
      */
     fun pause(id: Int) {
-        mViewModel!!.pause(id)
+        mViewModel.pause(id)
     }
 
     /**
      * 暂停所有.
      */
     fun pauseAll() {
-        mViewModel!!.pauseAll()
+        mViewModel.pauseAll()
     }
 
     /**
@@ -241,14 +241,14 @@ class Downloader {
      * @param path 存储路径
      */
     fun clear(id: Int, path: String) {
-        mViewModel!!.clear(id, path)
+        mViewModel.clear(id, path)
     }
 
     /**
      * 清除所有数据.
      */
     fun clearAll() {
-        mViewModel!!.clearAll()
+        mViewModel.clearAll()
     }
 
     /**
@@ -258,7 +258,7 @@ class Downloader {
      * @return ID对应任务的已下载大小 so far
      */
     fun getSoFar(id: Int): Long {
-        return mViewModel!!.getSoFar(id)
+        return mViewModel.getSoFar(id)
     }
 
     /**
@@ -268,7 +268,7 @@ class Downloader {
      * @return 中大小 total
      */
     fun getTotal(id: Int): Long {
-        return mViewModel!!.getTotal(id)
+        return mViewModel.getTotal(id)
     }
 
     companion object {

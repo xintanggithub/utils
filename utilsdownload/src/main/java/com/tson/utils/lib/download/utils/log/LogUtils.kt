@@ -7,7 +7,7 @@ import android.util.Log
  * Time 2018/11/1 9:59 AM
  * @author tangxin
  */
-class LogUtils {
+internal class LogUtils {
 
     companion object {
         var openLog = false
