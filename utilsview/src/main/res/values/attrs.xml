@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- todo interval 间隔设置-->
+    <declare-styleable name="TabButton">
+        <attr name="tab_icon_text_interval" format="dimension" />
+        <!--true 有文字标题 false 无文字标题-->
+        <attr name="tab_button_text_visible" format="boolean" />
+        <!--true 有icon   false 无icon-->
+        <attr name="tab_button_icon_visible" format="boolean" />
+        <!--问题标题大小-->
+        <attr name="tab_button_text_size" format="dimension" />
+        <!--icon宽高-->
+        <attr name="tab_button_width" format="dimension" />
+        <attr name="tab_button_height" format="dimension" />
+        <!--button整体展示模型:
+         1 文字在上  icon 在下
+         2 文字在左  icon 在右
+         3 文字在下  icon 在上
+         4 文字在右  icon 在左-->
+        <attr name="tab_icon_text_model" format="integer" />
+        <!--内部对齐方式，支持以下几种:
+        1. center
+        2. left
+        3. right
+        4. top
+        5. bottom
+        -->
+        <attr name="tab_gravity" format="integer" />
+        <!--分割线Dividing line  true 显示  false 不显示-->
+        <attr name="tab_dividing_line_visible" format="boolean" />
+        <!--tab 模式: 2 vertical 纵向 1 horizontal 横向-->
+        <attr name="tab_orientation" format="integer" />
+    </declare-styleable>
+
+    <declare-styleable name="DrawableTextView">
+        <attr name="drawableWidth" format="dimension" />
+        <attr name="drawableHeight" format="dimension" />
+        <attr name="drawableRightWidth" format="dimension" />
+        <attr name="drawableRightHeight" format="dimension" />
+        <attr name="drawableTopWidth" format="dimension" />
+        <attr name="drawableTopHeight" format="dimension" />
+        <attr name="drawableBottomWidth" format="dimension" />
+        <attr name="drawableBottomHeight" format="dimension" />
+        <attr name="drawableLeftWidth" format="dimension" />
+        <attr name="drawableLeftHeight" format="dimension" />
+        <attr name="drawableRight" format="reference" />
+        <attr name="drawableTop" format="reference" />
+        <attr name="drawableBottom" format="reference" />
+        <attr name="drawableLeft" format="reference" />
+    </declare-styleable>
+
+</resources>
