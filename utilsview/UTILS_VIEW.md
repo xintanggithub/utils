@@ -25,6 +25,6 @@ allprojects {
     implementation "com.tson.utils.view:lib:1.0.1"
 ```
 
-### 1. BaseAdapter的使用
+### 1. BaseAdapter的使用 [点击这里查看详情](https://github.com/xintanggithub/utils/blob/master/utilsview/BASEADAPTER.md)
 
-### 2. TabButton的使用
+### 2. TabButton的使用 [点击这里查看详情](https://github.com/xintanggithub/utils/blob/master/utilsview/TABBUTTON.md)
