@@ -11,7 +11,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import com.tson.utils.view.DisplayUtils;
 import com.tson.utils.view.R;
 import com.tson.utils.view.tab.callback.TabButtonListener;
@@ -42,10 +41,6 @@ public class TabButton extends LinearLayout {
      * 文字标题大小
      */
     private float mTabButtonTextSize;
-    /**
-     * 字体 默认大小
-     */
-    private float defaultTextSize = 13;
     /**
      * icon宽度
      */
@@ -123,6 +118,11 @@ public class TabButton extends LinearLayout {
                     .TabButton_tab_button_text_visible, false);
             mTabButtonIconVisible = typedArray.getBoolean(R.styleable
                     .TabButton_tab_button_icon_visible, false);
+            /*
+      字体 默认大小
+     */ /**
+             * 字体 默认大小
+             */float defaultTextSize = 13;
             mTabButtonTextSize = typedArray.getDimension(R.styleable.TabButton_tab_button_text_size,
                     DisplayUtils.Companion.sp2px(context, defaultTextSize));
             mTabIconTextModel = typedArray.getInteger(R.styleable.TabButton_tab_icon_text_model,
@@ -292,14 +292,14 @@ public class TabButton extends LinearLayout {
         //横向
         if (mTabOrientation == TabOrientation.HORIZONTAL.getOrientation()) {
             linearLayout.setLayoutParams(new LayoutParams(((mTabButtonWidth == -1 ?
-                    DisplayUtils.Companion.getScreenWidthSize() :(int)mTabButtonWidth) /
+                    DisplayUtils.Companion.getScreenWidthSize() : (int) mTabButtonWidth) /
                     mButtons.size()) - (mTabDividingLineVisible ? mButtons.size() - 1 : 0),
                     LayoutParams.MATCH_PARENT));
         } else {
             //纵向
             linearLayout.setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                     ((mTabButtonHeight == -1 ? DisplayUtils.Companion.getScreenHeightSize()
-                            : (int)mTabButtonHeight) / mButtons.size()) - (mTabDividingLineVisible ?
+                            : (int) mTabButtonHeight) / mButtons.size()) - (mTabDividingLineVisible ?
                             mButtons.size() - 1 : 0)));
         }
         linearLayout.setGravity(getGravityType());
@@ -406,8 +406,7 @@ public class TabButton extends LinearLayout {
     }
 
     private ImageView drawImageView() {
-        ImageView imageView = new ImageView(getContext());
-        return imageView;
+        return new ImageView(getContext());
     }
 
     private String getName(Button item) {
@@ -443,7 +442,7 @@ public class TabButton extends LinearLayout {
      * @param button 按钮数据
      */
     public void replace(int index, Button button) {
-
+//todo 待实现
     }
 
     /**
@@ -452,7 +451,7 @@ public class TabButton extends LinearLayout {
      * @param index 按钮位置
      */
     public void hideIndex(int index) {
-
+//todo 待实现
     }
 
     /**
@@ -461,7 +460,7 @@ public class TabButton extends LinearLayout {
      * @param button 按钮数据
      */
     public void addButton(Button button) {
-
+//todo 待实现
     }
 
     /**
@@ -471,7 +470,7 @@ public class TabButton extends LinearLayout {
      * @param button 按钮数据
      */
     public void addButton(int index, Button button) {
-
+//todo 待实现
     }
 
     /**
