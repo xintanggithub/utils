@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!-- todo interval 间隔设置-->
     <declare-styleable name="TabButton">
         <attr name="tab_icon_text_interval" format="dimension" />
         <!--true 有文字标题 false 无文字标题-->
