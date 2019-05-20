@@ -55,6 +55,41 @@ class DemoUtilsActivity : AppCompatActivity() {
         tabButton6.setOnclickListener(onclick)
         tabButton7.setOnclickListener(onclick)
         tabButton8.setOnclickListener(onclick)
+
+        replace.setOnClickListener {
+            val button = Button().also {
+                it.id = 2
+                it.name = "007"
+                it.defaultIcon = ContextCompat.getDrawable(this, defIcon[2])
+                it.selectIcon = ContextCompat.getDrawable(this, selectIcon[2])
+                it.defTextColor = "#000000"
+                it.selectTextColor = "#ec7d28"
+            }
+            tabButton.replace(2, button)
+            tabButton2.replace(2, button)
+        }
+
+        add_button.setOnClickListener {
+            val button = Button().also {
+                it.id = 5
+                it.name = "008"
+                it.defaultIcon = ContextCompat.getDrawable(this, defIcon[2])
+                it.selectIcon = ContextCompat.getDrawable(this, selectIcon[2])
+                it.defTextColor = "#000000"
+                it.selectTextColor = "#ec7d28"
+            }
+            tabButton3.addButton(button)
+            tabButton6.addButton(button)
+            tabButton7.addButton(8,button)
+        }
+
+        index.setOnClickListener {
+            tabButton2.setIndex(1);
+        }
+
+        remove.setOnClickListener {
+            tabButton2.remove(2)
+        }
     }
 
     val onclick = object : TabButtonListener() {

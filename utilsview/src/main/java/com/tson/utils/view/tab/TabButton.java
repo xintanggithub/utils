@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
 import com.tson.utils.view.DisplayUtils;
 import com.tson.utils.view.R;
 import com.tson.utils.view.tab.callback.TabButtonListener;
@@ -358,7 +359,7 @@ public class TabButton extends LinearLayout {
     }
 
     private int getGravityType() {
-        int gravity = Gravity.CENTER;
+        int gravity;
         //设置内容对齐模式
         TabGravity tabGravity = TabGravity.getGravity(mTabGravity);
         switch (tabGravity) {
@@ -409,30 +410,12 @@ public class TabButton extends LinearLayout {
         return new ImageView(getContext());
     }
 
-    private String getName(Button item) {
-        //是否显示text
-        if (mTabButtonTextVisible) {
-            return item.getName();
-        }
-        return null;
-    }
-
     /**
      * 选中button，指向下标
      */
-    public void setIndex(int id) {
-        notifyTabButton(getButtonById(id));
-    }
-
-    private Button getButtonById(int id) {
-        if (null != tabs && !tabs.isEmpty()) {
-            for (Tab tab : tabs) {
-                if (id == tab.getId()) {
-                    return tab.getButton();
-                }
-            }
-        }
-        return null;
+    public void setIndex(int index) {
+        notifyTabButton(tabs.get(index).getButton());
+        defaultIndex = index;
     }
 
     /**
@@ -442,25 +425,34 @@ public class TabButton extends LinearLayout {
      * @param button 按钮数据
      */
     public void replace(int index, Button button) {
-//todo 待实现
+        mButtons.set(index, button);
+        removeAllViews();
+        initView();
     }
 
     /**
-     * 隐藏某个按钮
+     * 删除button
      *
-     * @param index 按钮位置
+     * @param index 需要删除的button位置
      */
-    public void hideIndex(int index) {
-//todo 待实现
+    public void remove(int index) {
+        mButtons.remove(index);
+        if (defaultIndex == index) {
+            defaultIndex = -1;
+        }
+        removeAllViews();
+        initView();
     }
 
     /**
-     * 添加一个按钮(添加到第一个)
+     * 添加一个按钮
      *
      * @param button 按钮数据
      */
     public void addButton(Button button) {
-//todo 待实现
+        mButtons.add(button);
+        removeAllViews();
+        initView();
     }
 
     /**
@@ -470,7 +462,21 @@ public class TabButton extends LinearLayout {
      * @param button 按钮数据
      */
     public void addButton(int index, Button button) {
-//todo 待实现
+        //说明index是在当前tab范围以内
+        if (mButtons.size() >= (index + 1)) {
+            mButtons.add(index, button);
+        } else {
+            //说明不在范围以内
+            //添加到第一个
+            if (index < 0) {
+                mButtons.add(0, button);
+            } else {
+                //添加到最后一个
+                mButtons.add(button);
+            }
+        }
+        removeAllViews();
+        initView();
     }
 
     /**

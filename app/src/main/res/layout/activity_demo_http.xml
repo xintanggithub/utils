@@ -87,13 +87,13 @@
             android:id="@+id/tabButton2"
             android:layout_width="match_parent"
             android:layout_height="45dp"
+            android:layout_marginBottom="10dp"
             android:background="#123123"
             app:tab_button_height="45dp"
             app:tab_button_icon_visible="true"
             app:tab_button_text_size="16sp"
             app:tab_button_text_visible="true"
             app:tab_dividing_line_visible="true"
-            android:layout_marginBottom="10dp"
             app:tab_gravity="1"
             app:tab_icon_text_interval="-8dp"
             app:tab_icon_text_model="1"
@@ -103,10 +103,10 @@
             android:id="@+id/tabButton6"
             android:layout_width="match_parent"
             android:layout_height="45dp"
+            android:layout_marginBottom="10dp"
             android:background="#123123"
             app:tab_button_height="45dp"
             app:tab_button_icon_visible="true"
-            android:layout_marginBottom="10dp"
             app:tab_button_text_size="16sp"
             app:tab_button_text_visible="true"
             app:tab_button_width="-1px"
@@ -115,28 +115,30 @@
             app:tab_icon_text_interval="-8dp"
             app:tab_icon_text_model="2"
             app:tab_orientation="1" />
+
         <com.tson.utils.view.tab.TabButton
             android:id="@+id/tabButton7"
             android:layout_width="match_parent"
             android:layout_height="45dp"
+            android:layout_marginBottom="10dp"
             android:background="#123123"
             app:tab_button_height="45dp"
             app:tab_button_icon_visible="true"
             app:tab_button_text_size="16sp"
             app:tab_button_text_visible="true"
-            android:layout_marginBottom="10dp"
             app:tab_dividing_line_visible="true"
             app:tab_gravity="1"
             app:tab_icon_text_interval="-8dp"
             app:tab_icon_text_model="3"
             app:tab_orientation="1" />
+
         <com.tson.utils.view.tab.TabButton
             android:id="@+id/tabButton8"
             android:layout_width="match_parent"
             android:layout_height="45dp"
+            android:layout_marginBottom="10dp"
             android:background="#123123"
             app:tab_button_height="45dp"
-            android:layout_marginBottom="10dp"
             app:tab_button_icon_visible="true"
             app:tab_button_text_size="16sp"
             app:tab_button_text_visible="true"
@@ -145,6 +147,40 @@
             app:tab_icon_text_interval="-8dp"
             app:tab_icon_text_model="4"
             app:tab_orientation="1" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/replace"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="replace" />
+
+        <Button
+            android:id="@+id/add_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="add = end" />
+
+        <Button
+            android:id="@+id/index"
+            android:text="index"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+        <Button
+            android:id="@+id/remove"
+            android:text="remove"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
     </LinearLayout>
 
 </RelativeLayout>

@@ -18,7 +18,7 @@ public interface OnclickListener {
     void onclick(int index, Button button);
 
     /**
-     * 点击事件回调
+     * 长按事件回调
      *
      * @param index  点击的button位置
      * @param button button数据

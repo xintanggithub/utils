@@ -100,3 +100,115 @@
     }
 
 ```
+
+#### 1.3 方法说明
+
+##### 1.3.1  绑定tabButton数据
+
+- List<Button> buttons：
+    将需要展示的自定义参数以及标题icon等传入
+  
+- defaultIndex：
+    默认选择位置
+
+```
+public TabButton bindData(int defaultIndex, @NonNull List<Button> buttons)
+```
+
+##### 1.3.2 加载绑定的的数据
+
+- 需要在bindData之后调用 
+
+```
+public TabButton initView()
+```
+
+##### 1.3.3 选中某一个tabButton
+
+- index:
+    tabButton的位置，下标
+    
+- initView完成之后调用
+
+```
+public void setIndex(int index)
+```
+
+##### 1.3.4 替换某个tabButton
+
+- index：
+    同上描述
+    
+- Button：
+    需要替换的参数以及标题icon等传入
+
+```
+public void replace(int index, Button button)
+```
+
+##### 1.3.5 删除某个tabButton
+
+- index：
+    需要删除button的位置
+
+```
+public void remove(int index)
+```
+
+##### 1.3.6  添加一个tabButton到最后的位置
+
+- 添加一个button，这里默认是添加到最后一个
+
+- Button:
+    同上描述
+
+```
+public void addButton(Button button) 
+```
+
+##### 1.3.7 添加一个tabButton到指定位置
+
+- index：
+    需要添加的button的位置，小于0时添加到第一个，大于当前存在最大位置时加入最后一个位置，其他情况添加到对应位置
+ 
+- Button:
+    同上描述
+
+```
+public void addButton(int index, Button button)
+```
+
+##### 1.3.8 添加点击事件监听
+
+- 绑定监听事件，包括点击 和 长按事件
+
+```
+public void setOnclickListener(TabButtonListener tabButtonListener)
+```
+
+- TabButtonListener 说明
+
+```
+
+public interface OnclickListener {
+
+    /**
+     * 点击事件回调
+     *
+     * @param index  点击的button位置
+     * @param button button数据
+     */
+    void onclick(int index, Button button);
+
+    /**
+     * 长按事件回调
+     *
+     * @param index  点击的button位置
+     * @param button button数据
+     */
+    void onLongClick(int index, Button button);
+
+}
+
+```
+
