@@ -54,6 +54,14 @@
 - tab_orientation 对齐方式
          1横向 
          2纵向
+         
+- tab_text_def_color 字体默认颜色
+
+- tab_text_select_color 字体选择颜色
+
+- tab_icon_height icon高度
+
+- tab_icon_width icon宽度
 
 #### 1.2 使用
 
@@ -77,10 +85,6 @@
             //转换为drawble
             button.defaultIcon = ContextCompat.getDrawable(this, defIcon[i])
             button.selectIcon = ContextCompat.getDrawable(this, selectIcon[i])
-            //默认字体颜色
-            button.defTextColor = "#000000"
-            //选中字体颜色
-            button.selectTextColor = "#ec7d28"
             //tab名称
             button.name = "tab-$i"
             a.add(button)
