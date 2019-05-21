@@ -744,8 +744,38 @@ class FileUtils {
             } catch (e: Exception) {
                 e.printStackTrace()
             }
-
             return size
+        }
+
+        /**
+         * 复制文件
+         *
+         * @param oldPath 需要被复制文件的路径  如   D:/a/b/c.txt
+         * @param newPath 需要将文件复制过来的目标路径 如  C:/e/f/c.txt
+         */
+        fun copyFile(oldPath: String, newPath: String) {
+            try {
+                var byteSum = 0
+                var byteRead = 0
+                val oldFile = File(oldPath)
+                //文件存在时
+                if (oldFile.exists()) {
+                    //读入原文件
+                    val inStream = FileInputStream(oldPath)
+                    val fs = FileOutputStream(newPath)
+                    val buffer = ByteArray(1444)
+                    val length: Int
+                    while ((inStream.read(buffer).also { byteRead = it }) != -1) {
+                        //字节数 文件大小
+                        byteSum += byteRead
+                        println(byteSum)
+                        fs.write(buffer, 0, byteRead)
+                    }
+                    inStream.close()
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
         }
     }
 }
