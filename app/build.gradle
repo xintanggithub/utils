@@ -38,10 +38,10 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     implementation 'com.tson.utils.lib.http:lib:1.0.2'
-    //    implementation 'com.tson.utils.lib.util:lib:1.0.1'
+    //    implementation 'com.tson.utils.lib.util:lib:1.0.4'
     implementation 'com.tson.utils.lib.iv:lib:1.0.1'
     implementation 'com.tson.utils.lib.download:lib:1.0.2'
-//    implementation 'com.tson.utils.view:lib:1.0.2'
+//    implementation 'com.tson.utils.view:lib:1.0.4'
     implementation project(':utilslib')
     implementation project(':utilsview')
 }
