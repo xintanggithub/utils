@@ -1,3 +1,37 @@
+### BaseAdapter
+
+- 基于dataBinding、recycleview实现的BaseAdapter。
+
+- 免去每次写adapter都需要使用DataBindingUtil.inflate()然后注入。
+
+- 并且footView的也不用单独处理，只需要传入布局ID即可和关联数据即可。
+
+- footView也兼容了单列(LinearLayoutManager)多列(GridLayoutManager)的样式
+
+### 0. 如何引入
+
+#### 0.1 根目录下的build.gradle添加如下代码
+
+```
+allprojects {
+    repositories {
+        google()
+        jcenter()
+        //添加下面这个maven配置
+        maven{
+            //这是maven仓库地址
+            url 'https://raw.githubusercontent.com/xintanggithub/maven/master'
+        }
+    }
+}
+```
+
+#### 0.2 需要使用的module下build.gradle添加引用
+
+```
+    implementation "com.tson.utils.view:lib:1.0.5"
+```
+
 ### 1. BaseAdapter的使用
 
 #### 1.1 新建item布局和foot布局
@@ -106,16 +140,16 @@ public class MyAdapter extends BaseAdapter<String, ItemLayoutBinding> {
 ```
 val data1 = mutableListOf("a", "b", "c", "a", "b", "c", "a", "b", "c", "a", "b","c", "a", "b", "c", "a", "b", "c", "a", "b", "c", "a", "b", "c", "a", "b", "c","a", "b", "c")
 
-//依次传入 数据、item布局、设置footer的回调
- val layoutManager = GridLayoutManager(this@TestRecyclerViewActivity, 3)
+    //依次传入 数据、item布局、设置footer的回调
+    val layoutManager = GridLayoutManager(this@TestRecyclerViewActivity, 3)
 
-val adapter = MyAdapter(data, R.layout.item_layout, object : CallBack<String, ItemFawFooterBinding> {
+    val adapter = MyAdapter(data, R.layout.item_layout, object : CallBack<String, ItemFawFooterBinding> {
     override fun layoutManager(): RecyclerView.LayoutManager {
                 return layoutManager
             }
             
     override fun footerHolder(holder: BaseAdapter.FooterViewHolder<*>, mData: List<String>, loadState: Int) {
-    //footerView显示逻辑的处理回调，如果所有的都一样，可以写一个公共的
+    //footerView显示逻辑的处理回调
         val item = holder.itemDataBinding as ItemFawFooterBinding
         if (mData.isEmpty()) {
             item.progress.visibility = View.INVISIBLE
