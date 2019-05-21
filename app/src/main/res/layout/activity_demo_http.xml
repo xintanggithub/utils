@@ -96,8 +96,10 @@
             app:tab_button_text_visible="true"
             app:tab_dividing_line_visible="true"
             app:tab_gravity="1"
+            app:tab_icon_height="@dimen/icon_h"
             app:tab_icon_text_interval="-8dp"
             app:tab_icon_text_model="1"
+            app:tab_icon_width="@dimen/icon_w"
             app:tab_orientation="1"
             app:tab_text_def_color="@color/colorAccent"
             app:tab_text_select_color="@color/selectTextColor" />

@@ -2,7 +2,7 @@
 <resources>
 
     <color name="colorPressed">#CF919191</color>
-    <color name="black20">#33000000</color>
+    <color name="black20">#ec333333</color>
     <color name="translation">#00000000</color>
     <color name="lines_color">#b3b3b3</color>
     <color name="select_color">#ed8216</color>

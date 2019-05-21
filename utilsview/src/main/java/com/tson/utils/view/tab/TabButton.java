@@ -51,8 +51,8 @@ public class TabButton extends LinearLayout {
      * icon高度
      */
     private float mTabButtonHeight;
-    private float defaultIconWidth = 20;
-    private float defaultIconHeight = 20;
+    private int defaultIconWidth = -1;
+    private int defaultIconHeight = -1;
     private int defColor;
     private int selectColor;
     private int interval;
@@ -122,11 +122,7 @@ public class TabButton extends LinearLayout {
                     .TabButton_tab_button_text_visible, false);
             mTabButtonIconVisible = typedArray.getBoolean(R.styleable
                     .TabButton_tab_button_icon_visible, false);
-            /*
-      字体 默认大小
-     */ /**
-             * 字体 默认大小
-             */float defaultTextSize = 13;
+            float defaultTextSize = 13;
             mTabButtonTextSize = typedArray.getDimension(R.styleable.TabButton_tab_button_text_size,
                     DisplayUtils.Companion.sp2px(context, defaultTextSize));
             mTabIconTextModel = typedArray.getInteger(R.styleable.TabButton_tab_icon_text_model,
@@ -158,6 +154,14 @@ public class TabButton extends LinearLayout {
             foregroundId = typedArray.getResourceId(R.styleable.TabButton_foreground, R.drawable.touchable_background_white);
             defColor = typedArray.getResourceId(R.styleable.TabButton_tab_text_def_color, R.color.def_color);
             selectColor = typedArray.getResourceId(R.styleable.TabButton_tab_text_select_color, R.color.select_color);
+            defaultIconWidth = (int) typedArray.getDimension(R.styleable.TabButton_tab_icon_width, -1);
+            defaultIconHeight = (int) typedArray.getDimension(R.styleable.TabButton_tab_icon_height, -1);
+            if (defaultIconHeight != -1) {
+                defaultIconHeight = DisplayUtils.Companion.dp2px(getContext(), defaultIconHeight);
+            }
+            if (defaultIconWidth != -1) {
+                defaultIconWidth = DisplayUtils.Companion.dp2px(getContext(), defaultIconWidth);
+            }
         } finally {
             typedArray.recycle();
         }
@@ -318,7 +322,8 @@ public class TabButton extends LinearLayout {
                         ViewGroup.LayoutParams.WRAP_CONTENT);
                 layoutParams1.setMargins(0, 0, 0, interval);
                 textView.setLayoutParams(layoutParams1);
-                imageView.setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, 1.0f));
+                imageView.setLayoutParams(new LayoutParams(defaultIconWidth == -1 ?
+                        ViewGroup.LayoutParams.MATCH_PARENT : defaultIconWidth, 0, 1.0f));
                 linearLayout.addView(textView);
                 linearLayout.addView(imageView);
                 break;
@@ -327,7 +332,8 @@ public class TabButton extends LinearLayout {
                         ViewGroup.LayoutParams.WRAP_CONTENT);
                 layoutParams2.setMargins(0, interval, 0, 0);
                 textView.setLayoutParams(layoutParams2);
-                imageView.setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, 1.0f));
+                imageView.setLayoutParams(new LayoutParams(defaultIconWidth == -1 ?
+                        ViewGroup.LayoutParams.MATCH_PARENT : defaultIconWidth, 0, 1.0f));
                 linearLayout.setOrientation(VERTICAL);
                 linearLayout.addView(imageView);
                 linearLayout.addView(textView);
@@ -338,7 +344,8 @@ public class TabButton extends LinearLayout {
                         ViewGroup.LayoutParams.MATCH_PARENT);
                 layoutParams3.setMargins(0, 0, interval, 0);
                 textView.setLayoutParams(layoutParams3);
-                imageView.setLayoutParams(new LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 1.0f));
+                imageView.setLayoutParams(new LayoutParams(0, defaultIconHeight == -1 ?
+                        ViewGroup.LayoutParams.MATCH_PARENT : defaultIconHeight, 1.0f));
                 linearLayout.addView(textView);
                 linearLayout.addView(imageView);
                 break;
@@ -348,7 +355,8 @@ public class TabButton extends LinearLayout {
                         ViewGroup.LayoutParams.MATCH_PARENT);
                 layoutParams4.setMargins(interval, 0, 0, 0);
                 textView.setLayoutParams(layoutParams4);
-                imageView.setLayoutParams(new LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 1.0f));
+                imageView.setLayoutParams(new LayoutParams(0, defaultIconHeight == -1 ?
+                        ViewGroup.LayoutParams.MATCH_PARENT : defaultIconHeight, 1.0f));
                 linearLayout.addView(imageView);
                 linearLayout.addView(textView);
                 break;
@@ -357,14 +365,15 @@ public class TabButton extends LinearLayout {
                         ViewGroup.LayoutParams.WRAP_CONTENT);
                 layoutParams5.setMargins(0, interval, 0, 0);
                 textView.setLayoutParams(layoutParams5);
-                imageView.setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, 1.0f));
+                imageView.setLayoutParams(new LayoutParams(defaultIconWidth == -1 ?
+                        ViewGroup.LayoutParams.MATCH_PARENT : defaultIconWidth, 0, 1.0f));
                 linearLayout.setOrientation(VERTICAL);
                 linearLayout.addView(imageView);
                 linearLayout.addView(textView);
         }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (null == foreground) {
-                linearLayout.setForeground(getResources().getDrawable(R.drawable.touchable_background_20_black));
+                linearLayout.setForeground(getResources().getDrawable(R.drawable.touchable_background_white));
             } else {
                 linearLayout.setForeground(getResources().getDrawable(foregroundId));
             }
