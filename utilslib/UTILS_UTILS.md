@@ -24,7 +24,7 @@ allprojects {
 #### 0.2 需要使用的module下build.gradle添加引用
 
 ```
-    implementation "com.tson.utils.lib.util:lib:1.0.3"
+    implementation "com.tson.utils.lib.util:lib:1.0.4"
 ```
 
 ### 1. 工具类使用
