@@ -14,8 +14,6 @@ public class Button {
     private int id;
     private Drawable defaultIcon;
     private Drawable selectIcon;
-    private String defTextColor;
-    private String selectTextColor;
     private String name;
 
     public int getId() {
@@ -40,22 +38,6 @@ public class Button {
 
     public void setSelectIcon(Drawable selectIcon) {
         this.selectIcon = selectIcon;
-    }
-
-    public String getDefTextColor() {
-        return defTextColor;
-    }
-
-    public void setDefTextColor(String defTextColor) {
-        this.defTextColor = defTextColor;
-    }
-
-    public String getSelectTextColor() {
-        return selectTextColor;
-    }
-
-    public void setSelectTextColor(String selectTextColor) {
-        this.selectTextColor = selectTextColor;
     }
 
     public String getName() {

@@ -2,7 +2,8 @@ package com.tson.utils.view.tab;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.graphics.Color;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
 import android.util.AttributeSet;
@@ -55,6 +56,8 @@ public class TabButton extends LinearLayout {
     private int defColor;
     private int selectColor;
     private int interval;
+    private Drawable foreground;
+    private int foregroundId;
     /**
      * 显示模型
      * {@link TabModel}
@@ -151,6 +154,10 @@ public class TabButton extends LinearLayout {
             }
             interval = (int) typedArray.getDimension(R.styleable.TabButton_tab_icon_text_interval,
                     -(DisplayUtils.Companion.dp2px(context, 20)));
+            foreground = typedArray.getDrawable(R.styleable.TabButton_foreground);
+            foregroundId = typedArray.getResourceId(R.styleable.TabButton_foreground, R.drawable.touchable_background_white);
+            defColor = typedArray.getResourceId(R.styleable.TabButton_tab_text_def_color, R.color.def_color);
+            selectColor = typedArray.getResourceId(R.styleable.TabButton_tab_text_select_color, R.color.select_color);
         } finally {
             typedArray.recycle();
         }
@@ -259,7 +266,7 @@ public class TabButton extends LinearLayout {
                 if (null != textView) {
                     textView.setText(button.getName());
                     textView.setTextSize(DisplayUtils.Companion.px2sp(getContext(), mTabButtonTextSize));
-                    textView.setTextColor(Color.parseColor(button.getSelectTextColor()));
+                    textView.setTextColor(getResources().getColor(selectColor));
                 }
             } else {
                 ImageView imageView = tab.getImageView();
@@ -270,7 +277,7 @@ public class TabButton extends LinearLayout {
                 if (null != textView) {
                     textView.setText(button.getName());
                     textView.setTextSize(DisplayUtils.Companion.px2sp(getContext(), mTabButtonTextSize));
-                    textView.setTextColor(Color.parseColor(button.getDefTextColor()));
+                    textView.setTextColor(getResources().getColor(defColor));
                 }
             }
         }
@@ -354,6 +361,13 @@ public class TabButton extends LinearLayout {
                 linearLayout.setOrientation(VERTICAL);
                 linearLayout.addView(imageView);
                 linearLayout.addView(textView);
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (null == foreground) {
+                linearLayout.setForeground(getResources().getDrawable(R.drawable.touchable_background_20_black));
+            } else {
+                linearLayout.setForeground(getResources().getDrawable(foregroundId));
+            }
         }
         return linearLayout;
     }
@@ -521,7 +535,7 @@ public class TabButton extends LinearLayout {
                 if (null != textView) {
                     textView.setText(finalButton.getName());
                     textView.setTextSize(DisplayUtils.Companion.px2sp(getContext(), mTabButtonTextSize));
-                    textView.setTextColor(Color.parseColor(finalButton.getDefTextColor()));
+                    textView.setTextColor(getResources().getColor(defColor));
                 }
             } else {
                 ImageView imageView = tab.getImageView();
@@ -532,7 +546,7 @@ public class TabButton extends LinearLayout {
                 if (null != textView) {
                     textView.setText(finalButton.getName());
                     textView.setTextSize(DisplayUtils.Companion.px2sp(getContext(), mTabButtonTextSize));
-                    textView.setTextColor(Color.parseColor(finalButton.getSelectTextColor()));
+                    textView.setTextColor(getResources().getColor(selectColor));
                 }
             }
         }

@@ -32,8 +32,6 @@ class DemoUtilsActivity : AppCompatActivity() {
             button.id = i
             button.defaultIcon = ContextCompat.getDrawable(this, defIcon[i])
             button.selectIcon = ContextCompat.getDrawable(this, selectIcon[i])
-            button.defTextColor = "#000000"
-            button.selectTextColor = "#ec7d28"
             button.name = "tab-$i"
             a.add(button)
         }
@@ -62,8 +60,6 @@ class DemoUtilsActivity : AppCompatActivity() {
                 it.name = "007"
                 it.defaultIcon = ContextCompat.getDrawable(this, defIcon[2])
                 it.selectIcon = ContextCompat.getDrawable(this, selectIcon[2])
-                it.defTextColor = "#000000"
-                it.selectTextColor = "#ec7d28"
             }
             tabButton.replace(2, button)
             tabButton2.replace(2, button)
@@ -75,12 +71,10 @@ class DemoUtilsActivity : AppCompatActivity() {
                 it.name = "008"
                 it.defaultIcon = ContextCompat.getDrawable(this, defIcon[2])
                 it.selectIcon = ContextCompat.getDrawable(this, selectIcon[2])
-                it.defTextColor = "#000000"
-                it.selectTextColor = "#ec7d28"
             }
             tabButton3.addButton(button)
             tabButton6.addButton(button)
-            tabButton7.addButton(8,button)
+            tabButton7.addButton(8, button)
         }
 
         index.setOnClickListener {

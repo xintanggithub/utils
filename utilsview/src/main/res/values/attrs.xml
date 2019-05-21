@@ -30,6 +30,9 @@
         <attr name="tab_dividing_line_visible" format="boolean" />
         <!--tab 模式: 2 vertical 纵向 1 horizontal 横向-->
         <attr name="tab_orientation" format="integer" />
+        <attr name="foreground" format="reference" />
+        <attr name="tab_text_def_color" format="reference" />
+        <attr name="tab_text_select_color" format="reference" />
     </declare-styleable>
 
     <declare-styleable name="DrawableTextView">
