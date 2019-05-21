@@ -8,6 +8,10 @@
 
 - footView也兼容了单列(LinearLayoutManager)多列(GridLayoutManager)的样式
 
+### 示例
+
+<img src="https://github.com/xintanggithub/utils/blob/master/utilsview/baseAdapter/device-2019-05-21-172222.png?raw=true" width = "200" height = "400"/>
+
 ### 0. 如何引入
 
 #### 0.1 根目录下的build.gradle添加如下代码
