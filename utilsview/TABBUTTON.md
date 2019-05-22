@@ -63,6 +63,16 @@
 
 - tab_icon_width icon宽度
 
+- tab_button_padding_bottom 底边内边距
+
+- tab_button_padding_left 左边内边距
+
+- tab_button_padding_right 左边内边距
+
+- tab_button_padding_top 上边内边距
+
+- tab_button_padding 四边内边距
+
 #### 1.2 使用
 
 ```
