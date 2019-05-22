@@ -25,20 +25,30 @@ public abstract class BaseAdapter<T, E extends ViewDataBinding> extends Recycler
     protected Context context;
     protected OnclickListener onclickListener;
 
-    // 普通布局
+    /**
+     * 普通布局
+     */
     private final int TYPE_ITEM = 1;
-    // 脚布局
+    /**
+     * 脚布局
+     */
     private final int TYPE_FOOTER = 2;
     /**
      * 当前加载状态，默认为加载完成
      */
     private int loadState = 2;
     private CallBack mCallBack;
-    // 正在加载
+    /**
+     * 正在加载
+     */
     public static final int LOADING = 1;
-    // 加载完成
+    /**
+     * 加载完成
+     */
     public static final int LOADING_COMPLETE = 2;
-    // 加载到底
+    /**
+     * 加载到底
+     */
     public static final int LOADING_END = 3;
 
     private boolean showFooter = false;

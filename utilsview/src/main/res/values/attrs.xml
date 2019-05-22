@@ -35,6 +35,11 @@
         <attr name="tab_text_select_color" format="reference" />
         <attr name="tab_icon_width" format="dimension" />
         <attr name="tab_icon_height" format="dimension" />
+        <attr name="tab_button_padding" format="dimension" />
+        <attr name="tab_button_padding_left" format="dimension" />
+        <attr name="tab_button_padding_top" format="dimension" />
+        <attr name="tab_button_padding_right" format="dimension" />
+        <attr name="tab_button_padding_bottom" format="dimension" />
     </declare-styleable>
 
     <declare-styleable name="DrawableTextView">

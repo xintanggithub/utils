@@ -58,6 +58,12 @@ public class TabButton extends LinearLayout {
     private int interval;
     private Drawable foreground;
     private int foregroundId;
+    private int paddingLeft = 0;
+    private int paddingRight = 0;
+    private int paddingTop = 0;
+    private int paddingBottom = 0;
+    private int padding = 0;
+
     /**
      * 显示模型
      * {@link TabModel}
@@ -156,11 +162,13 @@ public class TabButton extends LinearLayout {
             selectColor = typedArray.getResourceId(R.styleable.TabButton_tab_text_select_color, R.color.select_color);
             defaultIconWidth = (int) typedArray.getDimension(R.styleable.TabButton_tab_icon_width, -1);
             defaultIconHeight = (int) typedArray.getDimension(R.styleable.TabButton_tab_icon_height, -1);
-            if (defaultIconHeight != -1) {
-                defaultIconHeight = DisplayUtils.Companion.dp2px(getContext(), defaultIconHeight);
-            }
-            if (defaultIconWidth != -1) {
-                defaultIconWidth = DisplayUtils.Companion.dp2px(getContext(), defaultIconWidth);
+            padding = (int) typedArray.getDimension(R.styleable.TabButton_tab_button_padding, 0);
+            if (padding == 0) {
+                padding = 0;
+                paddingLeft = (int) typedArray.getDimension(R.styleable.TabButton_tab_button_padding_left, 0);
+                paddingRight = (int) typedArray.getDimension(R.styleable.TabButton_tab_button_padding_right, 0);
+                paddingTop = (int) typedArray.getDimension(R.styleable.TabButton_tab_button_padding_top, 0);
+                paddingBottom = (int) typedArray.getDimension(R.styleable.TabButton_tab_button_padding_bottom, 0);
             }
         } finally {
             typedArray.recycle();
@@ -305,16 +313,20 @@ public class TabButton extends LinearLayout {
         if (mTabOrientation == TabOrientation.HORIZONTAL.getOrientation()) {
             linearLayout.setLayoutParams(new LayoutParams(((mTabButtonWidth == -1 ?
                     DisplayUtils.Companion.getScreenWidthSize() : (int) mTabButtonWidth) /
-                    mButtons.size()) - (mTabDividingLineVisible ? mButtons.size() - 1 : 0),
+                    mButtons.size()),
                     LayoutParams.MATCH_PARENT));
         } else {
             //纵向
             linearLayout.setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                     ((mTabButtonHeight == -1 ? DisplayUtils.Companion.getScreenHeightSize()
-                            : (int) mTabButtonHeight) / mButtons.size()) - (mTabDividingLineVisible ?
-                            mButtons.size() - 1 : 0)));
+                            : (int) mTabButtonHeight) / mButtons.size())));
         }
         linearLayout.setGravity(getGravityType());
+        if (padding == 0) {
+            linearLayout.setPadding(paddingLeft, paddingTop, paddingRight, paddingBottom);
+        } else {
+            linearLayout.setPadding(padding, padding, padding, padding);
+        }
         switch (tabModel) {
             case TEXT_TOP_ICON_BOTTOM:
                 linearLayout.setOrientation(VERTICAL);
