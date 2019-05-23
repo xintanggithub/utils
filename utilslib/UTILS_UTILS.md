@@ -53,6 +53,6 @@ UtilsHelper.openLogView(getApplication())
 
 - StringUtils 字符串工具类 [点击查看](https://github.com/xintanggithub/utils/blob/master/utilslib/child/StringUtils.MD)
 
-- TimeUtils 时间格式工具类 [点击查看]()
+- TimeUtils 时间格式工具类 [点击查看](https://github.com/xintanggithub/utils/blob/master/utilslib/child/TimeUtils.MD)
 
 - LogUtils 日志工具类 [点击查看](https://github.com/xintanggithub/utils/blob/master/utilslib/child/LogUtil.MD)
