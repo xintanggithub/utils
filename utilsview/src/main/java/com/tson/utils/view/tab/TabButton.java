@@ -12,7 +12,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import com.tson.utils.view.DisplayUtils;
 import com.tson.utils.view.R;
 import com.tson.utils.view.tab.callback.TabButtonListener;
@@ -471,7 +470,12 @@ public class TabButton extends LinearLayout {
      * @param index 需要删除的button位置
      */
     public void remove(int index) {
-        mButtons.remove(index);
+        try {
+            mButtons.remove(index);
+        } catch (Exception e) {
+            new Throwable(e);
+            return;
+        }
         if (defaultIndex == index) {
             defaultIndex = -1;
         }
