@@ -87,12 +87,12 @@ class DemoUtilsActivity : AppCompatActivity() {
     }
 
     val onclick = object : TabButtonListener() {
-        override fun onclick(index: Int, button: Button?) {
-            Toast.makeText(this@DemoUtilsActivity, "onclick:: ${button?.name}", Toast.LENGTH_LONG).show()
+        override fun onclick(index: Int, button: Button) {
+            Toast.makeText(this@DemoUtilsActivity, "onclick:: ${button.name}", Toast.LENGTH_LONG).show()
         }
 
-        override fun onLongClick(index: Int, button: Button?) {
-            Toast.makeText(this@DemoUtilsActivity, "onLongClick:: ${button?.name}", Toast.LENGTH_LONG).show()
+        override fun onLongClick(index: Int, button: Button) {
+            Toast.makeText(this@DemoUtilsActivity, "onLongClick:: ${button.name}", Toast.LENGTH_LONG).show()
         }
     }
 

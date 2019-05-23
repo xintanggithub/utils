@@ -307,7 +307,7 @@ public class TabButton extends LinearLayout {
     }
 
     private LinearLayout drawTab(TextView textView, ImageView imageView) {
-        TabModel tabModel = TabModel.getModel(mTabIconTextModel);
+        TabModel tabModel = TabModel.Companion.getModel(mTabIconTextModel);
         LinearLayout linearLayout = new LinearLayout(getContext());
         //横向
         if (mTabOrientation == TabOrientation.HORIZONTAL.getOrientation()) {
@@ -396,7 +396,7 @@ public class TabButton extends LinearLayout {
     private int getGravityType() {
         int gravity;
         //设置内容对齐模式
-        TabGravity tabGravity = TabGravity.getGravity(mTabGravity);
+        TabGravity tabGravity = TabGravity.Companion.getGravity(mTabGravity);
         switch (tabGravity) {
             case TOP:
                 gravity = Gravity.TOP;
