@@ -93,7 +93,6 @@ internal class LogFileUtils {
             } catch (e: Exception) {
                 e.printStackTrace()
             }
-
         }
 
         /**
@@ -250,7 +249,7 @@ internal class LogFileUtils {
         /**
          * 获取指定文件大小
          */
-        private fun getFileSize(file: File): Long {
+        fun getFileSize(file: File): Long {
             var size: Long = 0
             try {
                 if (file.exists()) {
@@ -274,7 +273,7 @@ internal class LogFileUtils {
          * @param file File实例
          * @return long
          */
-        private fun getFolderSize(file: File): Long {
+        fun getFolderSize(file: File): Long {
             var size: Long = 0
             try {
                 val fileList = file.listFiles()
@@ -298,7 +297,7 @@ internal class LogFileUtils {
          *  * @return
          *  
          */
-        private fun formatFileSize(size: Long): String {
+        fun formatFileSize(size: Long): String {
             val df = DecimalFormat("#.00")
             var fileSizeString = ""
             val wrongSize = "0B"
@@ -337,15 +336,17 @@ internal class LogFileUtils {
                 try {
                     val fis = FileInputStream(path)
                     val br = BufferedReader(
-                        InputStreamReader(
-                            fis
-                        )
+                            InputStreamReader(
+                                    fis
+                            )
                     )
                     val sb = StringBuilder("")
-                    var line: String
+                    var line = ""
                     while ((br.readLine().also {
-                            line = it
-                        }) != null) {
+                                if (null !== it && it.isNotEmpty()) {
+                                    line = it
+                                }
+                            }) != null) {
                         sb.append(line)
                     }
                     return sb.toString()

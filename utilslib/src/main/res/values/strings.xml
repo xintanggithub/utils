@@ -2,4 +2,8 @@
     <string name="app_name">utilsLib</string>
     <string name="permission_setting">去设置</string>
     <string name="qf_cancel">取消</string>
+    <string name="back">返回</string>
+    <string name="clear">清除</string>
+    <string name="refresh">刷新</string>
+
 </resources>

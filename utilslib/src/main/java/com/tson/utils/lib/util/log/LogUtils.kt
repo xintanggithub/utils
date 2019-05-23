@@ -3,7 +3,6 @@ package com.tson.utils.lib.util.log
 import android.os.AsyncTask
 import android.util.Log
 import com.tson.utils.lib.util.UtilsConfig
-import com.tson.utils.lib.util.UtilsHelper
 
 /**
  * Created tangxin
@@ -69,9 +68,9 @@ class LogUtils {
             }
             if (UtilsConfig.isSaveLog) {
                 val content = LogFileUtils.stampToDate(
-                    System.currentTimeMillis(),
-                    "yyyy-MM-dd HH:mm:ss SSS"
-                ) + "  " + lvName + "  " + tag + "  :" + msg
+                        System.currentTimeMillis(),
+                        "yyyy-MM-dd HH:mm:ss SSS"
+                ) + "  " + lvName + "  " + tag + "  :" + msg + "  <br/>"
                 LogAsync(content).execute()
             }
         }

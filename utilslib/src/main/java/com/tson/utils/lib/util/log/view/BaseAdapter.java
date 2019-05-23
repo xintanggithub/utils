@@ -1,4 +1,4 @@
-package com.tson.utils.view.list;
+package com.tson.utils.lib.util.log.view;
 
 import android.content.Context;
 import android.databinding.DataBindingUtil;
