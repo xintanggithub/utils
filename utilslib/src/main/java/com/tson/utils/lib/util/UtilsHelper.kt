@@ -1,7 +1,10 @@
 package com.tson.utils.lib.util
 
 import android.content.Context
+import android.content.Intent
+import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
 import com.tson.utils.lib.util.log.LogFileUtils
+import com.tson.utils.lib.util.log.view.LogRootFileActivity
 
 /**
  *  Created tangxin
@@ -29,6 +32,12 @@ class UtilsHelper {
         fun isSaveLog(isSave: Boolean): String {
             UtilsConfig.isSaveLog = isSave
             return if (isSave) LogFileUtils.dataPath else ""
+        }
+
+        fun openLogView(context: Context) {
+            context.startActivity(Intent(context, LogRootFileActivity::class.java).also {
+                it.setFlags(FLAG_ACTIVITY_NEW_TASK)
+            })
         }
     }
 

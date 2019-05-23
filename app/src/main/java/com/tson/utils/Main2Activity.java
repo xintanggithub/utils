@@ -4,12 +4,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
-
 import com.bumptech.glide.request.RequestOptions;
 import com.tson.utils.lib.iv.GlideUtil;
 import com.tson.utils.lib.util.UtilsHelper;
 import com.tson.utils.lib.util.log.LogUtils;
-import com.tson.utils.lib.util.log.view.LogRootFileActivity;
 
 public class Main2Activity extends AppCompatActivity {
 
@@ -43,7 +41,7 @@ public class Main2Activity extends AppCompatActivity {
             startActivity(new Intent(this, DemoUtilsActivity.class));
         });
         findViewById(R.id.button3).setOnClickListener(v -> {
-            startActivity(new Intent(this, LogRootFileActivity.class));
+            UtilsHelper.Companion.openLogView(getApplication());
         });
         findViewById(R.id.button5).setOnClickListener(v -> {
             LogUtils.Companion.d("test", "123131231312");
