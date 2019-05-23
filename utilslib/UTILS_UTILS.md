@@ -43,16 +43,16 @@ UtilsHelper.openLogView(getApplication())
 
 #### 1.1 清单 
 
-- CleanDataUtils 应用缓存相关工具类
+- CleanDataUtils 应用缓存相关工具类 [点击查看](https://github.com/xintanggithub/utils/blob/master/utilslib/child/CleanDataUtils.MD)
 
-- DisplayUtils 尺寸单位处理、位图模糊等工具类
+- DisplayUtils 尺寸单位处理、位图模糊等工具类 [点击查看](https://github.com/xintanggithub/utils/blob/master/utilslib/child/DisplayUtils.MD)
 
-- FileUtils 文件路径处理工具类
+- FileUtils 文件路径处理工具类 [点击查看](https://github.com/xintanggithub/utils/blob/master/utilslib/child/FileUtils.MD)
 
-- BaseSharedPreferencesFactory SP基类
+- BaseSharedPreferencesFactory SP基类 [点击查看](https://github.com/xintanggithub/utils/blob/master/utilslib/child/BaseSharedPreferencesFactory.MD)
 
-- StringUtils 字符串工具类
+- StringUtils 字符串工具类 [点击查看](https://github.com/xintanggithub/utils/blob/master/utilslib/child/StringUtils.MD)
 
-- TimeUtils 时间格式工具类
+- TimeUtils 时间格式工具类 [点击查看]()
 
-- LogUtils 日志工具类
+- LogUtils 日志工具类 [点击查看](https://github.com/xintanggithub/utils/blob/master/utilslib/child/LogUtil.MD)
