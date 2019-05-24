@@ -25,7 +25,7 @@ interface CallBack<T, E : ViewDataBinding> {
      * @param mData     数据
      * @param loadState 状态
      */
-    fun footerHolder(holder: BaseAdapter.FooterViewHolder<*>, mData: List<T>, loadState: Int)
+    fun footerHolder(holder: BaseAdapter.FooterViewHolder<*>, mData: MutableList<T>, loadState: Int)
 
     /**
      * 获取layoutManager

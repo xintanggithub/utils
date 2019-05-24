@@ -450,7 +450,7 @@ class GlideUtil {
          * @param srcPath the src path
          * @return the
          */
-        fun getimage(srcPath: String): File? {
+        fun getImage(srcPath: String): File? {
             val newOpts = BitmapFactory.Options()
             //开始读入图片，此时把options.inJustDecodeBounds 设回true了
             newOpts.inJustDecodeBounds = true

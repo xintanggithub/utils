@@ -41,7 +41,7 @@ dependencies {
     implementation 'com.tson.utils.lib.util:lib:1.0.6'
     implementation 'com.tson.utils.lib.iv:lib:1.0.1'
     implementation 'com.tson.utils.lib.download:lib:1.0.2'
-    implementation 'com.tson.utils.view:lib:1.0.7'
+//    implementation 'com.tson.utils.view:lib:1.0.7'
 //    implementation project(':utilslib')
-//    implementation project(':utilsview')
+    implementation project(':utilsview')
 }

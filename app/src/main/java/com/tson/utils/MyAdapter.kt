@@ -8,7 +8,7 @@ import com.tson.utils.view.list.CallBack
  * Created tangxin
  * Time 2019/5/5 6:58 PM
  */
-class MyAdapter internal constructor(mData: List<String>, itemLayoutId: Int, callBack: CallBack<*, *>) :
+class MyAdapter internal constructor(mData: MutableList<String>, itemLayoutId: Int, callBack: CallBack<String, ItemLayoutBinding>) :
     BaseAdapter<String, ItemLayoutBinding>(mData, itemLayoutId, callBack) {
 
     override fun onBindViewHolders(position: Int, holder: BaseAdapter.BaseViewHolder<*>) {

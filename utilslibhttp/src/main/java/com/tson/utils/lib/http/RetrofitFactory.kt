@@ -59,8 +59,8 @@ class RetrofitFactory {
             val builder = OkHttpClient.Builder()
                 .connectTimeout(10, TimeUnit.SECONDS)//设置连接超时
                 .readTimeout(10, TimeUnit.SECONDS)//读取超时
-                .sslSocketFactory(SSLSocketClient.getSSLSocketFactory())//忽略证书过期时间ø
-                .hostnameVerifier(SSLSocketClient.getHostnameVerifier())
+                .sslSocketFactory(SSLSocketClient.sslSocketFactory)//忽略证书过期时间ø
+                .hostnameVerifier(SSLSocketClient.hostnameVerifier)
                 .writeTimeout(10, TimeUnit.SECONDS)//写入超时
             builder.addInterceptor(interceptor)//添加日志拦截器：显示链接信息
             builder.addInterceptor(

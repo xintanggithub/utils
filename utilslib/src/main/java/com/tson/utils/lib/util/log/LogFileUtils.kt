@@ -371,8 +371,10 @@ internal class LogFileUtils {
                 输出流的构造参数2：默认为False=>覆盖内容； true=>追加内容
                  */
                 out = BufferedWriter(OutputStreamWriter(FileOutputStream(file, false)))
-                out.newLine()
-                out.write(content)
+                out.run {
+                    newLine()
+                    write(content)
+                }
             } catch (e: IOException) {
                 e.printStackTrace()
             } finally {

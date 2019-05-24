@@ -12,6 +12,9 @@ import android.view.ViewGroup
 import com.tson.utils.databinding.ItemFawFooterBinding
 import com.tson.utils.view.list.BaseAdapter
 import com.tson.utils.view.list.BaseAdapter.*
+import com.tson.utils.view.list.BaseAdapter.Companion.LOADING
+import com.tson.utils.view.list.BaseAdapter.Companion.LOADING_COMPLETE
+import com.tson.utils.view.list.BaseAdapter.Companion.LOADING_END
 import com.tson.utils.view.list.CallBack
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -23,9 +26,9 @@ class TestRecyclerViewActivity : AppCompatActivity() {
 
 
         val data1 = mutableListOf(
-            "a", "b", "c", "a", "b", "c", "a", "b", "c", "a", "b",
-            "c", "a", "b", "c", "a", "b", "c", "a", "b", "c", "a", "b", "c", "a", "b", "c",
-            "a", "b", "c", "d"
+                "a", "b", "c", "a", "b", "c", "a", "b", "c", "a", "b",
+                "c", "a", "b", "c", "a", "b", "c", "a", "b", "c", "a", "b", "c", "a", "b", "c",
+                "a", "b", "c", "d"
         )
 
         val data = mutableListOf<String>()
@@ -38,7 +41,7 @@ class TestRecyclerViewActivity : AppCompatActivity() {
                 return layoutManager
             }
 
-            override fun footerHolder(holder: BaseAdapter.FooterViewHolder<*>, mData: List<String>, loadState: Int) {
+            override fun footerHolder(holder: BaseAdapter.FooterViewHolder<*>, mData: MutableList<String>, loadState: Int) {
                 val item = holder.itemDataBinding as ItemFawFooterBinding
                 if (mData.isEmpty()) {
                     item.progress.visibility = View.INVISIBLE
@@ -65,10 +68,10 @@ class TestRecyclerViewActivity : AppCompatActivity() {
 
             override fun dataBinding(parent: ViewGroup): ItemFawFooterBinding {
                 return DataBindingUtil
-                    .inflate(
-                        LayoutInflater.from(parent.context),
-                        R.layout.item_faw_footer, parent, false
-                    )
+                        .inflate(
+                                LayoutInflater.from(parent.context),
+                                R.layout.item_faw_footer, parent, false
+                        )
             }
         })
         rv_list.layoutManager = layoutManager

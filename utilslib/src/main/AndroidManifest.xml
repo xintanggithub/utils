@@ -17,9 +17,9 @@
                 android:resource="@xml/file_paths" />
         </provider>
 
-        <activity android:name=".log.view.LogRootFileActivity"></activity>
-        <activity android:name=".log.view.LogListActivity"></activity>
-        <activity android:name=".log.view.LogDetailActivity"></activity>
+        <activity android:name=".log.view.LogRootFileActivity"/>
+        <activity android:name=".log.view.LogListActivity"/>
+        <activity android:name=".log.view.LogDetailActivity"/>
     </application>
 
 </manifest>
