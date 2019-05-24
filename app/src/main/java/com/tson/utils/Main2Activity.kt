@@ -22,6 +22,8 @@ class Main2Activity : AppCompatActivity() {
         UtilsHelper.isDebug(true)
         UtilsHelper.isSaveLog(true)
 
+        printInitLog()
+
         val iv = findViewById<ImageView>(R.id.imageView)
         val iv2 = findViewById<ImageView>(R.id.imageView2)
 
@@ -37,6 +39,25 @@ class Main2Activity : AppCompatActivity() {
 
         button2.setOnClickListener { v -> startActivity(Intent(this, DemoUtilsActivity::class.java)) }
         button3.setOnClickListener { v -> UtilsHelper.openLogView(application) }
-        button5.setOnClickListener { v -> LogUtils.d("test", "123131231312") }
+        button5.setOnClickListener { v ->
+            run {
+                LogUtils.d("test", "123131231312");
+                LogUtils.e("test", "get data error, message (token is empty)");
+                LogUtils.i("test", "info , a= 1   b=2   c=3");
+                LogUtils.w("test", "warn , service is no running , url is https://avatars2.githubusercontent.com/u/27901367?s=460&v=4");
+                LogUtils.v("test", "----------------------------------");
+            }
+        }
+    }
+
+    private fun printInitLog() {
+        LogUtils.i("test", "------00-----------00000----------00000----");
+        LogUtils.i("test", "------00---------00-----00-------00----00--");
+        LogUtils.i("test", "------00--------00-------00-----00------00-");
+        LogUtils.i("test", "------00--------00-------00----00----------");
+        LogUtils.i("test", "------00--------00-------00----00-----00000");
+        LogUtils.i("test", "------00--------00-------00-----00-------00");
+        LogUtils.i("test", "------00---------00-----00-------00-----00-");
+        LogUtils.i("test", "------00000-----00000-----------000--");
     }
 }

@@ -358,7 +358,7 @@ internal class LogFileUtils {
             }
         }
 
-        private fun saveToFile(path: String, content: String) {
+        fun saveToFile(path: String, content: String) {
             val file = File(path)
             var out: BufferedWriter? = null
             try {
@@ -388,5 +388,10 @@ internal class LogFileUtils {
                 }
             }
         }
+
+        fun toHtml(str: String): String {
+            return "<html><head><body>$str</body></head></html>"
+        }
+
     }
 }
