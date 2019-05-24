@@ -129,6 +129,7 @@
             android:id="@+id/tabButton7"
             android:layout_width="match_parent"
             android:layout_height="45dp"
+            app:tab_dividing_line_color="@color/red"
             android:layout_marginBottom="10dp"
             android:background="#123123"
             app:tab_button_padding="@dimen/padding"

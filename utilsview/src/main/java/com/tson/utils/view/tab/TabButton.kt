@@ -22,7 +22,8 @@ import java.util.*
  *
  * @author tangxin
  */
-class TabButton @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) : LinearLayout(context, attrs, defStyleAttr) {
+class TabButton @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) :
+        LinearLayout(context, attrs, defStyleAttr) {
 
     /**
      * 是否有文字标题 true  有 false无
@@ -47,6 +48,7 @@ class TabButton @JvmOverloads constructor(context: Context, attrs: AttributeSet?
     private var defaultIconWidth = -1
     private var defaultIconHeight = -1
     private var defColor: Int = 0
+    private var lineColor: Int = 0
     private var selectColor: Int = 0
     private var interval: Int = 0
     private var foregroundDrawable: Drawable? = null
@@ -153,40 +155,65 @@ class TabButton @JvmOverloads constructor(context: Context, attrs: AttributeSet?
         }
         val typedArray = context.obtainStyledAttributes(attrs, R.styleable.TabButton)
         try {
-            mTabButtonTextVisible = typedArray.getBoolean(R.styleable
-                    .TabButton_tab_button_text_visible, false)
-            mTabButtonIconVisible = typedArray.getBoolean(R.styleable
-                    .TabButton_tab_button_icon_visible, false)
+            mTabButtonTextVisible = typedArray.getBoolean(
+                    R.styleable
+                            .TabButton_tab_button_text_visible, false
+            )
+            mTabButtonIconVisible = typedArray.getBoolean(
+                    R.styleable
+                            .TabButton_tab_button_icon_visible, false
+            )
             val defaultTextSize = 13f
-            mTabButtonTextSize = typedArray.getDimension(R.styleable.TabButton_tab_button_text_size,
-                    DisplayUtils.sp2px(context, defaultTextSize).toFloat())
-            mTabIconTextModel = typedArray.getInteger(R.styleable.TabButton_tab_icon_text_model,
-                    TabModel.TEXT_BOTTOM_ICON_TOP.type)
-            mTabGravity = typedArray.getInteger(R.styleable.TabButton_tab_gravity,
-                    TabGravity.CENTER.gravity)
-            mTabDividingLineVisible = typedArray.getBoolean(R.styleable
-                    .TabButton_tab_dividing_line_visible, false)
-            mTabOrientation = typedArray.getInteger(R.styleable.TabButton_tab_orientation,
-                    TabOrientation.HORIZONTAL.orientation)
+            mTabButtonTextSize = typedArray.getDimension(
+                    R.styleable.TabButton_tab_button_text_size,
+                    DisplayUtils.sp2px(context, defaultTextSize).toFloat()
+            )
+            mTabIconTextModel = typedArray.getInteger(
+                    R.styleable.TabButton_tab_icon_text_model,
+                    TabModel.TEXT_BOTTOM_ICON_TOP.type
+            )
+            mTabGravity = typedArray.getInteger(
+                    R.styleable.TabButton_tab_gravity,
+                    TabGravity.CENTER.gravity
+            )
+            mTabDividingLineVisible = typedArray.getBoolean(
+                    R.styleable
+                            .TabButton_tab_dividing_line_visible, false
+            )
+            mTabOrientation = typedArray.getInteger(
+                    R.styleable.TabButton_tab_orientation,
+                    TabOrientation.HORIZONTAL.orientation
+            )
             if (mTabOrientation == TabOrientation.HORIZONTAL.orientation) {
-                mTabButtonWidth = typedArray.getDimension(R.styleable
-                        .TabButton_tab_button_width,
-                        ViewGroup.LayoutParams.MATCH_PARENT.toFloat())
-                mTabButtonHeight = typedArray.getDimension(R.styleable
-                        .TabButton_tab_button_height,
-                        ViewGroup.LayoutParams.WRAP_CONTENT.toFloat())
+                mTabButtonWidth = typedArray.getDimension(
+                        R.styleable
+                                .TabButton_tab_button_width,
+                        ViewGroup.LayoutParams.MATCH_PARENT.toFloat()
+                )
+                mTabButtonHeight = typedArray.getDimension(
+                        R.styleable
+                                .TabButton_tab_button_height,
+                        ViewGroup.LayoutParams.WRAP_CONTENT.toFloat()
+                )
             } else {
-                mTabButtonWidth = typedArray.getDimension(R.styleable
-                        .TabButton_tab_button_width,
-                        ViewGroup.LayoutParams.WRAP_CONTENT.toFloat())
-                mTabButtonHeight = typedArray.getDimension(R.styleable
-                        .TabButton_tab_button_height,
-                        ViewGroup.LayoutParams.MATCH_PARENT.toFloat())
+                mTabButtonWidth = typedArray.getDimension(
+                        R.styleable
+                                .TabButton_tab_button_width,
+                        ViewGroup.LayoutParams.WRAP_CONTENT.toFloat()
+                )
+                mTabButtonHeight = typedArray.getDimension(
+                        R.styleable
+                                .TabButton_tab_button_height,
+                        ViewGroup.LayoutParams.MATCH_PARENT.toFloat()
+                )
             }
-            interval = typedArray.getDimension(R.styleable.TabButton_tab_icon_text_interval,
-                    (-DisplayUtils.dp2px(context, 20f)).toFloat()).toInt()
+            interval = typedArray.getDimension(
+                    R.styleable.TabButton_tab_icon_text_interval,
+                    (-DisplayUtils.dp2px(context, 20f)).toFloat()
+            ).toInt()
             foregroundDrawable = typedArray.getDrawable(R.styleable.TabButton_foreground)
-            foregroundId = typedArray.getResourceId(R.styleable.TabButton_foreground, R.drawable.touchable_background_white)
+            foregroundId =
+                    typedArray.getResourceId(R.styleable.TabButton_foreground, R.drawable.touchable_background_white)
             defColor = typedArray.getResourceId(R.styleable.TabButton_tab_text_def_color, R.color.def_color)
             selectColor = typedArray.getResourceId(R.styleable.TabButton_tab_text_select_color, R.color.select_color)
             defaultIconWidth = typedArray.getDimension(R.styleable.TabButton_tab_icon_width, -1f).toInt()
@@ -195,10 +222,13 @@ class TabButton @JvmOverloads constructor(context: Context, attrs: AttributeSet?
             if (padding == 0) {
                 padding = 0
                 paddingDrawableLeft = typedArray.getDimension(R.styleable.TabButton_tab_button_padding_left, 0f).toInt()
-                paddingDrawableRight = typedArray.getDimension(R.styleable.TabButton_tab_button_padding_right, 0f).toInt()
+                paddingDrawableRight =
+                        typedArray.getDimension(R.styleable.TabButton_tab_button_padding_right, 0f).toInt()
                 paddingDrawableTop = typedArray.getDimension(R.styleable.TabButton_tab_button_padding_top, 0f).toInt()
-                paddingDrawableBottom = typedArray.getDimension(R.styleable.TabButton_tab_button_padding_bottom, 0f).toInt()
+                paddingDrawableBottom =
+                        typedArray.getDimension(R.styleable.TabButton_tab_button_padding_bottom, 0f).toInt()
             }
+            lineColor = typedArray.getResourceId(R.styleable.TabButton_tab_dividing_line_color, R.color.lines_color)
         } finally {
             typedArray.recycle()
         }
@@ -245,7 +275,8 @@ class TabButton @JvmOverloads constructor(context: Context, attrs: AttributeSet?
         setLayoutParams(layoutParams)
         //设置内容排列方向
         orientation = if (mTabOrientation == TabOrientation.HORIZONTAL
-                        .orientation)
+                        .orientation
+        )
             HORIZONTAL
         else
             VERTICAL
@@ -324,8 +355,10 @@ class TabButton @JvmOverloads constructor(context: Context, attrs: AttributeSet?
         }
     }
 
-    private fun tab(id: Int, imageView: ImageView?, textView: TextView?, linearLayout: LinearLayout,
-                    button: Button): Tab {
+    private fun tab(
+            id: Int, imageView: ImageView?, textView: TextView?, linearLayout: LinearLayout,
+            button: Button
+    ): Tab {
         val tab = Tab()
         tab.id = id
         tab.imageView = imageView
@@ -340,88 +373,114 @@ class TabButton @JvmOverloads constructor(context: Context, attrs: AttributeSet?
         val linearLayout = LinearLayout(context)
         //横向
         if (mTabOrientation == TabOrientation.HORIZONTAL.orientation) {
-            linearLayout.layoutParams = LayoutParams((if (mTabButtonWidth == -1f)
-                DisplayUtils.getScreenWidthSize()
-            else
-                mTabButtonWidth.toInt()) / mButtons.size,
-                    LayoutParams.MATCH_PARENT)
+            linearLayout.layoutParams = LayoutParams(
+                    (if (mTabButtonWidth == -1f)
+                        DisplayUtils.getScreenWidthSize()
+                    else
+                        mTabButtonWidth.toInt()) / mButtons.size,
+                    LayoutParams.MATCH_PARENT
+            )
         } else {
             //纵向
-            linearLayout.layoutParams = LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+            linearLayout.layoutParams = LayoutParams(
+                    ViewGroup.LayoutParams.MATCH_PARENT,
                     (if (mTabButtonHeight == -1f)
                         DisplayUtils.getScreenHeightSize()
                     else
-                        mTabButtonHeight.toInt()) / mButtons.size)
+                        mTabButtonHeight.toInt()) / mButtons.size
+            )
         }
         linearLayout.gravity = gravityType
         if (padding == 0) {
-            linearLayout.setPadding(paddingDrawableLeft, paddingDrawableTop,
-                    paddingDrawableRight, paddingDrawableBottom)
+            linearLayout.setPadding(
+                    paddingDrawableLeft, paddingDrawableTop,
+                    paddingDrawableRight, paddingDrawableBottom
+            )
         } else {
             linearLayout.setPadding(padding, padding, padding, padding)
         }
         when (tabModel) {
             TabModel.TEXT_TOP_ICON_BOTTOM -> {
                 linearLayout.orientation = VERTICAL
-                val layoutParams1 = LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-                        ViewGroup.LayoutParams.WRAP_CONTENT)
+                val layoutParams1 = LayoutParams(
+                        ViewGroup.LayoutParams.MATCH_PARENT,
+                        ViewGroup.LayoutParams.WRAP_CONTENT
+                )
                 layoutParams1.setMargins(0, 0, 0, interval)
                 textView!!.layoutParams = layoutParams1
-                imageView!!.layoutParams = LayoutParams(if (defaultIconWidth == -1)
-                    ViewGroup.LayoutParams.MATCH_PARENT
-                else
-                    defaultIconWidth, 0, 1.0f)
+                imageView!!.layoutParams = LayoutParams(
+                        if (defaultIconWidth == -1)
+                            ViewGroup.LayoutParams.MATCH_PARENT
+                        else
+                            defaultIconWidth, 0, 1.0f
+                )
                 linearLayout.addView(textView)
                 linearLayout.addView(imageView)
             }
             TabModel.TEXT_BOTTOM_ICON_TOP -> {
-                val layoutParams2 = LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-                        ViewGroup.LayoutParams.WRAP_CONTENT)
+                val layoutParams2 = LayoutParams(
+                        ViewGroup.LayoutParams.MATCH_PARENT,
+                        ViewGroup.LayoutParams.WRAP_CONTENT
+                )
                 layoutParams2.setMargins(0, interval, 0, 0)
                 textView!!.layoutParams = layoutParams2
-                imageView!!.layoutParams = LayoutParams(if (defaultIconWidth == -1)
-                    ViewGroup.LayoutParams.MATCH_PARENT
-                else
-                    defaultIconWidth, 0, 1.0f)
+                imageView!!.layoutParams = LayoutParams(
+                        if (defaultIconWidth == -1)
+                            ViewGroup.LayoutParams.MATCH_PARENT
+                        else
+                            defaultIconWidth, 0, 1.0f
+                )
                 linearLayout.orientation = VERTICAL
                 linearLayout.addView(imageView)
                 linearLayout.addView(textView)
             }
             TabModel.TEXT_LEFT_ICON_RIGHT -> {
                 linearLayout.orientation = HORIZONTAL
-                val layoutParams3 = LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
-                        ViewGroup.LayoutParams.MATCH_PARENT)
+                val layoutParams3 = LayoutParams(
+                        ViewGroup.LayoutParams.WRAP_CONTENT,
+                        ViewGroup.LayoutParams.MATCH_PARENT
+                )
                 layoutParams3.setMargins(0, 0, interval, 0)
                 textView!!.layoutParams = layoutParams3
-                imageView!!.layoutParams = LayoutParams(0, if (defaultIconHeight == -1)
+                imageView!!.layoutParams = LayoutParams(
+                        0, if (defaultIconHeight == -1)
                     ViewGroup.LayoutParams.MATCH_PARENT
                 else
-                    defaultIconHeight, 1.0f)
+                    defaultIconHeight, 1.0f
+                )
                 linearLayout.addView(textView)
                 linearLayout.addView(imageView)
             }
             TabModel.TEXT_RIGHT_ICON_LEFT -> {
                 linearLayout.orientation = HORIZONTAL
-                val layoutParams4 = LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
-                        ViewGroup.LayoutParams.MATCH_PARENT)
+                val layoutParams4 = LayoutParams(
+                        ViewGroup.LayoutParams.WRAP_CONTENT,
+                        ViewGroup.LayoutParams.MATCH_PARENT
+                )
                 layoutParams4.setMargins(interval, 0, 0, 0)
                 textView!!.layoutParams = layoutParams4
-                imageView!!.layoutParams = LayoutParams(0, if (defaultIconHeight == -1)
+                imageView!!.layoutParams = LayoutParams(
+                        0, if (defaultIconHeight == -1)
                     ViewGroup.LayoutParams.MATCH_PARENT
                 else
-                    defaultIconHeight, 1.0f)
+                    defaultIconHeight, 1.0f
+                )
                 linearLayout.addView(imageView)
                 linearLayout.addView(textView)
             }
             else -> {
-                val layoutParams5 = LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-                        ViewGroup.LayoutParams.WRAP_CONTENT)
+                val layoutParams5 = LayoutParams(
+                        ViewGroup.LayoutParams.MATCH_PARENT,
+                        ViewGroup.LayoutParams.WRAP_CONTENT
+                )
                 layoutParams5.setMargins(0, interval, 0, 0)
                 textView!!.layoutParams = layoutParams5
-                imageView!!.layoutParams = LayoutParams(if (defaultIconWidth == -1)
-                    ViewGroup.LayoutParams.MATCH_PARENT
-                else
-                    defaultIconWidth, 0, 1.0f)
+                imageView!!.layoutParams = LayoutParams(
+                        if (defaultIconWidth == -1)
+                            ViewGroup.LayoutParams.MATCH_PARENT
+                        else
+                            defaultIconWidth, 0, 1.0f
+                )
                 linearLayout.orientation = VERTICAL
                 linearLayout.addView(imageView)
                 linearLayout.addView(textView)
@@ -439,7 +498,7 @@ class TabButton @JvmOverloads constructor(context: Context, attrs: AttributeSet?
 
     private fun drawLines(): TextView {
         return TextView(context).also {
-            it.setBackgroundResource(R.color.lines_color)
+            it.setBackgroundResource(lineColor)
             if (mTabOrientation == TabOrientation.HORIZONTAL.orientation) {
                 it.layoutParams = LayoutParams(1, ViewGroup.LayoutParams.MATCH_PARENT)
             } else {
