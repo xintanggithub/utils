@@ -22,7 +22,7 @@ allprojects {
 #### 0.2 需要使用的module下build.gradle添加引用
 
 ```
-    implementation "com.tson.utils.view:lib:1.0.6"
+    implementation "com.tson.utils.view:lib:1.0.8"
 ```
 
 ### 1. BaseAdapter的使用 [点击这里查看详情](https://github.com/xintanggithub/utils/blob/master/utilsview/BASEADAPTER.md)
