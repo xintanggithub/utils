@@ -4,7 +4,6 @@ import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.GridLayoutManager
-import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -12,9 +11,6 @@ import android.view.ViewGroup
 import com.tson.utils.databinding.ItemFawFooterBinding
 import com.tson.utils.view.list.BaseAdapter
 import com.tson.utils.view.list.BaseAdapter.*
-import com.tson.utils.view.list.BaseAdapter.Companion.LOADING
-import com.tson.utils.view.list.BaseAdapter.Companion.LOADING_COMPLETE
-import com.tson.utils.view.list.BaseAdapter.Companion.LOADING_END
 import com.tson.utils.view.list.CallBack
 import kotlinx.android.synthetic.main.activity_main.*
 
