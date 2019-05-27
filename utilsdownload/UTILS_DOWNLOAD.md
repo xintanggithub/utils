@@ -44,6 +44,8 @@ allprojects {
                            .setMaxThreadCount(3)
                            //错误之后重试次数2次
                            .setRetryCount(2);
+                           //设置HttpClient
+                           .creatorOkHttpClientBuilder(OkHttpClient.Builder())
 ```
 
 - 做之后的任何操作前，必须先初始化
@@ -63,6 +65,8 @@ allprojects {
 - 并发设置范围为【1 - 12】 ，建议值：1 ~ 3
 
 - 错误之后重试次数建议 2 ~ 5
+
+- 设置HttpClient 可以做SSL证书验证处理、超时、日志打印、header设置等操作
 
 #### 1.2 绑定下载监听
 
@@ -86,22 +90,23 @@ DownloadListener downloadListener=new DownloadListener() {
 
 ```
     //已准备好，等待下载，此时已经在下载队列   soFarBytes 已下载的byte数，totalBytes总大小
-    void pending(BaseDownloadTask task, int soFarBytes, int totalBytes);
+    void pending(task:BaseDownloadTask , soFarBytes:int , totalBytes:int );
     //下载进度
-    void progress(BaseDownloadTask task, int soFarBytes, int totalBytes);
+    void progress(task:BaseDownloadTask , soFarBytes:int , totalBytes:int );
     //暂停
-    void paused(BaseDownloadTask task, int soFarBytes, int totalBytes);
+    void paused(task:BaseDownloadTask , soFarBytes:int , totalBytes:int );
     //错误
-    void error(BaseDownloadTask task, Throwable e);
+    void error(task:BaseDownloadTask , e:Throwable);
     //下载完成
-    void completed(BaseDownloadTask task);
+    void completed(task:BaseDownloadTask);
     //存在开始了一个在下载队列里已存在的任务(默认继续下载，不创建新的下载任务)
-    void warn(BaseDownloadTask task);
+    void warn(task:BaseDownloadTask);
     //重试  retryingTimes 重试次数  ex异常信息  soFarBytes 已下载大小
-    void retry(BaseDownloadTask task, Throwable ex, int retryingTimes, int soFarBytes);
+    void retry(task:BaseDownloadTask, ex:Throwable, retryingTimes:int , soFarBytes:int );
 ```
 
-BaseDownloadTask里包含了当前下载任务的信息，包括：下载任务的ID、下载的url，保存在本地的路径等等。下载任务的ID是下载任务的标识，可以根据ID查询下载状态、大小等。
+BaseDownloadTask里包含了当前下载任务的信息，包括：下载任务的ID、下载的url，保存在本地的路径等等。
+下载任务的ID是下载任务的标识，可以根据ID查询下载状态、大小等。
 
 
 #### 1.3 下载任务的操作
@@ -109,24 +114,24 @@ BaseDownloadTask里包含了当前下载任务的信息，包括：下载任务�
 ```
 
 //开始（创建/继续）
-DownLoadManager.getDownloader().start(url);
+DownLoadManager.instance.start(url);
 //如果没有设置监听器，这里也可以设置
-DownLoadManager.getDownloader().start(url,listener);
+DownLoadManager.instance.start(url,listener);
 
 //暂停 id为BaseDownloadTask返回的任务ID
-DownLoadManager.getDownloader().pause(id);
+DownLoadManager.instance.pause(id);
 //暂停所有
-DownLoadManager.getDownloader().pauseAll();
+DownLoadManager.instance.pauseAll();
 
 //清除单条下载任务数据 id为BaseDownloadTask返回的任务ID
 //path为该文件本地存储的路径
-DownLoadManager.getDownloader().clear(id,path);
+DownLoadManager.instance.clear(id,path);
 //清除所有下载任务数据
-DownLoadManager.getDownloader().clearAll();
+DownLoadManager.instance.clearAll();
 
 //根据ID获取下载进度
-DownLoadManager.getDownloader().getSoFar(id);
+DownLoadManager.instance.getSoFar(id);
 //根据ID获取下载任务对象总大小
-DownLoadManager.getDownloader().getTotal(id);
+DownLoadManager.instance.getTotal(id);
 
 ```

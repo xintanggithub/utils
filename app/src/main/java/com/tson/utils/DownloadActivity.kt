@@ -27,6 +27,7 @@ class DownloadActivity : AppCompatActivity() {
                         .setGlobalPost2UIInterval(60)
                         .setPath(application.filesDir.path + "/download/")
                         .setMaxThreadCount(3)
+                        .creatorOkHttpClientBuilder(OkHttpClient.Builder())
             }).start()
         }
 
@@ -61,32 +62,6 @@ class DownloadActivity : AppCompatActivity() {
         button8.setOnClickListener {
             DownLoadManager.instance.pause(id)
         }
-    }
-
-    fun test() {
-        DownLoadManager.instance.clear(1, "")
-        DownLoadManager.instance.clearAll()
-        DownLoadManager.instance.creatorOkHttpClientBuilder(OkHttpClient.Builder())
-        DownLoadManager.instance.getSoFar(1)
-        DownLoadManager.instance.getTotal(1)
-        DownLoadManager.instance.pause(1)
-        DownLoadManager.instance.pauseAll()
-        DownLoadManager.instance.setRetryCount(3)
-        DownLoadManager.instance.start("")
-        DownLoadManager.instance.start("", object : DownloadListener() {
-            override fun completed(task: BaseDownloadTask) {
-
-            }
-        })
-
-        val listener = object : DownloadListener() {
-            override fun completed(task: BaseDownloadTask) {
-
-            }
-        }
-
-        DownLoadManager.bindChangeListener(listener)
-        DownLoadManager.unBindChangeListener(listener)
     }
 
 }
