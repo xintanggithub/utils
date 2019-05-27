@@ -32,7 +32,6 @@ class HttpActivity : AppCompatActivity() {
                             textView2.text = Gson().toJson(it)
                         }
                     }
-
         }
     }
 }
