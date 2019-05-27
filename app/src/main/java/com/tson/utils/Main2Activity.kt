@@ -48,6 +48,13 @@ class Main2Activity : AppCompatActivity() {
                 LogUtils.v("test", "----------------------------------");
             }
         }
+        button9.setOnClickListener {
+            startActivity(Intent(this@Main2Activity, DownloadActivity::class.java))
+        }
+
+        button10.setOnClickListener {
+            startActivity(Intent(this@Main2Activity, HttpActivity::class.java))
+        }
     }
 
     private fun printInitLog() {
