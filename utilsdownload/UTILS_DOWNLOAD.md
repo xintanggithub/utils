@@ -32,20 +32,37 @@ allprojects {
 #### 1.1 在application的onCreate中初始化，以及配置
 
 ```
-public class MyApplication extends Application {
-
-    @Override
-    public void onCreate() {
-        super.onCreate();
-        DownLoadManager.getInstance().init(this)
-                .setDebugLog(true) //开启debug日志
-                .setMaxThreadCount(3)//并发任务3个
-                .setPath(FileUtils.getDataPath() + "download/")//设置下载路径(对应路径确保有读写权限)
-                .setRetryCount(2);//重试次数2次
-    }
-
-}
+                           //初始化
+    DownLoadManager.instance.init(application)
+                           //开启debug日志，默认false
+                           .setDebugLog(true)
+                           //更新到UI的频率，单位ms
+                           .setGlobalPost2UIInterval(60)
+                           //设置下载路径(对应路径确保有读写权限)
+                           .setPath(application.filesDir.path + "/download/")
+                           //并发任务设置为最大3个
+                           .setMaxThreadCount(3)
+                           //错误之后重试次数2次
+                           .setRetryCount(2);
 ```
+
+- 做之后的任何操作前，必须先初始化
+
+- 如果启动速度不理想，可以将以下代码放置子线程中(虽然这里的耗时非常少)
+
+- 开启debug日志建议放在第一个，因为设置之后才会输出日志，放在后面设置可能会造成日志缺少，默认false，关闭日志
+
+- 更新到UI的频率，建议60ms，如果更新频率过高（此处设置更新频率的值过低），可能会造成掉帧、卡顿的现象
+
+- 设置下载前请确保有读写权限，如果不设置，下载路径则为以下之一
+
+    1. Environment.getDownloadCacheDirectory().getAbsolutePath()
+    
+    2. getAppContext().getExternalCacheDir().getAbsolutePath()
+
+- 并发设置范围为【1 - 12】 ，建议值：1 ~ 3
+
+- 错误之后重试次数建议 2 ~ 5
 
 #### 1.2 绑定下载监听
 
