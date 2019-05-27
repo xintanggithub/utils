@@ -1,22 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.tson.utils">
+          package="com.tson.utils">
 
     <application
-        android:allowBackup="true"
-        android:icon="@drawable/icon_my"
-        android:label="@string/app_name"
-        android:supportsRtl="true"
-        android:theme="@style/Theme.AppCompat.NoActionBar">
-        <activity android:name=".TestRecyclerViewActivity"></activity>
+            android:allowBackup="true"
+            android:icon="@drawable/icon_my"
+            android:label="@string/app_name"
+            android:supportsRtl="true"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
+        <activity android:name=".TestRecyclerViewActivity"/>
         <activity android:name=".Main2Activity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".DemoUtilsActivity"></activity>
+        <activity android:name=".DemoUtilsActivity"/>
+        <activity android:name=".DownloadActivity">
+
+        </activity>
     </application>
 
 </manifest>

@@ -48,6 +48,14 @@ class DownloadViewModel : ViewModel() {
         sp.retryCount = count
     }
 
+    fun setGlobalPost2UIInterval(size: Int) {
+        if (size <= 0) {
+            FileDownloader.setGlobalPost2UIInterval(size)
+        } else {
+            Throwable("setGlobalPost2UIInterval  ------  size <= 0")
+        }
+    }
+
     fun setMaxThreadCount(count: Int) {
         sp.maxThreadCount = count
         FileDownloader.getImpl().bindService { FileDownloader.getImpl().setMaxNetworkThreadCount(count) }

@@ -13,7 +13,7 @@ class DownLoadManager {
 
         private const val TAG = "DownLoadManager"
 
-        private var sDownloader: Downloader? = null
+        private var sDownloader: Downloader = Downloader()
 
         /**
          * 实例化
@@ -22,11 +22,8 @@ class DownLoadManager {
          */
         val instance: Downloader
             get() {
-                if (null == sDownloader) {
-                    sDownloader = Downloader()
-                }
                 LogUtils.d(TAG, "instance success")
-                return sDownloader!!
+                return sDownloader
             }
 
         /**
@@ -36,9 +33,6 @@ class DownLoadManager {
          */
         val downloader: Downloader?
             get() {
-                if (null == sDownloader) {
-                    Throwable("sDownloader is null,please【DownLoadManager.getInstance().init(ctx)】")
-                }
                 return sDownloader
             }
 
@@ -48,7 +42,7 @@ class DownLoadManager {
          * @param listener 下载监听器
          */
         fun bindChangeListener(listener: DownloadListener) {
-            sDownloader!!.addListener(listener)
+            sDownloader.addListener(listener)
         }
 
         /**
@@ -57,7 +51,7 @@ class DownLoadManager {
          * @param listener 下载监听器
          */
         fun unBindChangeListener(listener: DownloadListener) {
-            sDownloader!!.removeListener(listener)
+            sDownloader.removeListener(listener)
         }
     }
 }

@@ -21,11 +21,11 @@ class Downloader {
 
     private var application: Application? = null
 
-    private var mViewModelStore: ViewModelStore? = null
+    private var mViewModelStore: ViewModelStore = ViewModelStore()
 
-    private var mViewModel: DownloadViewModel = of().get(DownloadViewModel::class.java)
+    private lateinit var mViewModel: DownloadViewModel
 
-    private var initCustomMaker: DownloadMgrInitialParams.InitCustomMaker? = null
+    private lateinit var initCustomMaker: DownloadMgrInitialParams.InitCustomMaker
 
     @SuppressLint("UseSparseArrays")
     private val mListener = HashMap<Int, DownloadListener>()
@@ -38,6 +38,7 @@ class Downloader {
      */
     fun init(application: Application): Downloader {
         this.application = application
+        mViewModel = of().get(DownloadViewModel::class.java)
         val startTime = System.currentTimeMillis()
         LogUtils.d(TAG, "init start time=$startTime")
         initCustomMaker = FileDownloader.setupOnApplicationOnCreate(application)
@@ -61,17 +62,13 @@ class Downloader {
      * @return the this@Downloader
      */
     fun creatorOkHttpClientBuilder(builder: OkHttpClient.Builder): Downloader {
-        if (null == initCustomMaker) {
-            LogUtils.e(TAG, " please init Downloader ....")
-            return this
-        }
-        initCustomMaker!!.connectionCreator(OkHttp3Connection.Creator(builder))
+        initCustomMaker.connectionCreator(OkHttp3Connection.Creator(builder))
         return this
     }
 
     private fun of(): ViewModelProvider {
         val factory = ViewModelProvider.AndroidViewModelFactory.getInstance(application!!)
-        return ViewModelProvider(mViewModelStore!!, factory)
+        return ViewModelProvider(mViewModelStore, factory)
     }
 
     /**
@@ -154,6 +151,11 @@ class Downloader {
     fun setDebugLog(isOpen: Boolean): Downloader {
         mViewModel.setDebugLog(isOpen)
         LogUtils.d(TAG, "debug log -> open status :$isOpen")
+        return this
+    }
+
+    fun setGlobalPost2UIInterval(size: Int): Downloader {
+        mViewModel.setGlobalPost2UIInterval(size)
         return this
     }
 
