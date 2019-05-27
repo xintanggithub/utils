@@ -4,10 +4,14 @@ import android.annotation.SuppressLint
 import android.app.Application
 import android.arch.lifecycle.ViewModelProvider
 import android.arch.lifecycle.ViewModelStore
+import android.content.Intent
+import android.os.Build
 import com.liulishuo.filedownloader.BaseDownloadTask
 import com.liulishuo.filedownloader.FileDownloader
 import com.liulishuo.filedownloader.services.DownloadMgrInitialParams
+import com.tson.utils.lib.download.callback.ConnectServiceCallback
 import com.tson.utils.lib.download.callback.DownloadListener
+import com.tson.utils.lib.download.service.DownloadService
 import com.tson.utils.lib.download.utils.OkHttp3Connection
 import com.tson.utils.lib.download.utils.log.LogUtils
 import okhttp3.OkHttpClient
@@ -18,12 +22,6 @@ import java.util.*
  * Time 2018/10/31 2:33 PM
  */
 class Downloader {
-
-    private var application: Application? = null
-
-    private var mViewModelStore: ViewModelStore = ViewModelStore()
-
-    private lateinit var mViewModel: DownloadViewModel
 
     private lateinit var initCustomMaker: DownloadMgrInitialParams.InitCustomMaker
 
@@ -37,16 +35,35 @@ class Downloader {
      * @return the this@Downloader
      */
     fun init(application: Application): Downloader {
-        this.application = application
-        mViewModel = of().get(DownloadViewModel::class.java)
-        val startTime = System.currentTimeMillis()
-        LogUtils.d(TAG, "init start time=$startTime")
-        initCustomMaker = FileDownloader.setupOnApplicationOnCreate(application)
+        Downloader.application = application
         mViewModelStore = ViewModelStore()
+        mViewModel = of().get(DownloadViewModel::class.java)
         mViewModel.instance(application)
-        val endTime = System.currentTimeMillis()
-        LogUtils.d(TAG, "init end time =" + endTime + "   user time=" + (endTime - startTime))
         return this
+    }
+
+    fun connectService(connectService: ConnectServiceCallback) {
+        FileDownloader.setupOnApplicationOnCreate(application)
+        val service = Intent(application, DownloadService::class.java)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            application?.startForegroundService(service)
+        } else {
+            application?.startService(service)
+        }
+
+        mViewModel.setConnectService(object : ConnectServiceCallback {
+            override fun connect() {
+                LogUtils.d(TAG, "download service connect")
+                connectService.connect()
+                application?.stopService(service)
+            }
+
+            override fun disConnect() {
+                LogUtils.d(TAG, "download service connect")
+                connectService.disConnect()
+                application?.stopService(service)
+            }
+        })
     }
 
     /**
@@ -64,11 +81,6 @@ class Downloader {
     fun creatorOkHttpClientBuilder(builder: OkHttpClient.Builder): Downloader {
         initCustomMaker.connectionCreator(OkHttp3Connection.Creator(builder))
         return this
-    }
-
-    private fun of(): ViewModelProvider {
-        val factory = ViewModelProvider.AndroidViewModelFactory.getInstance(application!!)
-        return ViewModelProvider(mViewModelStore, factory)
     }
 
     /**
@@ -275,7 +287,16 @@ class Downloader {
 
     companion object {
 
+
+        private var application: Application? = null
+        private var mViewModelStore: ViewModelStore = ViewModelStore()
+        private lateinit var mViewModel: DownloadViewModel
         private val TAG = "Downloader"
+        fun of(): ViewModelProvider {
+            val factory = ViewModelProvider.AndroidViewModelFactory.getInstance(application!!)
+            return ViewModelProvider(mViewModelStore, factory)
+        }
+
     }
 
 }

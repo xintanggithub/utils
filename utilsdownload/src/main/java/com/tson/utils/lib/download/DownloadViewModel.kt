@@ -6,6 +6,7 @@ import android.text.TextUtils
 import com.liulishuo.filedownloader.BaseDownloadTask
 import com.liulishuo.filedownloader.FileDownloadListener
 import com.liulishuo.filedownloader.FileDownloader
+import com.tson.utils.lib.download.callback.ConnectServiceCallback
 import com.tson.utils.lib.download.callback.DownloadListener
 import com.tson.utils.lib.download.utils.log.LogUtils
 import com.tson.utils.lib.download.utils.sp.SpHelper
@@ -19,8 +20,28 @@ import com.tson.utils.lib.download.utils.sp.SpHelper
 class DownloadViewModel : ViewModel() {
 
     private var application: Application? = null
+    private var connectService: ConnectServiceCallback? = null
 
     private var mSp: SpHelper? = null
+    internal fun setConnectService(connectService: ConnectServiceCallback) {
+        this.connectService = connectService
+    }
+
+    fun getConnectService(): ConnectServiceCallback {
+        if (null == connectService) {
+            connectService = object : ConnectServiceCallback {
+                override fun connect() {
+                    LogUtils.d(TAG, "download service connect")
+                }
+
+                override fun disConnect() {
+                    LogUtils.d(TAG, "download service connect")
+                }
+
+            }
+        }
+        return connectService!!
+    }
 
     val sp: SpHelper
         get() {

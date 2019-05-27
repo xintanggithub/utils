@@ -32,7 +32,7 @@ android {
                 pom.project {
                     groupId 'com.tson.utils.lib.download'
                     artifactId 'lib'
-                    version '1.0.4'
+                    version '1.0.5'
                     packaging 'aar'
                 }
             }

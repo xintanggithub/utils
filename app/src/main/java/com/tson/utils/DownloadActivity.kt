@@ -4,10 +4,10 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.liulishuo.filedownloader.BaseDownloadTask
 import com.tson.utils.lib.download.DownLoadManager
+import com.tson.utils.lib.download.callback.ConnectServiceCallback
 import com.tson.utils.lib.download.callback.DownloadListener
 import com.tson.utils.lib.util.log.LogUtils
 import kotlinx.android.synthetic.main.activity_download.*
-import okhttp3.OkHttpClient
 
 class DownloadActivity : AppCompatActivity() {
 
@@ -22,12 +22,20 @@ class DownloadActivity : AppCompatActivity() {
 
         button6.setOnClickListener {
             Thread(Runnable {
-                DownLoadManager.instance.init(application)
-                        .setDebugLog(true)
-                        .setGlobalPost2UIInterval(60)
-                        .setPath(application.filesDir.path + "/download/")
-                        .setMaxThreadCount(3)
-                        .creatorOkHttpClientBuilder(OkHttpClient.Builder())
+                DownLoadManager.instance.init(application).connectService(object : ConnectServiceCallback {
+                    override fun disConnect() {
+                        DownLoadManager.instance.run {
+                            setRetryCount(3)
+                            setDebugLog(true)
+                            setGlobalPost2UIInterval(60)
+                            setMaxThreadCount(3)
+                            setPath(this@DownloadActivity.filesDir.path + "/download/")
+                        }
+                    }
+
+                    override fun connect() {
+                    }
+                })
             }).start()
         }
 
