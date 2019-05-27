@@ -53,6 +53,7 @@ class Downloader {
 
         mViewModel.setConnectService(object : ConnectServiceCallback {
             override fun connect() {
+                initCustomMaker = FileDownloader.setupOnApplicationOnCreate(application)
                 LogUtils.d(TAG, "download service connect")
                 connectService.connect()
                 application?.stopService(service)
