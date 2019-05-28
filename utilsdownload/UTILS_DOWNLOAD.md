@@ -24,7 +24,7 @@ allprojects {
 #### 0.2 需要使用的module下build.gradle添加引用
 
 ```
-    implementation "com.tson.utils.lib.download:lib:1.0.5"
+    implementation "com.tson.utils.lib.download:lib:1.0.6"
 ```
 
 ### 1. 使用
@@ -32,20 +32,29 @@ allprojects {
 #### 1.1 在application的onCreate中初始化，以及配置
 
 ```
-                           //初始化
-    DownLoadManager.instance.init(application)
-                           //开启debug日志，默认false
-                           .setDebugLog(true)
-                           //更新到UI的频率，单位ms
-                           .setGlobalPost2UIInterval(60)
-                           //设置下载路径(对应路径确保有读写权限)
-                           .setPath(application.filesDir.path + "/download/")
-                           //并发任务设置为最大3个
-                           .setMaxThreadCount(3)
-                           //错误之后重试次数2次
-                           .setRetryCount(2);
-                           //设置HttpClient
-                           .creatorOkHttpClientBuilder(OkHttpClient.Builder())
+                            //初始化
+    DownLoadManager.instance.init(application).connectService(object : ConnectServiceCallback {
+                    override fun connect() {
+                        DownLoadManager.instance.run {
+                             //开启debug日志，默认false
+                            setDebugLog(true)
+                            //错误之后重试次数3次
+                            setRetryCount(3)
+                            //更新到UI的频率，单位ms
+                            setGlobalPost2UIInterval(60)
+                            //并发任务设置为最大3个
+                            setMaxThreadCount(3)
+                            //设置下载路径(对应路径确保有读写权限)
+                            setPath(this@DownloadActivity.filesDir.path + "/download/")
+                            //设置HttpClient
+                            creatorOkHttpClientBuilder(OkHttpClient.Builder())
+                        }
+                    }
+
+                    override fun disConnect() {
+                    }
+                })
+                           
 ```
 
 - 做之后的任何操作前，必须先初始化
