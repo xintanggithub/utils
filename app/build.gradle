@@ -14,12 +14,34 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
-    buildTypes {
+
+    signingConfigs {
         release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            keyAlias project.KEY_ALIAS
+            keyPassword project.KEY_PASSWORD
+            storeFile file(project.STORE_FILE)
+            storePassword project.STORE_PASSWORD
+        }
+        debug {
+            keyAlias project.KEY_ALIAS
+            keyPassword project.KEY_PASSWORD
+            storeFile file(project.STORE_FILE)
+            storePassword project.STORE_PASSWORD
         }
     }
+
+    buildTypes {
+        release {
+            debuggable true
+            minifyEnabled false
+            signingConfig signingConfigs.release
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            signingConfig signingConfigs.release
+        }
+    }
+
     dataBinding {
         enabled = true
     }
@@ -37,12 +59,12 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-    implementation 'com.tson.utils.lib.http:lib:1.0.3'
-    implementation 'com.tson.utils.lib.util:lib:1.0.7'
-    implementation 'com.tson.utils.lib.iv:lib:1.0.1'
-//    implementation 'com.tson.utils.lib.download:lib:1.0.3'
-//    implementation 'com.tson.utils.view:lib:1.0.8'
+    implementation 'com.tson.utils.lib.http:lib:1.0.5'
+    implementation 'com.tson.utils.lib.util:lib:1.0.10'
+    implementation 'com.tson.utils.lib.iv:lib:1.0.4'
+    implementation 'com.tson.utils.lib.download:lib:1.0.8'
+    implementation 'com.tson.utils.view:lib:1.0.10'
 //    implementation project(':utilslib')
-    implementation project(':utilsview')
-    implementation project(':utilsdownload')
+//    implementation project(':utilsview')
+//    implementation project(':utilsdownload')
 }
