@@ -1,23 +1,23 @@
-package com.tson.utils.entity;
+package com.tson.utils.entity
 
 /**
  * Date 2019/5/27 11:26 AM
  *
  * @author tangxin
  */
-public class BaseEntity<T> {
+class BaseEntity<T> {
 
     /**
      * The Result.
      */
-    public boolean result;
+    var result: Boolean = false
     /**
      * The Reason.
      */
-    public String reason;
+    var reason: String? = null
     /**
      * The Package set.
      */
-    public T package_set;
+    var package_set: T? = null
 
 }
