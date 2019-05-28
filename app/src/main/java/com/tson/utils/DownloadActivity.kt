@@ -1,5 +1,6 @@
 package com.tson.utils
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.liulishuo.filedownloader.BaseDownloadTask
@@ -17,6 +18,7 @@ class DownloadActivity : AppCompatActivity() {
         var id = -1
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_download)
@@ -49,22 +51,32 @@ class DownloadActivity : AppCompatActivity() {
                     object : DownloadListener() {
                         override fun completed(task: BaseDownloadTask) {
                             LogUtils.v(TAG, "completed")
+                            textView.text = "completed"
                         }
 
                         override fun pending(task: BaseDownloadTask, soFarBytes: Int, totalBytes: Int) {
                             super.pending(task, soFarBytes, totalBytes)
-                            LogUtils.v(TAG, "total:${task.totalBytes}   |  download:${task.soFarBytes}")
+                            LogUtils.v(TAG, "pending  total:${task.totalBytes}   |  download:${task.soFarBytes}")
+                            textView.text = "pending   total:${task.totalBytes}   |  download:${task.soFarBytes}"
                         }
 
                         override fun progress(task: BaseDownloadTask, soFarBytes: Int, totalBytes: Int) {
                             super.progress(task, soFarBytes, totalBytes)
                             id = task.id
-                            LogUtils.v(TAG, "total:${task.totalBytes}   |  download:${task.soFarBytes}")
+                            LogUtils.v(TAG, "progress   total:${task.totalBytes}   |  download:${task.soFarBytes}")
+                            textView.text = "progress   total:${task.totalBytes}   |  download:${task.soFarBytes}"
                         }
 
                         override fun error(task: BaseDownloadTask, e: Throwable) {
                             super.error(task, e)
-                            LogUtils.v(TAG, "total:${task.totalBytes}   |  download:${task.soFarBytes}")
+                            LogUtils.v(TAG, "error   total:${task.totalBytes}   |  download:${task.soFarBytes}")
+                            textView.text = "error   total:${task.totalBytes}   |  download:${task.soFarBytes}"
+                        }
+
+                        override fun paused(task: BaseDownloadTask, soFarBytes: Int, totalBytes: Int) {
+                            super.paused(task, soFarBytes, totalBytes)
+                            LogUtils.v(TAG, "paused   total:${task.totalBytes}   |  download:${task.soFarBytes}")
+                            textView.text = "paused   total:${task.totalBytes}   |  download:${task.soFarBytes}"
                         }
                     })
         }
