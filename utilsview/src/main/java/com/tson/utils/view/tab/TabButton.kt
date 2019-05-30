@@ -108,17 +108,14 @@ class TabButton @JvmOverloads constructor(context: Context, attrs: AttributeSet?
     private//设置内容对齐模式
     val gravityType: Int
         get() {
-            val gravity: Int
-            val tabGravity = TabGravity.getGravity(mTabGravity)
-            when (tabGravity) {
-                TabGravity.TOP -> gravity = Gravity.TOP
-                TabGravity.LEFT -> gravity = Gravity.START
-                TabGravity.RIGHT -> gravity = Gravity.END
-                TabGravity.BOTTOM -> gravity = Gravity.BOTTOM
-                TabGravity.CENTER -> gravity = Gravity.CENTER
-                else -> gravity = Gravity.CENTER
+            return when (TabGravity.getGravity(mTabGravity)) {
+                TabGravity.TOP -> Gravity.TOP
+                TabGravity.LEFT -> Gravity.START
+                TabGravity.RIGHT -> Gravity.END
+                TabGravity.BOTTOM -> Gravity.BOTTOM
+                TabGravity.CENTER -> Gravity.CENTER
+                else -> Gravity.CENTER
             }
-            return gravity
         }
 
     internal var myListener: TabButtonListener = object : TabButtonListener() {
