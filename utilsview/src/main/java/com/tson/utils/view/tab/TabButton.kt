@@ -405,14 +405,15 @@ class TabButton @JvmOverloads constructor(context: Context, attrs: AttributeSet?
                 )
                 layoutParams1.setMargins(0, 0, 0, interval)
                 textView!!.layoutParams = layoutParams1
-                imageView!!.layoutParams = LayoutParams(
+                imageView?.layoutParams = LayoutParams(
                         if (defaultIconWidth == -1)
                             ViewGroup.LayoutParams.MATCH_PARENT
                         else
                             defaultIconWidth, 0, 1.0f
                 )
                 linearLayout.addView(textView)
-                linearLayout.addView(imageView)
+                if (null != imageView)
+                    linearLayout.addView(imageView)
             }
             TabModel.TEXT_BOTTOM_ICON_TOP -> {
                 val layoutParams2 = LayoutParams(
@@ -421,14 +422,15 @@ class TabButton @JvmOverloads constructor(context: Context, attrs: AttributeSet?
                 )
                 layoutParams2.setMargins(0, interval, 0, 0)
                 textView!!.layoutParams = layoutParams2
-                imageView!!.layoutParams = LayoutParams(
+                imageView?.layoutParams = LayoutParams(
                         if (defaultIconWidth == -1)
                             ViewGroup.LayoutParams.MATCH_PARENT
                         else
                             defaultIconWidth, 0, 1.0f
                 )
                 linearLayout.orientation = VERTICAL
-                linearLayout.addView(imageView)
+                if (null != imageView)
+                    linearLayout.addView(imageView)
                 linearLayout.addView(textView)
             }
             TabModel.TEXT_LEFT_ICON_RIGHT -> {
@@ -439,14 +441,15 @@ class TabButton @JvmOverloads constructor(context: Context, attrs: AttributeSet?
                 )
                 layoutParams3.setMargins(0, 0, interval, 0)
                 textView!!.layoutParams = layoutParams3
-                imageView!!.layoutParams = LayoutParams(
+                imageView?.layoutParams = LayoutParams(
                         0, if (defaultIconHeight == -1)
                     ViewGroup.LayoutParams.MATCH_PARENT
                 else
                     defaultIconHeight, 1.0f
                 )
                 linearLayout.addView(textView)
-                linearLayout.addView(imageView)
+                if (null != imageView)
+                    linearLayout.addView(imageView)
             }
             TabModel.TEXT_RIGHT_ICON_LEFT -> {
                 linearLayout.orientation = HORIZONTAL
@@ -456,13 +459,14 @@ class TabButton @JvmOverloads constructor(context: Context, attrs: AttributeSet?
                 )
                 layoutParams4.setMargins(interval, 0, 0, 0)
                 textView!!.layoutParams = layoutParams4
-                imageView!!.layoutParams = LayoutParams(
+                imageView?.layoutParams = LayoutParams(
                         0, if (defaultIconHeight == -1)
                     ViewGroup.LayoutParams.MATCH_PARENT
                 else
                     defaultIconHeight, 1.0f
                 )
-                linearLayout.addView(imageView)
+                if (null != imageView)
+                    linearLayout.addView(imageView)
                 linearLayout.addView(textView)
             }
             else -> {
@@ -472,14 +476,15 @@ class TabButton @JvmOverloads constructor(context: Context, attrs: AttributeSet?
                 )
                 layoutParams5.setMargins(0, interval, 0, 0)
                 textView!!.layoutParams = layoutParams5
-                imageView!!.layoutParams = LayoutParams(
+                imageView?.layoutParams = LayoutParams(
                         if (defaultIconWidth == -1)
                             ViewGroup.LayoutParams.MATCH_PARENT
                         else
                             defaultIconWidth, 0, 1.0f
                 )
                 linearLayout.orientation = VERTICAL
-                linearLayout.addView(imageView)
+                if (null != imageView)
+                    linearLayout.addView(imageView)
                 linearLayout.addView(textView)
             }
         }
