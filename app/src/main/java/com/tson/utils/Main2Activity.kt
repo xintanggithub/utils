@@ -52,16 +52,17 @@ class Main2Activity : AppCompatActivity() {
         button2.setOnClickListener { v -> startActivity(Intent(this, DemoUtilsActivity::class.java)) }
         button3.setOnClickListener { v -> UtilsHelper.openLogView(application) }
         button5.setOnClickListener { v ->
-            run {
-                LogUtils.d("test", "123131231312");
-                LogUtils.e("test", "get data error, message (token is empty)");
-                LogUtils.i("test", "info , a= 1   b=2   c=3");
-                LogUtils.w(
-                    "test",
-                    "warn , service is no running , url is https://avatars2.githubusercontent.com/u/27901367?s=460&v=4"
-                );
-                LogUtils.v("test", "----------------------------------");
+            LogUtils.run {
+                //                d("test", "123131231312")
+//                e("test", "get data error, message (token is empty)")
+//                i("test", "info , a= 1   b=2   c=3")
+//                w(
+//                    "test",
+//                    "warn , service is no running , url is https://avatars2.githubusercontent.com/u/27901367?s=460&v=4"
+//                )
+//                v("test", "----------------------------------")
             }
+
         }
         button9.setOnClickListener {
             startActivity(Intent(this@Main2Activity, DownloadActivity::class.java))
@@ -74,6 +75,10 @@ class Main2Activity : AppCompatActivity() {
             startActivity(Intent(this@Main2Activity, MenuActivity::class.java))
         }
 
+        statusBar()
+    }
+
+    private fun statusBar() {
         //当FitsSystemWindows设置 true 时，会在屏幕最上方预留出状态栏高度的 padding
         StatusBarUtil.setRootViewFitsSystemWindows(this, true);
         //设置状态栏透明
@@ -88,13 +93,13 @@ class Main2Activity : AppCompatActivity() {
     }
 
     private fun printInitLog() {
-        LogUtils.i("test", "------00-----------00000----------00000----");
-        LogUtils.i("test", "------00---------00-----00-------00----00--");
-        LogUtils.i("test", "------00--------00-------00-----00------00-");
-        LogUtils.i("test", "------00--------00-------00----00----------");
-        LogUtils.i("test", "------00--------00-------00----00-----00000");
-        LogUtils.i("test", "------00--------00-------00-----00-------00");
-        LogUtils.i("test", "------00---------00-----00-------00-----00-");
-        LogUtils.i("test", "------00000-----00000-----------000--");
+//        LogUtils.i("test", "------00-----------00000----------00000----");
+//        LogUtils.i("test", "------00---------00-----00-------00----00--");
+//        LogUtils.i("test", "------00--------00-------00-----00------00-");
+//        LogUtils.i("test", "------00--------00-------00----00----------");
+//        LogUtils.i("test", "------00--------00-------00----00-----00000");
+//        LogUtils.i("test", "------00--------00-------00-----00-------00");
+//        LogUtils.i("test", "------00---------00-----00-------00-----00-");
+//        LogUtils.i("test", "------00000-----00000-----------000--");
     }
 }
