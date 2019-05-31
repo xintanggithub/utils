@@ -28,3 +28,5 @@ allprojects {
 ### 1. BaseAdapter的使用 [点击这里查看详情](https://github.com/xintanggithub/utils/blob/master/utilsview/BASEADAPTER.md)
 
 ### 2. TabButton的使用 [点击这里查看详情](https://github.com/xintanggithub/utils/blob/master/utilsview/TABBUTTON.md)
+
+### 3. 状态栏沉浸式的使用 [点击这里查看详情](https://github.com/xintanggithub/utils/blob/master/utilsview/md/statusBar.MD)
