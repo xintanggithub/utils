@@ -41,6 +41,7 @@
         <attr name="tab_button_padding_top" format="dimension" />
         <attr name="tab_button_padding_right" format="dimension" />
         <attr name="tab_button_padding_bottom" format="dimension" />
+        <attr name="tab_button_select" format="boolean" />
     </declare-styleable>
 
     <declare-styleable name="DrawableTextView">

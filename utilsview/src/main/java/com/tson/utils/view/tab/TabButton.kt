@@ -59,6 +59,8 @@ class TabButton @JvmOverloads constructor(context: Context, attrs: AttributeSet?
     private var paddingDrawableBottom = 0
     private var padding = 0
 
+    private var isSelect = true
+
     /**
      * 显示模型
      * [TabModel]
@@ -160,6 +162,7 @@ class TabButton @JvmOverloads constructor(context: Context, attrs: AttributeSet?
                     R.styleable
                             .TabButton_tab_button_icon_visible, false
             )
+            isSelect = typedArray.getBoolean(R.styleable.TabButton_tab_button_select, true)
             val defaultTextSize = 13f
             mTabButtonTextSize = typedArray.getDimension(
                     R.styleable.TabButton_tab_button_text_size,
@@ -250,7 +253,7 @@ class TabButton @JvmOverloads constructor(context: Context, attrs: AttributeSet?
     }
 
     private fun createIds() {
-        if (!mButtons.isEmpty()) {
+        if (mButtons.isNotEmpty()) {
             for (i in mButtons.indices) {
                 val button = mButtons[i]
                 if (0 == button.id) {
@@ -326,7 +329,7 @@ class TabButton @JvmOverloads constructor(context: Context, attrs: AttributeSet?
                 myListener.onLongClick(i, tab.button!!)
                 true
             }
-            if (defaultIndex == i) {
+            if (defaultIndex == i && isSelect) {
                 val imageView = tab.imageView
                 imageView?.setImageDrawable(button!!.selectIcon)
                 val textView = tab.textView
@@ -610,7 +613,7 @@ class TabButton @JvmOverloads constructor(context: Context, attrs: AttributeSet?
     private fun notifyTabButton(button: Button?) {
         for (tab in tabs) {
             val finalButton = tab.button
-            if (finalButton?.id != button?.id) {
+            if (finalButton?.id != button?.id || !isSelect) {
                 val imageView = tab.imageView
                 imageView?.setImageDrawable(finalButton?.defaultIcon)
                 val textView = tab.textView
