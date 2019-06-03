@@ -8,6 +8,8 @@ import com.bumptech.glide.request.RequestOptions
 import com.tson.utils.lib.iv.GlideUtil
 import com.tson.utils.lib.util.UtilsHelper
 import com.tson.utils.lib.util.log.LogUtils
+import com.tson.utils.lib.util.time.TimerCallBack
+import com.tson.utils.lib.util.time.TimerUtils
 import com.tson.utils.view.statusbar.StatusBarUtil
 import kotlinx.android.synthetic.main.activity_main2.*
 
@@ -19,10 +21,10 @@ class Main2Activity : AppCompatActivity() {
         setContentView(R.layout.activity_main2)
         button.setOnClickListener { v ->
             startActivity(
-                Intent(
-                    this@Main2Activity,
-                    TestRecyclerViewActivity::class.java
-                )
+                    Intent(
+                            this@Main2Activity,
+                            TestRecyclerViewActivity::class.java
+                    )
             )
         }
 
@@ -38,30 +40,31 @@ class Main2Activity : AppCompatActivity() {
         val appStoreIconUrl = "https://avatars2.githubusercontent.com/u/27901367?s=460&v=4"
         //圆角
         GlideUtil.setCornerIcon(
-            this, appStoreIconUrl, iv, 20f,
-            RequestOptions().placeholder(R.drawable.ic_launcher_background)
-                .error(R.drawable.ic_launcher_background)
+                this, appStoreIconUrl, iv, 20f,
+                RequestOptions().placeholder(R.drawable.ic_launcher_background)
+                        .error(R.drawable.ic_launcher_background)
         )
         //圆形
         GlideUtil.setCornerIcon(
-            this, appStoreIconUrl, iv2, 200f,
-            RequestOptions().placeholder(R.drawable.ic_launcher_background)
-                .error(R.drawable.ic_launcher_background)
+                this, appStoreIconUrl, iv2, 200f,
+                RequestOptions().placeholder(R.drawable.ic_launcher_background)
+                        .error(R.drawable.ic_launcher_background)
         )
 
         button2.setOnClickListener { v -> startActivity(Intent(this, DemoUtilsActivity::class.java)) }
         button3.setOnClickListener { v -> UtilsHelper.openLogView(application) }
         button5.setOnClickListener { v ->
             LogUtils.run {
-                //                d("test", "123131231312")
-//                e("test", "get data error, message (token is empty)")
-//                i("test", "info , a= 1   b=2   c=3")
-//                w(
-//                    "test",
-//                    "warn , service is no running , url is https://avatars2.githubusercontent.com/u/27901367?s=460&v=4"
-//                )
-//                v("test", "----------------------------------")
+                d("test", "123131231312")
+                e("test", "get data error, message (token is empty)")
+                i("test", "info , a= 1   b=2   c=3")
+                w(
+                        "test",
+                        "warn , service is no running , url is https://avatars2.githubusercontent.com/u/27901367?s=460&v=4"
+                )
+                v("test", "----------------------------------")
             }
+
 
         }
         button9.setOnClickListener {
@@ -76,6 +79,28 @@ class Main2Activity : AppCompatActivity() {
         }
 
         statusBar()
+
+        TimerUtils.instance(1000, object : TimerCallBack {
+            override fun doNotify() {
+                LogUtils.d("test", "doNotify " + System.currentTimeMillis())
+            }
+
+            override fun stop() {
+                LogUtils.d("test", "stop")
+            }
+
+            override fun start() {
+                LogUtils.d("test", "start")
+            }
+        })
+
+        start.setOnClickListener {
+            TimerUtils.start()
+        }
+        stop.setOnClickListener {
+            TimerUtils.stop()
+        }
+
     }
 
     private fun statusBar() {

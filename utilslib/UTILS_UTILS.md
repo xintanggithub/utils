@@ -24,7 +24,7 @@ allprojects {
 #### 0.2 需要使用的module下build.gradle添加引用
 
 ```
-    implementation "com.tson.utils.lib.util:lib:1.0.10"
+    implementation "com.tson.utils.lib.util:lib:1.0.11"
 ```
 
 ### 1. 工具类使用
@@ -54,5 +54,7 @@ UtilsHelper.openLogView(getApplication())
 - StringUtils 字符串工具类 [点击查看](https://github.com/xintanggithub/utils/blob/master/utilslib/child/StringUtils.MD)
 
 - TimeUtils 时间格式工具类 [点击查看](https://github.com/xintanggithub/utils/blob/master/utilslib/child/TimeUtils.MD)
+
+- TimerUtils 定时工具类
 
 - LogUtils 日志工具类 [点击查看](https://github.com/xintanggithub/utils/blob/master/utilslib/child/LogUtil.MD)

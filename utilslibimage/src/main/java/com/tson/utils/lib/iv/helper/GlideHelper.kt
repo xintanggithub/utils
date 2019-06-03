@@ -2,10 +2,13 @@ package com.tson.utils.lib.iv.helper
 
 import android.content.Context
 import android.graphics.Bitmap
+import android.graphics.drawable.Drawable
 import android.os.Build
+import android.support.annotation.Nullable
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory
 import android.widget.ImageView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.BitmapImageViewTarget
 import com.tson.utils.lib.iv.R
@@ -19,6 +22,17 @@ import com.tson.utils.lib.iv.option.GlideRoundTransform
 class GlideHelper {
 
     companion object {
+
+        /**
+         * 设置配置项：如占位图、错误时显示的图
+         */
+        fun optionsSetting(@Nullable placeholder: Drawable, @Nullable error: Drawable): RequestOptions {
+            return RequestOptions()
+                .placeholder(placeholder)
+                .error(error)
+                .diskCacheStrategy(DiskCacheStrategy.NONE)
+        }
+
         /**
          * 圆角并兼容centerCrop
          */
