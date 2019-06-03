@@ -80,7 +80,7 @@ class Main2Activity : AppCompatActivity() {
 
         statusBar()
 
-        TimerUtils.instance(1000, object : TimerCallBack {
+        TimerUtils.instance(1000,0, object : TimerCallBack {
             override fun doNotify() {
                 LogUtils.d("test", "doNotify " + System.currentTimeMillis())
             }

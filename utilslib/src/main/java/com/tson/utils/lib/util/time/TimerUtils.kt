@@ -17,10 +17,12 @@ class TimerUtils {
         var timer: Timer? = null
         var task: MyTimerTask? = null
         var time: Long = 1000
+        var start: Long = 1000
         lateinit var callBack: TimerCallBack
 
-        fun instance(t: Long, c: TimerCallBack) {
+        fun instance(t: Long, s: Long, c: TimerCallBack) {
             time = t
+            start = s
             callBack = c
         }
 
@@ -32,7 +34,7 @@ class TimerUtils {
             if (null == task) {
                 task = MyTimerTask()
             }
-            timer?.schedule(task, 1000, time)
+            timer?.schedule(task, start, time)
         }
 
         var myHandler: Handler = @SuppressLint("HandlerLeak")
