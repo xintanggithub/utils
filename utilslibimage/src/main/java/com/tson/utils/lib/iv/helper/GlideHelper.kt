@@ -18,58 +18,59 @@ import com.tson.utils.lib.iv.option.GlideRoundTransform
  */
 class GlideHelper {
 
-    /**
-     * 圆角并兼容centerCrop
-     */
-    fun radiusAndCenterCrop(context: Context, url: String, options: RequestOptions, image: ImageView, radius: Int) {
-        Glide.with(context)
-            .load(url)
-            .apply(options.also { it.transform(GlideRoundTransform(context, radius)) })
-            .into(image);
-    }
+    companion object {
+        /**
+         * 圆角并兼容centerCrop
+         */
+        fun radiusAndCenterCrop(context: Context, url: String, options: RequestOptions, image: ImageView, radius: Int) {
+            Glide.with(context)
+                .load(url)
+                .apply(options.also { it.transform(GlideRoundTransform(context, radius)) })
+                .into(image);
+        }
 
-    /**
-     * 圆形(显示在背景，前景为none)
-     */
-    fun circularSrcNone(context: Context, url: String, options: RequestOptions, iv: ImageView) {
-        Glide.with(context)
-            .asBitmap()
-            .load(url)
-            .apply(options)
-            .into(object : BitmapImageViewTarget(iv) {
-                override fun setResource(resource: Bitmap?) {
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-                        iv.run {
-                            setImageResource(R.drawable.none_24dp)
-                            background = RoundedBitmapDrawableFactory.create(context.resources, resource).also {
-                                it.isCircular = true
+        /**
+         * 圆形(显示在背景，前景为none)
+         */
+        fun circularSrcNone(context: Context, url: String, options: RequestOptions, iv: ImageView) {
+            Glide.with(context)
+                .asBitmap()
+                .load(url)
+                .apply(options)
+                .into(object : BitmapImageViewTarget(iv) {
+                    override fun setResource(resource: Bitmap?) {
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                            iv.run {
+                                setImageResource(R.drawable.none_24dp)
+                                background = RoundedBitmapDrawableFactory.create(context.resources, resource).also {
+                                    it.isCircular = true
+                                }
                             }
                         }
                     }
-                }
-            })
-    }
+                })
+        }
 
-    /**
-     * 圆形(显示在背景，前景为none)
-     */
-    fun circular(context: Context, url: String, options: RequestOptions, iv: ImageView) {
-        Glide.with(context)
-            .asBitmap()
-            .load(url)
-            .apply(options)
-            .into(object : BitmapImageViewTarget(iv) {
-                override fun setResource(resource: Bitmap?) {
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-                        iv.run {
-                            setImageDrawable(RoundedBitmapDrawableFactory.create(context.resources, resource).also {
-                                it.isCircular = true
-                            })
+        /**
+         * 圆形(显示在背景，前景为none)
+         */
+        fun circular(context: Context, url: String, options: RequestOptions, iv: ImageView) {
+            Glide.with(context)
+                .asBitmap()
+                .load(url)
+                .apply(options)
+                .into(object : BitmapImageViewTarget(iv) {
+                    override fun setResource(resource: Bitmap?) {
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                            iv.run {
+                                setImageDrawable(RoundedBitmapDrawableFactory.create(context.resources, resource).also {
+                                    it.isCircular = true
+                                })
+                            }
                         }
                     }
-                }
-            })
+                })
+        }
     }
-
 
 }
