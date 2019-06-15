@@ -1,7 +1,6 @@
 package com.tson.utils.lib.util.time
 
 import android.annotation.SuppressLint
-import java.text.ParsePosition
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -22,12 +21,11 @@ class TimeUtils {
          * @return返回自定义时间格式
          */
         @SuppressLint("SimpleDateFormat")
-        fun getNowDateShort(pattern: String): Date {
+        fun getNowDateShort(pattern: String): String {
             val currentTime = Date()
             val formatter = SimpleDateFormat(pattern)
             val dateString = formatter.format(currentTime)
-            val pos = ParsePosition(8)
-            return formatter.parse(dateString, pos)
+            return dateString
         }
 
         /**

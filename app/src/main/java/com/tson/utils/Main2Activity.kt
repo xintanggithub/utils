@@ -9,6 +9,7 @@ import com.tson.utils.lib.iv.GlideUtil
 import com.tson.utils.lib.util.UtilsHelper
 import com.tson.utils.lib.util.log.LogUtils
 import com.tson.utils.lib.util.sp.SharePreferencesFactory
+import com.tson.utils.lib.util.time.TimeUtils
 import com.tson.utils.lib.util.time.TimerCallBack
 import com.tson.utils.lib.util.time.TimerUtils
 import com.tson.utils.view.statusbar.StatusBarUtil
@@ -96,10 +97,11 @@ class Main2Activity : AppCompatActivity() {
         })
 
         start.setOnClickListener {
-            TimerUtils.start()
+            TimeUtils.getNowDateShort("yyyy-MM-dd")
+//            TimerUtils.start()
         }
         stop.setOnClickListener {
-            TimerUtils.stop()
+//            TimerUtils.stop()
         }
 
         val sp = SharePreferencesFactory(this, "1231231")
