@@ -24,6 +24,7 @@ public abstract class BaseAdapter<T, E extends ViewDataBinding> extends Recycler
     private int itemLayoutId;
     protected Context context;
     protected OnclickListener onclickListener;
+    private FooterViewHolder baseViewHolder;
 
     /**
      * 普通布局
@@ -55,7 +56,11 @@ public abstract class BaseAdapter<T, E extends ViewDataBinding> extends Recycler
 
     OnclickListener getOnclickListener() {
         if (null == onclickListener) {
-            onclickListener = view -> {
+            onclickListener = new OnclickListener() {
+                @Override
+                public void onclick(View view) {
+
+                }
             };
         }
         return onclickListener;
@@ -154,8 +159,8 @@ public abstract class BaseAdapter<T, E extends ViewDataBinding> extends Recycler
             BaseViewHolder baseViewHolder = (BaseViewHolder) viewHolder;
             this.onBindViewHolders(i, baseViewHolder);
         } else {
-            FooterViewHolder baseViewHolder = (FooterViewHolder) viewHolder;
-            mCallBack.footerHolder(baseViewHolder, mData, loadState);
+            baseViewHolder = (FooterViewHolder) viewHolder;
+            notifyFoot();
         }
     }
 
@@ -193,9 +198,16 @@ public abstract class BaseAdapter<T, E extends ViewDataBinding> extends Recycler
         }
     }
 
+    private void notifyFoot() {
+        if (null != baseViewHolder) {
+            mCallBack.footerHolder(baseViewHolder, mData, loadState);
+        }
+    }
+
     public void loadMore() {
         if (loadState != LOADING) {
             loadState = LOADING;
+            notifyFoot();
             setShowFooter();
             notifyItemRangeChanged(mData.size(), mData.size() + 1);
         }
@@ -203,6 +215,7 @@ public abstract class BaseAdapter<T, E extends ViewDataBinding> extends Recycler
 
     public void loadComplete() {
         loadState = LOADING_COMPLETE;
+        notifyFoot();
         if (showFooter) {
             if (!mData.isEmpty()) {
                 notifyItemRemoved(mData.size());
@@ -215,6 +228,7 @@ public abstract class BaseAdapter<T, E extends ViewDataBinding> extends Recycler
 
     public void noneMore() {
         loadState = LOADING_END;
+        notifyFoot();
         if (showFooter) {
             if (!mData.isEmpty()) {
                 notifyItemRemoved(mData.size());
@@ -241,13 +255,38 @@ public abstract class BaseAdapter<T, E extends ViewDataBinding> extends Recycler
         return showFooter ? (mData.size() + 1) : mData.size();
     }
 
-    public interface OnclickListener {
+    public abstract class OnclickListener implements AllClick {
         /**
          * 点击事件 回调方法
          *
          * @param view 点击的控件对象
          */
+
+        @Override
+        public void onclick(View view, View view2) {
+
+        }
+
+        @Override
+        public void onclick(View view, View view2, View view3) {
+
+        }
+
+        @Override
+        public void onclick(View... view) {
+
+        }
+    }
+
+    public interface AllClick {
+
         void onclick(View view);
+
+        void onclick(View view, View view2);
+
+        void onclick(View view, View view2, View view3);
+
+        void onclick(View... view);
     }
 
     /**
