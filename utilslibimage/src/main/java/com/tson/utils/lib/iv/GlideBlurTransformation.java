@@ -21,10 +21,20 @@ import java.security.MessageDigest;
  */
 public class GlideBlurTransformation extends CenterCrop {
     private Context context;
+    private Bitmap.Config config;
+    private int size = 1;
 
     public GlideBlurTransformation(Context context) {
         this.context = context;
     }
+
+
+    public GlideBlurTransformation(Context context, Bitmap.Config config, int size) {
+        this.context = context;
+        this.config = config;
+        this.size = size;
+    }
+
 
     @Override
     protected Bitmap transform(@NonNull BitmapPool pool, @NonNull Bitmap toTransform, int outWidth, int outHeight) {
@@ -44,8 +54,8 @@ public class GlideBlurTransformation extends CenterCrop {
     @TargetApi(Build.VERSION_CODES.KITKAT)
     private Bitmap blurBitmap(Context context, Bitmap image, float blurRadius, int outWidth, int outHeight) {
         // 将缩小后的图片做为预渲染的图片
-        Bitmap inputBitmap = Bitmap.createScaledBitmap(image, outWidth / 4, outHeight / 4, false);
-        inputBitmap.setConfig(Bitmap.Config.ALPHA_8);
+        Bitmap inputBitmap = Bitmap.createScaledBitmap(image, outWidth / size, outHeight / size, false);
+        inputBitmap.setConfig(config);
         // 创建一张渲染后的输出图片
         Bitmap outputBitmap = Bitmap.createBitmap(inputBitmap);
         // 创建RenderScript内核对象
