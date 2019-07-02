@@ -12,6 +12,7 @@ import com.tson.utils.databinding.ItemFawFooterBinding
 import com.tson.utils.view.list.BaseAdapter
 import com.tson.utils.view.list.BaseAdapter.*
 import com.tson.utils.view.list.CallBack
+import com.tson.utils.view.list.OnclickListener
 import kotlinx.android.synthetic.main.activity_main.*
 
 class TestRecyclerViewActivity : AppCompatActivity() {
@@ -74,6 +75,13 @@ class TestRecyclerViewActivity : AppCompatActivity() {
         rv_list.adapter = adapter
 
         adapter.loadMore()
+
+        adapter.setOnclickListener(object : OnclickListener(){
+            override fun onclick(view: View) {
+
+            }
+        })
+
 
         show_load.setOnClickListener {
             adapter.loadMore()

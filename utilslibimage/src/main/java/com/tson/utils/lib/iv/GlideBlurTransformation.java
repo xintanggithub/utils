@@ -41,10 +41,11 @@ public class GlideBlurTransformation extends CenterCrop {
      * @param blurRadius 模糊的半径（1-25之间）
      * @return 模糊处理后的Bitmap
      */
-    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
+    @TargetApi(Build.VERSION_CODES.KITKAT)
     private Bitmap blurBitmap(Context context, Bitmap image, float blurRadius, int outWidth, int outHeight) {
         // 将缩小后的图片做为预渲染的图片
-        Bitmap inputBitmap = Bitmap.createScaledBitmap(image, outWidth, outHeight, false);
+        Bitmap inputBitmap = Bitmap.createScaledBitmap(image, outWidth / 4, outHeight / 4, false);
+        inputBitmap.setConfig(Bitmap.Config.ALPHA_8);
         // 创建一张渲染后的输出图片
         Bitmap outputBitmap = Bitmap.createBitmap(inputBitmap);
         // 创建RenderScript内核对象

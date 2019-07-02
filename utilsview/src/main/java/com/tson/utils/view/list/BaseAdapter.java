@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
@@ -253,40 +254,6 @@ public abstract class BaseAdapter<T, E extends ViewDataBinding> extends Recycler
             return 0;
         }
         return showFooter ? (mData.size() + 1) : mData.size();
-    }
-
-    public abstract class OnclickListener implements AllClick {
-        /**
-         * 点击事件 回调方法
-         *
-         * @param view 点击的控件对象
-         */
-
-        @Override
-        public void onclick(View view, View view2) {
-
-        }
-
-        @Override
-        public void onclick(View view, View view2, View view3) {
-
-        }
-
-        @Override
-        public void onclick(View... view) {
-
-        }
-    }
-
-    public interface AllClick {
-
-        void onclick(View view);
-
-        void onclick(View view, View view2);
-
-        void onclick(View view, View view2, View view3);
-
-        void onclick(View... view);
     }
 
     /**
