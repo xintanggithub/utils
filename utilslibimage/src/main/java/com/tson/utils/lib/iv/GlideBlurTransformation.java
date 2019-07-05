@@ -26,6 +26,7 @@ public class GlideBlurTransformation extends CenterCrop {
 
     public GlideBlurTransformation(Context context) {
         this.context = context;
+        this.config = Bitmap.Config.ARGB_4444;
     }
 
 
