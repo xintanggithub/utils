@@ -22,7 +22,7 @@ allprojects {
 #### 0.2 需要使用的module下build.gradle添加引用
 
 ```
-    implementation "com.tson.utils.lib.iv:lib:1.0.12"
+    implementation "com.tson.utils.lib.iv:lib:1.0.13"
 ```
 
 ### 1. 如何使用
@@ -57,4 +57,47 @@ allprojects {
 
 ```
 fun setCornerIcon(context: Context, path: String, imageView: ImageView, radius: Float, options: RequestOptions)
+```
+
+### 添加GlideHelper工具类
+
+```
+        /**
+         * 设置配置项：如占位图、错误时显示的图
+         */
+        fun optionsSetting(@Nullable placeholder: Drawable, @Nullable error: Drawable): RequestOptions
+```
+
+```
+        /**
+         * 圆角并兼容centerCrop
+         */
+        fun radiusAndCenterCrop(context: Context, url: String, options: RequestOptions, image: ImageView, radius: Int)
+```
+
+```
+        /**
+         * 圆形(显示在背景，前景为none)
+         */
+        fun circularSrcNone(context: Context, url: String, options: RequestOptions, iv: ImageView)
+```
+
+```
+        /**
+         * 圆形(显示在背景，前景为none)
+         */
+        fun circular(context: Context, url: String, options: RequestOptions, iv: ImageView)
+```
+
+```
+        /**
+         * view  ->  imageView
+         * url   ->  load img url
+         * radius  ->  圆角大小，超过半数为圆形，vague越大，同等值的radius圆角度也越大
+         * vague  ->  标准模糊的多少倍（标准的为1-25，vague为1时，模糊等级为25  , 设置参考   模糊度= 25 X vague）
+         * errorDrawable -> 错误时的占位图
+         * config  ->   参考Bitmap.Config的枚举
+         */
+        fun vagueAndRadius(view: ImageView, url: String?, radius: Float, vague: Int,
+                           errorDrawable: Int, config: Bitmap.Config)
 ```
