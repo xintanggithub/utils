@@ -20,4 +20,7 @@ abstract class CameraCallback : AllCallback {
 
     override fun crop(uri: Uri?) {
     }
+
+    override fun getCropLayout(): Int = -1
+
 }

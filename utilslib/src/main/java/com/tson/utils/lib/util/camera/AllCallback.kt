@@ -20,4 +20,6 @@ interface AllCallback {
 
     fun crop(uri: Uri?)
 
+    fun getCropLayout(): Int
+
 }

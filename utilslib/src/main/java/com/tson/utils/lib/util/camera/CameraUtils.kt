@@ -32,9 +32,9 @@ class CameraUtils {
         private const val TAKE_PHOTO = 101
         private const val CROP_PHOTO = 102
         private const val OPEN_CAMERA_ACTION = "android.media.action.IMAGE_CAPTURE"
-        private const val OPEN_CROP_CAMERA_ACTION = "com.android.camera.action.CROP"
         private const val CAMERA_PERMISSION = Manifest.permission.CAMERA
         private const val CAMERA_PERMISSION_CODE = 787
+        private const val WRITE_PERMISSION_CODE = 797
         private const val TYPE = "image/*"
         @SuppressLint("StaticFieldLeak")
         private var activity: Activity? = null
@@ -60,16 +60,32 @@ class CameraUtils {
         }
 
         fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
-            if (requestCode == CAMERA_PERMISSION_CODE) {
+            if (requestCode == CAMERA_PERMISSION_CODE || requestCode == WRITE_PERMISSION_CODE) {
                 if (grantResults.isNotEmpty()) {
                     if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                        LogUtils.w(TAG, "start reCheck permission")
-                        priOpenCamera(activity!!, path!!, imageName!!)
+                        openCamera(activity!!, path!!, imageName!!)
                     } else {
-                        if (!ActivityCompat.shouldShowRequestPermissionRationale(activity!!, CAMERA_PERMISSION)) {
-                            LogUtils.w(TAG, "check permission end , is error : need author $CAMERA_PERMISSION")
-                            PermissionUtils.createPermissionDialog(activity!!, "这个权限必须要，给老子整起！",
-                                    requestCode, false)
+                        for (permission in permissions) {
+                            if (!PermissionUtils.hasPermission(activity!!, permission)) {
+                                //如果无权限，判断是否拒绝
+                                if (!ActivityCompat.shouldShowRequestPermissionRationale(activity!!, permission)) {
+                                    //如果拒绝，进行提示
+                                    if (!ActivityCompat.shouldShowRequestPermissionRationale(activity!!, permission)) {
+                                        PermissionUtils.createPermissionDialog(activity!!, "${when (permission) {
+                                            Manifest.permission.WRITE_EXTERNAL_STORAGE -> "存储权限"
+                                            else -> "拍照权限"
+                                        }
+                                        }这个必须要，给老子整起！",
+                                                requestCode, false)
+                                        return
+                                    }
+                                } else {
+                                    return
+                                }
+                            } else {
+                                openCamera(activity!!, path!!, imageName!!)
+                                return
+                            }
                         }
                     }
                 }
@@ -81,29 +97,20 @@ class CameraUtils {
                 TAKE_PHOTO -> when (resultCode) {//拍照
                     Activity.RESULT_OK -> {
                         LogUtils.w(TAG, "crop setting = $crop")
+                        val a: Any? = data?.extras?.get("data")
+                        val bitmap: Bitmap = if (null != a) {
+                            a as Bitmap
+                        } else {
+                            BitmapFactory.decodeStream(activity?.contentResolver?.openInputStream(uri!!))
+                        }
                         if (crop) {
-                            LogUtils.w(TAG, "start crop")
-                            val rootFile = this.path + "/crop/"
-                            File(rootFile).also {
-                                if (!it.exists()) {
-                                    it.mkdirs()
-                                }
-                            }
-                            val files = File("$rootFile${System.currentTimeMillis()}.jpg")
-                            if (!files.exists()) {
-                                files.createNewFile()
-                            }
-                            outUri = Uri.parse(files.path)
-                            cropCamera(activity!!, outUri!!, 150, 150)
+                            LogUtils.w(TAG, "start crop camera")
+                            val layoutId = callback.getCropLayout()
+
+
                         } else {
                             LogUtils.w(TAG, "callback camera result")
-                            val a: Any? = data?.extras?.get("data")
-                            if (null != a) {
-                                callback.camera(a as Bitmap)
-                            } else {
-                                val bitmap = BitmapFactory.decodeStream(activity?.contentResolver?.openInputStream(uri!!))
-                                callback.camera(bitmap)
-                            }
+                            callback.camera(bitmap)
                             callback.camera(uri)
                         }
                     }
@@ -136,10 +143,13 @@ class CameraUtils {
             this.path = path
             this.imageName = imageName
             LogUtils.w(TAG, "start check permission")
-            if (PermissionUtils.checkPermission(ac, CAMERA_PERMISSION, "使用拍照需要以下权限。。。。",
-                            CAMERA_PERMISSION_CODE, false)) {
-                LogUtils.w(TAG, "check permission end , is success")
-                priOpenCamera(ac, path, imageName)
+            if (PermissionUtils.checkPermission(ac, Manifest.permission.WRITE_EXTERNAL_STORAGE, ""
+                            , WRITE_PERMISSION_CODE, false)) {
+                if (PermissionUtils.checkPermission(ac, CAMERA_PERMISSION, " ",
+                                CAMERA_PERMISSION_CODE, false)) {
+                    LogUtils.w(TAG, "check permission end , is success")
+                    priOpenCamera(ac, path, imageName)
+                }
             }
         }
 
@@ -162,37 +172,6 @@ class CameraUtils {
                 it.putExtra(MediaStore.EXTRA_OUTPUT, uri)
             }, TAKE_PHOTO)
         }
-
-        fun cropCamera(ac: Activity, imgUrl: Uri, w: Int, h: Int) {
-            val intent = Intent(OPEN_CROP_CAMERA_ACTION).also {
-                it.type = TYPE
-                it.setDataAndType(imgUrl, TYPE)
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                    it.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION or Intent.FLAG_GRANT_WRITE_URI_PERMISSION)
-                }
-                it.putExtra("crop", "true")
-                it.putExtra("scale", true)
-                it.putExtra("aspectX", 1)
-                it.putExtra("aspectY", 1)
-                it.putExtra("outputX", w)
-                it.putExtra("outputY", h)
-                it.putExtra("return-data", true)
-                it.putExtra(MediaStore.EXTRA_OUTPUT, imgUrl)
-                it.putExtra("outputFormat", Bitmap.CompressFormat.JPEG.toString())
-                it.putExtra("noFaceDetection", true)
-            }
-            val apps = ac.packageManager.queryIntentActivities(intent, 0)
-            if (apps == null || apps.isEmpty()) {
-                LogUtils.e(TAG, "Active application of unProcessable tailoring , please check for your system app list")
-                return
-            }
-            ac.startActivityForResult(intent, CROP_PHOTO)
-        }
-
-        fun openPhoto() {
-
-        }
-
     }
 
 }
