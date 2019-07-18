@@ -32,7 +32,7 @@ allprojects {
 ```
 
 UtilsHelper.also {
-            it.instance(this@Activity) //实例化
+            it.instance(context) //实例化
             it.isDebug(true) //是否打开debug,打开则会输出日志
             var path = it.isSaveLog(true) //是否存储日志文件,true返回存储路径,false返回空字符串
         }

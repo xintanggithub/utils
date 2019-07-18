@@ -161,19 +161,9 @@ class PermissionUtils {
          * @param finished      the finished
          * @return the boolean
          */
-        fun checkPermission(
-            activity: Activity,
-            permission: String,
-            dialogMessage: String,
-            requestCode: Int,
-            finished: Boolean
-        ): Boolean {
+        fun checkPermission(activity: Activity, permission: String, dialogMessage: String, requestCode: Int, finished: Boolean): Boolean {
             if (!hasPermission(activity, permission)) {
-                if (ActivityCompat.shouldShowRequestPermissionRationale(
-                        activity,
-                        Manifest.permission.READ_PHONE_STATE
-                    )
-                ) {
+                if (ActivityCompat.shouldShowRequestPermissionRationale(activity, Manifest.permission.READ_PHONE_STATE)) {
                     createPermissionDialog(activity, dialogMessage, requestCode, finished)
                 } else {
                     ActivityCompat.requestPermissions(activity, arrayOf(permission), requestCode)
@@ -219,16 +209,16 @@ class PermissionUtils {
          */
         @JvmOverloads
         fun createPermissionDialog(
-            activity: Activity, message: String,
-            requestCode: Int, finished: Boolean,
-            checkNotification: CheckNotification? = null
+                activity: Activity, message: String,
+                requestCode: Int, finished: Boolean,
+                checkNotification: CheckNotification? = null
         ) {
             val builder = AlertDialog.Builder(activity)
             builder.setCancelable(false)
             builder.setMessage(message)
             builder.setTitle("")
             builder.setPositiveButton(
-                activity.getString(R.string.permission_setting)
+                    activity.getString(R.string.permission_setting)
             ) { dialog, which -> openSetting(activity, requestCode) }
             builder.setNegativeButton(activity.getString(R.string.qf_cancel)) { dialog, which ->
                 if (null != checkNotification) {
@@ -260,7 +250,7 @@ class PermissionUtils {
                 try {
                     appOpsClass = Class.forName(AppOpsManager::class.java.name)
                     val checkOpNoThrowMethod =
-                        appOpsClass.getMethod(CHECK_OP_NO_THROW, Integer.TYPE, Integer.TYPE, String::class.java)
+                            appOpsClass.getMethod(CHECK_OP_NO_THROW, Integer.TYPE, Integer.TYPE, String::class.java)
                     val opPostNotificationValue = appOpsClass.getDeclaredField(OP_POST_NOTIFICATION)
                     val value = opPostNotificationValue.get(Int::class.java) as Int
                     return checkOpNoThrowMethod.invoke(mAppOps, value, uid, pkg) as Int == AppOpsManager.MODE_ALLOWED

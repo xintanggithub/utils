@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">tson lib</string>
+    <string name="camera">camera</string>
+    <string name="photos">photos</string>
 </resources>
