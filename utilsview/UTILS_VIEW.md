@@ -30,3 +30,5 @@ allprojects {
 ### 2. TabButton的使用 [点击这里查看详情](https://github.com/xintanggithub/utils/blob/master/utilsview/TABBUTTON.md)
 
 ### 3. 状态栏沉浸式的使用 [点击这里查看详情](https://github.com/xintanggithub/utils/blob/master/utilsview/md/statusBar.MD)
+
+### 4. 拍照工具Camera的使用 [点击这里查看详情](https://github.com/xintanggithub/utils/blob/master/utilsview/md/CameraUtils.MD)
