@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -44,6 +45,7 @@ class TestRecyclerViewActivity : AppCompatActivity() {
                     item.progress.visibility = View.INVISIBLE
                     item.tvTips.text = ""
                 } else {
+                    Log.d("------>", "=========>1293018301283")
                     when (loadState) {
                         LOADING -> {
                             item.progress.visibility = View.VISIBLE
@@ -64,11 +66,8 @@ class TestRecyclerViewActivity : AppCompatActivity() {
             }
 
             override fun dataBinding(parent: ViewGroup): ItemFawFooterBinding {
-                return DataBindingUtil
-                        .inflate(
-                                LayoutInflater.from(parent.context),
-                                R.layout.item_faw_footer, parent, false
-                        )
+                return DataBindingUtil.inflate(LayoutInflater.from(parent.context), R.layout.item_faw_footer, parent,
+                        false)
             }
         })
         rv_list.layoutManager = layoutManager
@@ -76,7 +75,7 @@ class TestRecyclerViewActivity : AppCompatActivity() {
 
         adapter.loadMore()
 
-        adapter.setOnclickListener(object : OnclickListener(){
+        adapter.setOnclickListener(object : OnclickListener() {
             override fun onclick(view: View) {
 
             }
