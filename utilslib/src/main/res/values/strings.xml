@@ -5,5 +5,9 @@
     <string name="back">返回</string>
     <string name="clear">清除</string>
     <string name="refresh">刷新</string>
+    <string name="tip_sdk_permission_title">存储权限</string>
+    <string name="tip_camera_permission_title">相机权限</string>
+    <string name="tip_sdk_permission_msg">使用相机需要使用 存储权限，否者无法正常使用，请到 设置 -> 权限管理 打开权限后重试</string>
+    <string name="tip_camera_permission_msg">使用相机需要使用 相机权限，否者无法正常使用，请到 设置 -> 权限管理 打开权限后重试</string>
 
 </resources>

@@ -3,6 +3,7 @@ package com.tson.utils.lib.util.camera
 import android.Manifest
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.app.AlertDialog
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
@@ -13,6 +14,8 @@ import android.os.Environment
 import android.provider.MediaStore
 import android.support.v4.app.ActivityCompat
 import android.support.v4.content.FileProvider
+import com.tson.utils.lib.util.R
+import com.tson.utils.lib.util.camera.entity.TipsEntity
 import com.tson.utils.lib.util.file.FileUtils
 import com.tson.utils.lib.util.log.LogUtils
 import com.tson.utils.lib.util.permission.PermissionUtils
@@ -33,15 +36,19 @@ class CameraUtils {
         private const val CROP_PHOTO = 102
         private const val OPEN_CAMERA_ACTION = "android.media.action.IMAGE_CAPTURE"
         private const val CAMERA_PERMISSION = Manifest.permission.CAMERA
+        private const val WRITE_PERMISSION = Manifest.permission.WRITE_EXTERNAL_STORAGE
         private const val CAMERA_PERMISSION_CODE = 787
         private const val WRITE_PERMISSION_CODE = 797
-        private const val TYPE = "image/*"
         @SuppressLint("StaticFieldLeak")
         private var activity: Activity? = null
         private var uri: Uri? = null
         private var path: String? = null
         private var imageName: String? = null
         private var outUri: Uri? = null
+        private var defTip = HashMap<String, TipsEntity>().also {
+            it[WRITE_PERMISSION] = TipsEntity(R.string.tip_sdk_permission_title, R.string.tip_sdk_permission_msg)
+            it[CAMERA_PERMISSION] = TipsEntity(R.string.tip_camera_permission_title, R.string.tip_camera_permission_msg)
+        }
 
         fun getFile(path: String, imageName: String): File {
             LogUtils.w(TAG, "mkdirs -> path=$path   imageName$imageName")
@@ -60,6 +67,21 @@ class CameraUtils {
         }
 
         fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+            onRequestPermissionsResult(requestCode, permissions, grantResults, null, null)
+        }
+
+        fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray,
+                                       builder: AlertDialog.Builder?) {
+            onRequestPermissionsResult(requestCode, permissions, grantResults, builder, null)
+        }
+
+        fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray,
+                                       tips: HashMap<String, TipsEntity>) {
+            onRequestPermissionsResult(requestCode, permissions, grantResults, null, tips)
+        }
+
+        private fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray
+                                               , builder: AlertDialog.Builder?, tips: HashMap<String, TipsEntity>?) {
             if (requestCode == CAMERA_PERMISSION_CODE || requestCode == WRITE_PERMISSION_CODE) {
                 if (grantResults.isNotEmpty()) {
                     if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
@@ -71,12 +93,23 @@ class CameraUtils {
                                 if (!ActivityCompat.shouldShowRequestPermissionRationale(activity!!, permission)) {
                                     //如果拒绝，进行提示
                                     if (!ActivityCompat.shouldShowRequestPermissionRationale(activity!!, permission)) {
-                                        PermissionUtils.createPermissionDialog(activity!!, "${when (permission) {
-                                            Manifest.permission.WRITE_EXTERNAL_STORAGE -> "存储权限"
-                                            else -> "拍照权限"
+                                        if (builder != null) {
+                                            builder.setPositiveButton(activity!!.getString(R.string.permission_setting)
+                                            ) { _, _ -> PermissionUtils.openSetting(activity!!, requestCode) }
+                                            builder.setNegativeButton(activity!!.getString(R.string.qf_cancel)) { dialog, _ ->
+                                                dialog.dismiss()
+                                            }
+                                            builder.create().show()
+                                        } else {
+                                            if (null != tips) {
+                                                defTip = tips
+                                            }
+                                            (defTip[permission] as TipsEntity).also {
+                                                PermissionUtils.createPermissionDialog(activity!!,
+                                                        activity!!.getString(it.titleMsgId),
+                                                        requestCode, false)
+                                            }
                                         }
-                                        }这个必须要，给老子整起！",
-                                                requestCode, false)
                                         return
                                     }
                                 } else {
@@ -106,6 +139,7 @@ class CameraUtils {
                         if (crop) {
                             LogUtils.w(TAG, "start crop camera")
                             val layoutId = callback.getCropLayout()
+                            //todo 设置可自定义的裁剪控件
 
 
                         } else {
@@ -143,7 +177,7 @@ class CameraUtils {
             this.path = path
             this.imageName = imageName
             LogUtils.w(TAG, "start check permission")
-            if (PermissionUtils.checkPermission(ac, Manifest.permission.WRITE_EXTERNAL_STORAGE, ""
+            if (PermissionUtils.checkPermission(ac, WRITE_PERMISSION, ""
                             , WRITE_PERMISSION_CODE, false)) {
                 if (PermissionUtils.checkPermission(ac, CAMERA_PERMISSION, " ",
                                 CAMERA_PERMISSION_CODE, false)) {
