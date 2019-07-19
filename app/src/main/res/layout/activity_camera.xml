@@ -29,6 +29,12 @@
             android:layout_height="wrap_content"
             android:text="need crop image?" />
 
+        <Button
+            android:id="@+id/bottomSheet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="bottomSheet" />
+
     </LinearLayout>
 
     <ImageView

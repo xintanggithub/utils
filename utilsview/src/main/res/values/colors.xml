@@ -8,4 +8,5 @@
     <color name="select_color">#ed8216</color>
     <color name="def_color">#000000</color>
     <color name="red">#ff0000</color>
+    <color name="content_color">#666666</color>
 </resources>
