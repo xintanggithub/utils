@@ -59,4 +59,4 @@ UtilsHelper.openLogView(getApplication())
 
 - LogUtils 日志工具类 [点击查看](https://github.com/xintanggithub/utils/blob/master/utilslib/child/LogUtil.MD)
 
-- 4. 拍照工具Camera的使用 [点击这里查看详情](https://github.com/xintanggithub/utils/blob/master/utilslib/child/CameraUtils.MD)
+- Camera 工具类 [点击这里查看详情](https://github.com/xintanggithub/utils/blob/master/utilslib/child/CameraUtils.MD)
