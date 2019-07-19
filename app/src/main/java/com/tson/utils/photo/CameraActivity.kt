@@ -5,6 +5,7 @@ import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.widget.TextView
 import com.tson.utils.R
 import com.tson.utils.lib.util.UtilsHelper
 import com.tson.utils.lib.util.camera.CameraCallback
@@ -33,9 +34,14 @@ class CameraActivity : AppCompatActivity() {
         }
         bottomSheet.setOnClickListener {
             val list = mutableListOf("1", "@", "1", "@", "1", "@", "1", "@", "1", "@", "1", "@", "1", "@", "1")
-            payForUser.setData(list, "收款对象", { _, result ->
-            }, { tv, position ->
-                tv.text = list[position]
+            payForUser.setData(list,"1232",object :BottomSheet.ChooseItemListener<String>{
+                override fun onResult(position: Int, result: String) {
+
+                }
+            },object :BottomSheet.BindTextListener{
+                override fun bindText(tv: TextView, position: Int) {
+                    tv.text = list[position]
+                }
             })
             payForUser.show(supportFragmentManager, CameraActivity::getLocalClassName.toString() + "1")
         }
