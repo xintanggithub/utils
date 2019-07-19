@@ -125,7 +125,12 @@ class CameraUtils {
             }
         }
 
-        fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?, crop: Boolean, callback: CameraCallback) {
+        fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?, callback: CameraCallback) {
+            onActivityResult(requestCode, resultCode, data, false, callback)
+        }
+
+        //todo 暂时不开放裁剪功能
+        private fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?, crop: Boolean, callback: CameraCallback) {
             when (requestCode) {
                 TAKE_PHOTO -> when (resultCode) {//拍照
                     Activity.RESULT_OK -> {

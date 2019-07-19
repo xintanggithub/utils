@@ -37,7 +37,7 @@ class CameraActivity : AppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        CameraUtils.onActivityResult(requestCode, resultCode, data, check.isChecked, object : CameraCallback() {
+        CameraUtils.onActivityResult(requestCode, resultCode, data,  object : CameraCallback() {
             override fun camera(bitmap: Bitmap?) {
             }
 
