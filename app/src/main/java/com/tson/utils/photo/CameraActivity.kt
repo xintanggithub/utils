@@ -34,11 +34,11 @@ class CameraActivity : AppCompatActivity() {
         }
         bottomSheet.setOnClickListener {
             val list = mutableListOf("1", "@", "1", "@", "1", "@", "1", "@", "1", "@", "1", "@", "1", "@", "1")
-            payForUser.setData(list,"1232",object :BottomSheet.ChooseItemListener<String>{
+            payForUser.setData(list, "1232", object : BottomSheet.ChooseItemListener<String> {
                 override fun onResult(position: Int, result: String) {
 
                 }
-            },object :BottomSheet.BindTextListener{
+            }, object : BottomSheet.BindTextListener {
                 override fun bindText(tv: TextView, position: Int) {
                     tv.text = list[position]
                 }
