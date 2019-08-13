@@ -45,7 +45,16 @@ class CameraActivity : AppCompatActivity() {
             })
             payForUser.show(supportFragmentManager, CameraActivity::getLocalClassName.toString() + "1")
         }
+        add.setOnClickListener {
+            a++
+            pb.progress = a
+        }
+        add2.setOnClickListener {
+            
+        }
     }
+
+    var a = 0
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)

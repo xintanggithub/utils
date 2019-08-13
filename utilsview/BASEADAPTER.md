@@ -155,3 +155,15 @@ val adapter = MyAdapter(data, R.layout.item_layout, object : CallBack<String, It
 rv_list.layoutManager = LinearLayoutManager(this@TestRecyclerViewActivity)
 rv_list.adapter = adapter
 ```
+
+#### 1.3 改变recyclerView的滑动速度
+
+```
+
+/**
+ * recyclerView 列表
+ * velocity 滑动速度，默认是8000dp
+ */
+ListScrollUtils.setMaxFlingVelocity(recyclerView: RecyclerView, velocity: Int)
+
+```
