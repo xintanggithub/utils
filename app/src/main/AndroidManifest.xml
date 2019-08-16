@@ -1,31 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.tson.utils">
+    package="com.tson.utils">
 
-    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <application
-            android:allowBackup="true"
-            android:icon="@drawable/icon_my"
-            android:label="@string/app_name"
-            android:supportsRtl="true"
-            android:theme="@style/Theme.AppCompat.NoActionBar">
-        <activity android:name=".Main3Activity">
+        android:allowBackup="true"
+        android:icon="@drawable/icon_my"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.AppCompat.NoActionBar">
+        <activity
+            android:name=".touch.MoveActivity"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".photo.CameraActivity">
-        </activity>
-        <activity android:name=".TestRecyclerViewActivity"/>
-        <activity android:name=".Main2Activity"/>
-        <activity android:name=".DemoUtilsActivity"/>
-        <activity android:name=".DownloadActivity"/>
-        <activity android:name=".HttpActivity"/>
-        <activity android:name=".MenuActivity">
-        </activity>
+        <activity android:name=".Main3Activity"></activity>
+        <activity android:name=".photo.CameraActivity"></activity>
+        <activity android:name=".TestRecyclerViewActivity" />
+        <activity android:name=".Main2Activity" />
+        <activity android:name=".DemoUtilsActivity" />
+        <activity android:name=".DownloadActivity" />
+        <activity android:name=".HttpActivity" />
+        <activity android:name=".MenuActivity"></activity>
     </application>
 
 </manifest>
