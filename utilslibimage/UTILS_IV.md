@@ -101,3 +101,15 @@ fun setCornerIcon(context: Context, path: String, imageView: ImageView, radius: 
         fun vagueAndRadius(view: ImageView, url: String?, radius: Float, vague: Int,
                            errorDrawable: Int, config: Bitmap.Config)
 ```
+
+###  图片拖动工具类 ImageViewOnMultiTouchListener
+
+#### 使用
+
+- 轻松一句代码搞定图片拖动、图片缩放
+
+```
+
+image.setOnTouchListener(ImageViewOnMultiTouchListener())
+
+```
