@@ -1,6 +1,7 @@
 package com.tson.utils.lib.util.time
 
 import android.annotation.SuppressLint
+import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -26,6 +27,29 @@ class TimeUtils {
             val formatter = SimpleDateFormat(pattern)
             val dateString = formatter.format(currentTime)
             return dateString
+        }
+
+        fun getCurrentByDay(): String = getNowDateShort("yyyy-MM-dd")
+
+        fun getDayOfWeek(dateTime: String): Int {
+            val cal = Calendar.getInstance()
+            if (dateTime == "") {
+                cal.time = Date(System.currentTimeMillis())
+            } else {
+                val sdf = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+                var date: Date?
+                try {
+                    date = sdf.parse(dateTime)
+                } catch (e: ParseException) {
+                    date = null
+                    e.printStackTrace()
+                }
+
+                if (date != null) {
+                    cal.time = Date(date.time)
+                }
+            }
+            return cal.get(Calendar.DAY_OF_WEEK)
         }
 
         /**
