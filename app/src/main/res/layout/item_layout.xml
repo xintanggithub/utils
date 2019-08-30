@@ -13,14 +13,15 @@
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorAccent">
+        android:background="#336699">
 
         <TextView
             android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@{vm}"
-            android:textColor="#000000"
+            android:padding="20dp"
+            android:textColor="#ffffff"
             tools:ignore="MissingConstraints"
             tools:layout_editor_absoluteX="97dp"
             tools:layout_editor_absoluteY="51dp" />

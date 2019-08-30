@@ -13,15 +13,19 @@
         <activity
             android:name=".touch.MoveActivity"
             android:theme="@android:style/Theme.Translucent.NoTitleBar">
+
+        </activity>
+        <activity android:name=".Main3Activity"></activity>
+        <activity android:name=".photo.CameraActivity"></activity>
+        <activity android:name=".TestRecyclerViewActivity" >
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
-        <activity android:name=".Main3Activity"></activity>
-        <activity android:name=".photo.CameraActivity"></activity>
-        <activity android:name=".TestRecyclerViewActivity" />
         <activity android:name=".Main2Activity" />
         <activity android:name=".DemoUtilsActivity" />
         <activity android:name=".DownloadActivity" />

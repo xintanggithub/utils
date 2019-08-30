@@ -4,16 +4,21 @@ import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.GridLayoutManager
+import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.Interpolator
+import android.view.animation.OvershootInterpolator
 import com.tson.utils.databinding.ItemFawFooterBinding
 import com.tson.utils.view.list.BaseAdapter
 import com.tson.utils.view.list.BaseAdapter.*
 import com.tson.utils.view.list.CallBack
 import com.tson.utils.view.list.OnclickListener
+import jp.wasabeef.recyclerview.animators.OvershootInLeftAnimator
+import jp.wasabeef.recyclerview.animators.SlideInUpAnimator
 import kotlinx.android.synthetic.main.activity_main.*
 
 class TestRecyclerViewActivity : AppCompatActivity() {
@@ -32,7 +37,9 @@ class TestRecyclerViewActivity : AppCompatActivity() {
         val data = mutableListOf<String>()
         data.addAll(data1)
 
-        val layoutManager = GridLayoutManager(this@TestRecyclerViewActivity, 3)
+//        val layoutManager = GridLayoutManager(this@TestRecyclerViewActivity, 3)
+
+        val layoutManager = LinearLayoutManager(this@TestRecyclerViewActivity)
 
         val adapter = MyAdapter(data, R.layout.item_layout, object : CallBack<String, ItemFawFooterBinding> {
             override fun layoutManager(): RecyclerView.LayoutManager {
@@ -72,6 +79,8 @@ class TestRecyclerViewActivity : AppCompatActivity() {
         })
         rv_list.layoutManager = layoutManager
         rv_list.adapter = adapter
+        rv_list.itemAnimator = OvershootInLeftAnimator()
+//        (rv_list.itemAnimator as SlideInUpAnimator).removeDuration = 300
 
         adapter.loadMore()
 
@@ -92,6 +101,9 @@ class TestRecyclerViewActivity : AppCompatActivity() {
         }
         not_more.setOnClickListener {
             adapter.noneMore()
+        }
+        button15.setOnClickListener {
+            adapter.notifyItemRemoved(0)
         }
 
         button4.setOnClickListener { adapter.loadMore() }
