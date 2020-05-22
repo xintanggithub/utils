@@ -17,6 +17,7 @@ class BitmapUtils {
 
     companion object {
 
+        //drawable转bitmap
         fun drawableToBitmap(drawable: Drawable): Bitmap {
             val bitmap = Bitmap.createBitmap(drawable.intrinsicWidth, drawable.intrinsicHeight,
                     if (drawable.opacity != PixelFormat.OPAQUE) Bitmap.Config.ARGB_8888 else
@@ -27,6 +28,7 @@ class BitmapUtils {
             return bitmap
         }
 
+        //资源蹄片转bitmap
         fun decodeSampledBitmapFromResource(res: Resources, resId: Int, reqWidth: Int, reqHeight: Int): Bitmap {
             val options = BitmapFactory.Options()
             // 先将inJustDecodeBounds设置为true不会申请内存去创建Bitmap，返回的是一个空的Bitmap，但是可以获取

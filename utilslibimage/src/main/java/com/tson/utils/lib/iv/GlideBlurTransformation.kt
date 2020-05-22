@@ -22,6 +22,9 @@ class GlideBlurTransformation : CenterCrop {
     private var context: Context? = null
     private var config: Bitmap.Config? = null
     private var size = 1
+    //最低模糊度，25为最大值，默认模糊等级最大
+    private var blurRadiusSize = 25f
+
 
     constructor(context: Context) {
         this.context = context
@@ -35,6 +38,11 @@ class GlideBlurTransformation : CenterCrop {
         this.size = size
     }
 
+    //用于想自定义最低模糊度当方法
+    constructor(context: Context, config: Bitmap.Config, size: Int, blurRadiusSize: Float) {
+        GlideBlurTransformation(context, config, size)
+        this.blurRadiusSize = blurRadiusSize
+    }
 
     override fun transform(pool: BitmapPool, toTransform: Bitmap, outWidth: Int, outHeight: Int): Bitmap {
         val bitmap = super.transform(pool, toTransform, outWidth, outHeight)
