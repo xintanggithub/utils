@@ -6,7 +6,7 @@
 
 #### 使用
 
-在xml中加入 "app:layout_behavior="com.jidouauto.market.widget.FixAppBarLayoutBehavior""使用，
+在xml中加入 "app:layout_behavior="com.tson.utils.view.appbarlayout.FixAppBarLayoutBehavior""使用，
 
 ```
 
@@ -15,7 +15,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/transparent"
-                app:layout_behavior="com.jidouauto.market.widget.FixAppBarLayoutBehavior"
+                app:layout_behavior="com.tson.utils.view.appbarlayout.FixAppBarLayoutBehavior"
                 android:theme="@style/AppTheme">
 
 ```
