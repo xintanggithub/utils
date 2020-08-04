@@ -9,6 +9,7 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/easyBase" />
             <option value="$PROJECT_DIR$/utilsdownload" />
             <option value="$PROJECT_DIR$/utilslib" />
             <option value="$PROJECT_DIR$/utilslibhttp" />
@@ -17,6 +18,7 @@
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
+        <option name="testRunner" value="PLATFORM" />
       </GradleProjectSettings>
     </option>
   </component>

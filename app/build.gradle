@@ -64,7 +64,7 @@ dependencies {
     implementation 'jp.wasabeef:recyclerview-animators:2.2.7'
 
 //    implementation 'com.tson.utils.lib.util:lib:1.0.10'
-    implementation 'com.tson.utils.lib.iv:lib:1.0.15'
+    implementation 'com.tson.utils.lib.iv:lib:1.0.17'
     implementation 'com.tson.utils.lib.download:lib:1.0.8'
 //    implementation 'com.tson.utils.view:lib:1.0.10'
     implementation project(':utilslib')

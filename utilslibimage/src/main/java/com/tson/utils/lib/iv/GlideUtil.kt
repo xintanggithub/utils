@@ -21,7 +21,7 @@ import java.io.FileOutputStream
 /**
  * Created by simon on 18-2-28.
  */
-internal class GlideUtil {
+class GlideUtil {
 
     companion object {
 
