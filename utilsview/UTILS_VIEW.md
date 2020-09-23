@@ -32,3 +32,5 @@ allprojects {
 ### 3. 状态栏沉浸式的使用 [点击这里查看详情](https://github.com/xintanggithub/utils/blob/master/utilsview/md/statusBar.MD)
 
 ### 4. AppBarLayout.Behavior的使用 [点击这里查看详情](https://github.com/xintanggithub/utils/blob/master/utilsview/md/behavior.MD)
+
+### 5. BottomSheet的使用 [点击这里查看详情](https://github.com/xintanggithub/utils/blob/master/utilsview/bottomSheet.MD)
