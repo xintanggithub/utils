@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/error_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_error_24dp" />
+
+    <TextView
+        android:id="@+id/error_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/error_layout_padding"
+        android:textColor="@color/grey_text_color"
+        android:textSize="@dimen/small_size"
+        tools:text="出了点问题~~~" />
+
+    <TextView
+        android:id="@+id/retry"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_error_button"
+        android:paddingLeft="@dimen/error_button_padding_left_right"
+        android:paddingTop="@dimen/error_button_padding_top_bottom"
+        android:paddingRight="@dimen/error_button_padding_left_right"
+        android:paddingBottom="@dimen/error_button_padding_top_bottom"
+        android:text="@string/do_retry"
+        android:textColor="@color/black"
+        android:textSize="@dimen/small_size"
+        tools:text="点击重试" />
+
+</LinearLayout>

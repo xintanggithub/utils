@@ -3,13 +3,13 @@ apply plugin: 'kotlin-android'
 apply plugin: 'maven'
 
 android {
-    compileSdkVersion project.COMPILE_SDK_VERSION as int
+    compileSdkVersion 29
 
     defaultConfig {
-        minSdkVersion project.MIN_SDK_VERSION_NAME as int
-        targetSdkVersion project.TARGET_SDK_VERSION as int
-        versionCode project.VERSION_CODE_HTTP as int
-        versionName project.VERSION_NAME_HTTP
+        minSdkVersion 23
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
@@ -26,12 +26,20 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'com.android.support:appcompat-v7:28.0.0'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    api "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.2.1"
+
+    //OkHttp3
+    implementation "com.squareup.okhttp3:okhttp:4.3.0"
+    //Retrofit网络请求
+    api "com.squareup.retrofit2:retrofit:2.6.2"
+    api "com.squareup.retrofit2:converter-gson:2.6.2"
+    implementation "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:0.9.2"
 
 }
 repositories {

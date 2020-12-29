@@ -1,0 +1,9 @@
+<resources>
+    <dimen name="max_size">16sp</dimen>
+    <dimen name="small_size">13sp</dimen>
+    <dimen name="min_size">11sp</dimen>
+    <dimen name="min_size_l">9sp</dimen>
+    <dimen name="error_layout_padding">15dp</dimen>
+    <dimen name="error_button_padding_top_bottom">7dp</dimen>
+    <dimen name="error_button_padding_left_right">15dp</dimen>
+</resources>

@@ -3,18 +3,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center_vertical"
-    android:orientation="vertical"
     tools:context=".Button4Activity">
 
-
-    <TextView
-        android:id="@+id/touch"
-        android:layout_width="match_parent"
+    <Button
+        android:id="@+id/initBtn"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/none_line_bg"
-        android:gravity="center"
-        android:padding="15dp"
-        android:text="touch" />
+        android:text="init" />
+
+    <Button
+        android:id="@+id/query"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="query" />
 
 </LinearLayout>
