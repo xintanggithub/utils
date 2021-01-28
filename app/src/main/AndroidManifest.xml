@@ -15,7 +15,11 @@
         tools:ignore="GoogleAppIndexingWarning">
         <activity android:name=".diff.DiffActivity" />
         <activity android:name=".Button4Activity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".touch.MoveActivity"
@@ -25,11 +29,7 @@
         <activity android:name=".TestRecyclerViewActivity" />
         <activity android:name=".Main2Activity" />
         <activity android:name=".DemoUtilsActivity" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".DownloadActivity" />
         <activity android:name=".HttpActivity" />

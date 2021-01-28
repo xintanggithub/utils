@@ -32,4 +32,5 @@ class Request {
                 }
             }
     }
+    // todo 可以进一步封装，错误和response脱坑等
 }

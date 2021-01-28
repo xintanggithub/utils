@@ -35,7 +35,7 @@ class DownloadViewModel : ViewModel() {
                 }
 
                 override fun disConnect() {
-                    LogUtils.d(TAG, "download service connect")
+                    LogUtils.d(TAG, "download service disConnect")
                 }
 
             }

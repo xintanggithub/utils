@@ -12,6 +12,10 @@ import kotlinx.android.synthetic.main.activity_button4.*
 
 class Button4Activity : Activity() {
 
+    companion object {
+        private const val TAG = "Button4Activity"
+    }
+
     lateinit var api: Api
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,9 +33,9 @@ class Button4Activity : Activity() {
             Request.doGet({
                 getGm()
             }, {
-                LogUtils.w("response", Gson().toJson(it))
+                LogUtils.w(TAG,"response  => ${Gson().toJson(it)}")
             }, {
-                LogUtils.w("error", it.message ?: "")
+                LogUtils.w(TAG,"error  => ${it.message ?: ""}")
             })
         }
     }
