@@ -79,7 +79,8 @@ class DownloadViewModel : ViewModel() {
 
     fun setMaxThreadCount(count: Int) {
         sp.maxThreadCount = count
-        FileDownloader.getImpl().bindService { FileDownloader.getImpl().setMaxNetworkThreadCount(count) }
+        FileDownloader.getImpl()
+            .bindService { FileDownloader.getImpl().setMaxNetworkThreadCount(count) }
     }
 
     fun setDebugLog(isOpenLog: Boolean) {
@@ -88,11 +89,15 @@ class DownloadViewModel : ViewModel() {
     }
 
     fun start(url: String, downloadListener: DownloadListener) {
+        start(url, sp.path, downloadListener)
+    }
+
+    fun start(url: String, outPath: String, downloadListener: DownloadListener) {
         val task: BaseDownloadTask
-        if (TextUtils.isEmpty(sp.path)) {
+        if (TextUtils.isEmpty(outPath)) {
             task = FileDownloader.getImpl().create(url)
         } else {
-            val path = sp.path + getFileName(url)
+            val path = outPath + getFileName(url)
             LogUtils.d(TAG, "Download Task url:$url")
             LogUtils.d(TAG, "Download Task file:$path")
             task = FileDownloader.getImpl().create(url).setPath(path)
